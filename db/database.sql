@@ -11,13 +11,13 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `admin_menu`;
 CREATE TABLE `admin_menu` (
-  `id` int(11) NOT NULL,
-  `par_id` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `par_id` int DEFAULT NULL,
   `user_role_ids` varchar(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `icon` varchar(45) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `sort_order` int(11) NOT NULL DEFAULT '1',
+  `sort_order` int NOT NULL DEFAULT '1',
   `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -62,13 +62,13 @@ INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `lin
 (38, 0, ',1,2,', 'Sekolah', 'fa fa-school', '#', 1, '2020-07-23 00:12:17'),
 (39, 0, ',1,2,3,', 'Pengguna', 'fa fa-user', '#', 1, '2020-07-23 00:12:45'),
 (40, 39, ',1,2,3,', 'Tambah Pengguna', 'fa fa-plus', '/pengguna/edit', 1, '2020-07-23 00:13:05'),
-(41, 39, ',1,2,3,', 'Data Pengguna', 'fa fa-user-group', '/pengguna/list', 1, '2020-07-23 00:13:17'),
+(41, 39, ',1,2,3,', 'Data Pengguna', 'fa fa-list', '/pengguna/list', 1, '2020-07-23 00:13:17'),
 (42, 38, ',1,2,3,', 'Tambah Sekolah', 'fa fa-plus', '/sekolah/edit', 1, '2020-07-23 00:13:41'),
 (43, 38, ',1,2,3,', 'Data Sekolah', 'fa fa-list', '/sekolah/list', 1, '2020-07-23 00:13:55');
 
 DROP TABLE IF EXISTS `bank_account`;
 CREATE TABLE `bank_account` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `bank_name` varchar(255) NOT NULL,
   `person_name` varchar(255) NOT NULL,
   `icon` varchar(255) NOT NULL,
@@ -83,11 +83,11 @@ INSERT INTO `bank_account` (`id`, `bank_name`, `person_name`, `icon`, `bank_numb
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
-  `id` int(11) NOT NULL,
-  `par_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `par_id` int NOT NULL,
   `module` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=content,2=product',
-  `module_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
+  `module_id` int NOT NULL,
+  `user_id` int NOT NULL DEFAULT '0',
   `username` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=unread, 1=read',
@@ -97,15 +97,15 @@ CREATE TABLE `comment` (
 
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(50) NOT NULL,
   `value` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `config` (`id`, `name`, `value`) VALUES
 (1, 'templates', '{\"public_template\":\"magazine\",\"admin_template\":\"AdminLTE\"}'),
-(2, 'site', '{\"title\":\"esoftgreat\",\"link\":\"https:\\/\\/www.esoftgreat.com\",\"image\":\"image_esoftgreat_1545189785.png\",\"keyword\":\"software developmet, jasa pembuatan website, jepara, murah, mudah, cepat, ramah, aplikasi android, ios app, jasa pembuatan aplikasi android, jasa pembuatan ios app, web designer, web programmer, web developer,  web administrator, web master\",\"description\":\"jasa pembuatan berbagai macam jenis website, aplikasi android dan juga ios app, kami juga melayani konsultasi masalah bisnis anda di bidang teknologi informasi, custom sistem maupun web custom sesuai kebutuhan anda\",\"year\":\"2015\",\"lang\":\"id\"}'),
-(3, 'logo', '{\"title\":\"esoftgreat\",\"image\":\"image_sarwabimbel_1546913142.png\",\"width\":\"250\",\"height\":\"50\",\"display\":\"image\"}'),
+(2, 'site', '{\"title\":\"sistem absensi\",\"link\":\"https:\\/\\/www.esoftgreat.com\",\"image\":\"image_esoftgreat_1545189785.png\",\"keyword\":\"\",\"description\":\"\",\"year\":\"2015\",\"lang\":\"id\",\"use_cache\":\"0\"}'),
+(3, 'logo', '{\"title\":\"sistem absensi\",\"image\":\"image_sarwabimbel_1546913142.png\",\"width\":\"250\",\"height\":\"50\",\"display\":\"image\"}'),
 (4, 'one-night_widget', '{\"template\":\"one-night\",\"menu_top\":{\"content\":\"1\"},\"content_slider\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_hot\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_top\":{\"content\":\"latest\",\"limit\":\"7\"},\"content\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_bottom\":{\"content\":\"latest\",\"limit\":\"7\"},\"right\":{\"content\":\"1\",\"limit\":\"7\"},\"menu_right\":{\"content\":\"1\"},\"right_extra\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_bottom_1\":{\"content\":\"2\"},\"menu_bottom_2\":{\"content\":\"2\"},\"menu_bottom_3\":{\"content\":\"2\"},\"menu_footer\":{\"content\":\"2\"}}'),
 (5, 'contact', '{\"name\":\"esoftgreat\",\"description\":\"jasa pembuatan website dan software. sesuai kebutuhan dan keinginan anda\",\"address\":\"Jl Tulakan Km 1 \\r\\nDukuh Krajan \\r\\nDesa Tulakan Rt 06\\/02 \\r\\nKec Donorojo Kab Jepara \\r\\nJawa Tengah\\r\\nKode Pos 59454\",\"phone\":\"+6285290335332\",\"wa\":\"6285290335332\",\"email\":\"info@esoftgreat.com\",\"google\":\"https:\\/\\/plus.google.com\\/115611472723876300931\",\"facebook\":\"https:\\/\\/web.facebook.com\\/esoftgreat\\/\",\"twitter\":\"https:\\/\\/twitter.com\",\"instagram\":\"https:\\/\\/instagram.com\",\"linkedin\":\"https:\\/\\/linkedin.com\",\"wordpress\":\"https:\\/\\/esoftgreat.wordrpress.com\",\"yahoo\":\"\",\"youtube\":\"https:\\/\\/www.youtube.com\\/channel\\/UC7QNxh1R6eo3mO2hRJtj6xw?view_as=subscriber\"}'),
 (6, 'header', '{\"image\":\"image_Selamat_Datang_di_Esoftgreat_1547957588.jpeg\",\"title\":\"Selamat Datang di Esoftgreat\",\"description\":\"JASA PEMBUATAN WEBSITE, DESAIN, ARTIKEL SEO, SOSIAL MEDIA MARKETING\"}'),
@@ -120,9 +120,9 @@ INSERT INTO `config` (`id`, `name`, `value`) VALUES
 
 DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `cat_ids` mediumtext NOT NULL,
-  `par_id` int(11) DEFAULT '0',
+  `par_id` int DEFAULT '0',
   `tpl` varchar(255) DEFAULT '0',
   `tag_ids` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE `content` (
   `videos` text,
   `document` text NOT NULL,
   `author` varchar(255) NOT NULL,
-  `hits` int(11) NOT NULL,
+  `hits` int NOT NULL,
   `last_hits` datetime NOT NULL,
   `rating` varchar(255) NOT NULL,
   `params` text NOT NULL,
@@ -153,8 +153,8 @@ INSERT INTO `content` (`id`, `cat_ids`, `par_id`, `tpl`, `tag_ids`, `title`, `sl
 
 DROP TABLE IF EXISTS `content_cat`;
 CREATE TABLE `content_cat` (
-  `id` int(11) NOT NULL,
-  `par_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `par_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -170,32 +170,50 @@ INSERT INTO `content_cat` (`id`, `par_id`, `title`, `slug`, `image`, `icon`, `de
 
 DROP TABLE IF EXISTS `content_tag`;
 CREATE TABLE `content_tag` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
-  `total` int(11) NOT NULL,
+  `total` int NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `guru`;
+CREATE TABLE `guru` (
+  `id` int NOT NULL,
+  `sekolah_id` int NOT NULL,
+  `nip` bigint NOT NULL,
+  `jabatan` tinyint NOT NULL,
+  `golongan` tinyint NOT NULL,
+  `tmpt_lahir` varchar(255) NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `alamat` text NOT NULL,
+  `telp` varchar(20) NOT NULL,
+  `hp` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `riwayat_pendidikat` json NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 DROP TABLE IF EXISTS `invoice`;
 CREATE TABLE `invoice` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `code` varchar(255) NOT NULL,
   `receiver` varchar(255) NOT NULL,
   `payment_method` tinyint(1) NOT NULL DEFAULT '1',
   `notes` varchar(255) NOT NULL,
   `items` text NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `ppn` int(255) NOT NULL,
+  `ppn` int NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
-  `id` int(11) NOT NULL,
-  `par_id` int(11) NOT NULL DEFAULT '0',
-  `position_id` int(11) NOT NULL DEFAULT '0',
-  `sort_order` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `par_id` int NOT NULL DEFAULT '0',
+  `position_id` int NOT NULL DEFAULT '0',
+  `sort_order` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `link` mediumtext NOT NULL,
   `tpl` varchar(255) NOT NULL,
@@ -204,7 +222,7 @@ CREATE TABLE `menu` (
 
 DROP TABLE IF EXISTS `menu_position`;
 CREATE TABLE `menu_position` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -216,7 +234,7 @@ INSERT INTO `menu_position` (`id`, `title`, `created`) VALUES
 
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `subject` varchar(255) NOT NULL,
@@ -228,7 +246,7 @@ CREATE TABLE `message` (
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `cat_ids` text NOT NULL,
   `tag_ids` text NOT NULL,
   `image` varchar(11) NOT NULL,
@@ -238,7 +256,7 @@ CREATE TABLE `product` (
   `description` text NOT NULL,
   `price` varchar(255) NOT NULL,
   `discount` double NOT NULL,
-  `qty` int(11) NOT NULL,
+  `qty` int NOT NULL,
   `publish` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 = not publish, 1 = publish',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -246,8 +264,8 @@ CREATE TABLE `product` (
 
 DROP TABLE IF EXISTS `product_cat`;
 CREATE TABLE `product_cat` (
-  `id` int(11) NOT NULL,
-  `par_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `par_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -259,31 +277,33 @@ CREATE TABLE `product_cat` (
 
 DROP TABLE IF EXISTS `product_tag`;
 CREATE TABLE `product_tag` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
-  `total` int(11) NOT NULL,
+  `total` int NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `sekolah`;
 CREATE TABLE `sekolah` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `nama` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
   `phone` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `province_id` int(11) NOT NULL,
-  `regency_id` int(11) NOT NULL,
-  `district_id` int(11) NOT NULL,
-  `village_id` int(11) NOT NULL,
+  `province_id` int NOT NULL,
+  `regency_id` int NOT NULL,
+  `district_id` int NOT NULL,
   `website` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO `sekolah` (`id`, `nama`, `alamat`, `phone`, `email`, `province_id`, `regency_id`, `district_id`, `website`, `created`, `updated`) VALUES
+(1, 'MAN 1 PATI', 'pati', '085290335332', 'iwansafr@gmail.com', 33, 3318, 3318100, 'https://man1pati.sch.id', '2020-07-26 23:40:19', NULL);
+
 DROP TABLE IF EXISTS `subscriber`;
 CREATE TABLE `subscriber` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `email` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -294,7 +314,7 @@ INSERT INTO `subscriber` (`id`, `email`, `created`) VALUES
 
 DROP TABLE IF EXISTS `testimonial`;
 CREATE TABLE `testimonial` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `profession` varchar(255) NOT NULL,
@@ -309,22 +329,28 @@ INSERT INTO `testimonial` (`id`, `name`, `email`, `profession`, `testimonial`, `
 
 DROP TABLE IF EXISTS `trash`;
 CREATE TABLE `trash` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `table_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `table_id` int NOT NULL,
   `table_title` varchar(255) NOT NULL,
   `table_content` text NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `trash` (`id`, `user_id`, `table_id`, `table_title`, `table_content`, `created`) VALUES
+(1, 1, 3, 'user', '{\"id\":\"3\",\"username\":\"root\",\"password\":\"$2y$10$oCNvK4jcYmDPvF35ZtYaTOTGstJoRVJFnYMvkZaobiGmudP0IxQMm\",\"email\":\"iwansafr@gmail.com\",\"image\":\"\",\"user_role_id\":\"2\",\"active\":\"1\",\"created\":\"2020-07-26 13:20:13\",\"updated\":\"2020-07-26 13:20:13\"}', '2020-07-26 13:58:46'),
+(2, 1, 2, 'user_sekolah', '{\"id\":\"2\",\"sekolah_id\":\"0\",\"user_id\":\"3\",\"user_role_id\":\"2\",\"username\":\"root\",\"email\":\"iwansafr@gmail.com\",\"sandi\":\"1\",\"nama\":\"root\",\"phone\":\"908908\",\"active\":\"1\",\"created\":\"2020-07-26 13:20:13\",\"updated\":\"2020-07-26 13:20:13\"}', '2020-07-26 13:58:52'),
+(3, 1, 4, 'user', '{\"id\":\"4\",\"username\":\"iwan\",\"password\":\"$2y$10$WYkAizO8lznat9x2l.b2tuEKBSj.VTzVMXYDfLxxjcz6JdOuoUSgG\",\"email\":\"iwansafr@gmail.com\",\"image\":\"\",\"user_role_id\":\"0\",\"active\":\"1\",\"created\":\"2020-07-26 13:52:31\",\"updated\":\"2020-07-26 13:52:31\"}', '2020-07-26 14:07:49'),
+(4, 1, 3, 'user_sekolah', '{\"id\":\"3\",\"sekolah_id\":\"0\",\"user_id\":\"4\",\"user_role_id\":\"0\",\"username\":\"iwan\",\"email\":\"iwansafr@gmail.com\",\"sandi\":\"1\",\"nama\":\"iwan\",\"phone\":\"080989\",\"active\":\"1\",\"created\":\"2020-07-26 13:52:31\",\"updated\":\"2020-07-26 13:52:31\"}', '2020-07-26 14:07:49');
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `user_role_id` int(11) NOT NULL,
+  `user_role_id` int NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = not active',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -335,8 +361,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `image`, `user_role_i
 
 DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE `user_login` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `ip` varchar(15) NOT NULL,
   `browser` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL COMMENT '0=failed, 1=success',
@@ -345,20 +371,23 @@ CREATE TABLE `user_login` (
 
 INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`) VALUES
 (1, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', 1, '2020-07-23 07:11:28'),
-(2, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', 1, '2020-07-23 10:42:56');
+(2, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', 1, '2020-07-23 10:42:56'),
+(3, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 13:52:14'),
+(4, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:19:25'),
+(5, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:39:11');
 
 DROP TABLE IF EXISTS `user_login_failed`;
 CREATE TABLE `user_login_failed` (
-  `id` int(11) NOT NULL,
-  `user_login_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `user_login_id` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL,
-  `level` tinyint(2) NOT NULL,
+  `id` int NOT NULL,
+  `level` tinyint NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -368,14 +397,15 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`id`, `level`, `title`, `description`, `created`) VALUES
 (1, 1, 'root', 'super user', '2018-11-02 22:57:22'),
 (2, 2, 'admin', 'the administrator', '2018-11-02 22:57:22'),
-(3, 5, 'Member', 'User member yang hanya berlangganan saja', '2018-11-04 12:59:26');
+(3, 5, 'Member', 'User member yang hanya berlangganan saja', '2018-11-04 12:59:26'),
+(4, 5, 'Sekolah', 'Akun Sekolahan', '2020-07-26 07:12:41');
 
 DROP TABLE IF EXISTS `user_sekolah`;
 CREATE TABLE `user_sekolah` (
-  `id` int(11) NOT NULL,
-  `sekolah_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `user_role_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `sekolah_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `user_role_id` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `sandi` varchar(255) NOT NULL,
@@ -386,9 +416,12 @@ CREATE TABLE `user_sekolah` (
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `user_sekolah` (`id`, `sekolah_id`, `user_id`, `user_role_id`, `username`, `email`, `sandi`, `nama`, `phone`, `active`) VALUES
+(4, 0, 1, 1, 'root', 'iwansafr@gmail.com', ',./\';[]-=90893eih897fjh9ru04jr934', 'root', '085290335332', 1);
+
 DROP TABLE IF EXISTS `visitor`;
 CREATE TABLE `visitor` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `ip` varchar(50) NOT NULL,
   `visited` varchar(255) NOT NULL,
   `city` varchar(50) NOT NULL,
@@ -483,6 +516,9 @@ ALTER TABLE `content_cat`
 ALTER TABLE `content_tag`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `guru`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `invoice`
   ADD PRIMARY KEY (`id`);
 
@@ -538,76 +574,79 @@ ALTER TABLE `visitor`
 
 
 ALTER TABLE `admin_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 ALTER TABLE `bank_account`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 ALTER TABLE `content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `content_cat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `content_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `guru`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `menu_position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `product_cat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `product_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `sekolah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `subscriber`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `testimonial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `trash`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `user_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 ALTER TABLE `user_login_failed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `user_sekolah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `visitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 
 ALTER TABLE `trash`
