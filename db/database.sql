@@ -189,7 +189,7 @@ CREATE TABLE `guru` (
   `telp` varchar(20) NOT NULL,
   `hp` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `riwayat_pendidikat` json NOT NULL,
+  `riwayat_pendidikan` json NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -374,7 +374,9 @@ INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`)
 (2, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', 1, '2020-07-23 10:42:56'),
 (3, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 13:52:14'),
 (4, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:19:25'),
-(5, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:39:11');
+(5, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:39:11'),
+(6, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-28 18:40:51'),
+(7, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-29 05:57:14');
 
 DROP TABLE IF EXISTS `user_login_failed`;
 CREATE TABLE `user_login_failed` (
@@ -634,7 +636,7 @@ ALTER TABLE `user`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `user_login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 ALTER TABLE `user_login_failed`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
