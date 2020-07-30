@@ -1,0 +1,19 @@
+<div class="col-md-12">
+	{menu_top}
+</div>	
+<div class="col-md-12">
+	{content_slider}
+</div>	
+<div class="row">
+	<div class="col-md-3">
+		<div class="col-md-12">
+			popular lpk
+		</div>
+		<div class="col-md-12">
+			popular program
+		</div>
+	</div>
+	<div class="col-md-9">
+		content
+	</div>
+</div>

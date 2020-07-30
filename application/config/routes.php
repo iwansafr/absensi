@@ -13,6 +13,7 @@ $route['admin/category']                   = 'admin/content/category';
 $route['admin/content/category/list']      = 'admin/content/list';
 $route['admin/content/category/list/edit'] = 'admin/content/edit';
 $route['search']                           = 'home/content/list';
+$route['absensi']                          = 'home/absensi';
 $route['content']                          = 'home/content/list';
 $route['content/popular']                  = 'home/content/list';
 $route['404_override']                     = 'home/e';

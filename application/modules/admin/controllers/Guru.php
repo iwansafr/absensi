@@ -17,4 +17,12 @@ class Guru extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function list()
+	{
+		$this->load->view('index');
+	}
+	public function clear_list()
+	{
+		$this->load->view('guru/list');
+	}
 }

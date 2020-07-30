@@ -64,6 +64,11 @@ class Home_model extends CI_Model
 		  // }
 			$this->esg->set_esg('link_template', $link_template);
 		}
+		$theme = $this->esg->get_config('config_theme');
+		if(!empty($theme))
+		{
+			$this->esg->set_esg('config_theme',$theme);
+		}
 	}
 
 	public function js()
