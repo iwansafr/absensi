@@ -33,6 +33,8 @@ function jam() {
 }
 setInterval(jam,1000);
 $(document).ready(function(){
+	var lat;
+	var long;
 	function readURL(input,a){
     if (input.files && input.files[0]){
       var reader = new FileReader();
@@ -51,4 +53,21 @@ $(document).ready(function(){
 		var a = $(this).siblings('#image_place');
 		readURL(this,a);
 	});
+	function getLocation() {
+	  if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(showPosition);
+	  } else { 
+	    alert("perangkat anda tidak mendukung untuk menangkap lokasi anda");
+	  }
+	}
+
+	function showPosition(position) {
+		// $("form").find(".panel-body").append("<label>LOKASI</label><br>Latitude: " + position.coords.latitude + 
+	 //  "<br>Longitude: " + position.coords.longitude+"<input type='hidden' name='koordinat' value='long:"+position.coords.longitude+",lat:"+position.coords.latitude+"'>");
+	  $("#long").html(position.coords.longitude);
+	  $("#lat").html(position.coords.latitude);
+	  long = position.coords.longitude;
+	  lat = position.coords.latitude;
+	}
+	getLocation();
 });

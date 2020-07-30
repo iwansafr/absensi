@@ -1,6 +1,13 @@
 <?php if (!empty($data)): ?>
   <style>
-    <style>
+    .marker {
+      background-image: url(<?php echo base_url('images/poin.png');?>);
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
     .container-detected {
         text-align: center;
         display: flex;
@@ -15,9 +22,9 @@
         /* width: image.width,
         height: image.height, */
         margin: 0px auto;
-        max-width: 700px;
-        max-height: 700px;
-        overflow: auto;
+        max-width: 500px;
+        max-height: 500px;
+        /* overflow: auto; */
     }
     .data-container {
        position: relative;
@@ -66,7 +73,7 @@
     td{
       border-radius: 5em;
     }
-  </style>
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
   </style>
   <div class="box box-widget widget-user">
     <div class="widget-user-header" style="background-color: <?php echo $config_theme['main_color'] ?>;color : <?php echo $config_theme['font_color']; ?>">
@@ -118,6 +125,25 @@
           </label>
         </form>
       </center>
+    </div>
+    <div class="box-body">
+      <center>
+        <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe>
+      </center>
+      <!-- <center>
+        <table class="table table-sm" style="width: 50%;">
+          <tr>
+            <td>longitude</td>
+            <td>:</td>
+            <td><div id="long">0</div></td>
+          </tr>
+          <tr>
+            <td>latitude</td>
+            <td>:</td>
+            <td><div id="lat">0</div></td>
+          </tr>
+        </table>
+      </center> -->
     </div>
     <div class="box-footer">
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-status">
