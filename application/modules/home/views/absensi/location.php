@@ -24,8 +24,8 @@
     }
 
     function showPosition(position) {
-        // $("form").find(".panel-body").append("<label>LOKASI</label><br>Latitude: " + position.coords.latitude + 
-     //  "<br>Longitude: " + position.coords.longitude+"<input type='hidden' name='koordinat' value='long:"+position.coords.longitude+",lat:"+position.coords.latitude+"'>");
+      //   $("form").find(".panel-body").append("<label>LOKASI</label><br>Latitude: " + position.coords.latitude + 
+      // "<br>Longitude: " + position.coords.longitude+"<input type='hidden' name='latitude' value='"+position.coords.latitude+"'><input type='hidden' name='longitude' value='"+position.coords.longitude+"'>");
       long = position.coords.longitude;
       lat = position.coords.latitude;
       mapboxgl.accessToken = 'pk.eyJ1IjoiaXdhbnNhZnIiLCJhIjoiY2tkOThubTY2MGp0cDJ0cWF3bWl5dzhkNiJ9.hl20SKyacvb1KANAcNsfKg';

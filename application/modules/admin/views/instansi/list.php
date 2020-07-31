@@ -4,10 +4,10 @@ $form = new zea();
 
 $form->init('roll');
 
-$form->setTable('sekolah');
+$form->setTable('instansi');
 $form->addInput('id','plaintext');
 $form->setPlainText('id',[
-	base_url('admin/guru/list?s_id={id}')=>'Daftar Guru',
+	base_url('admin/instansi/list?s_id={id}')=>'Daftar Guru',
 ]);
 $form->setNumbering(true);
 $form->addInput('nama','plaintext');
@@ -53,6 +53,9 @@ $form->setOptions('district_id',
 );
 $form->setAttribute('district_id','disabled');
 $form->setLabel('district_id','Kecamatan');
+
+$form->setEdit(true);
+$form->setDelete(true);
 
 $form->addInput('website','plaintext');
 

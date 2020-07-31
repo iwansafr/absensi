@@ -6,10 +6,10 @@ $form = new zea();
 
 $form->init('edit');
 $form->setId($id);
-$form->setTable('guru');
-$form->addInput('sekolah_id','dropdown');
-$form->setLabel('sekolah_id','sekolah');
-$form->tableOptions('sekolah_id','sekolah','id','nama');
+$form->setTable('karyawan');
+$form->addInput('instansi_id','dropdown');
+$form->setLabel('instansi_id','sekolah');
+$form->tableOptions('instansi_id','instansi','id','nama');
 $form->addInput('nama','text');
 $form->setLabel('nama','nama lengkap');
 $form->addInput('jk','dropdown');

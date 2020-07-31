@@ -6,11 +6,13 @@ $form = new zea();
 $form->init('edit');
 
 $form->setId($id);
-$form->setTable('sekolah');
+$form->setTable('instansi');
 $form->addInput('nama','text');
 
 $form->addInput('alamat','textarea');
 
+$form->addInput('longitude','hidden');
+$form->addInput('latitude','hidden');
 $form->addInput('phone','text');
 $form->setType('phone','number');
 $form->addInput('email','text');
@@ -52,5 +54,6 @@ $form->setLabel('district_id','Kecamatan');
 
 $form->addInput('website','text');
 $form->setRequired('All');
-
 $form->form();
+?>
+<div id="map" style="width: 70%; height: 300px;"></div>

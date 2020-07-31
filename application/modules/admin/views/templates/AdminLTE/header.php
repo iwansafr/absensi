@@ -1,12 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $message = $this->esg->get_esg('message');
+$config_theme = $this->esg->get_config('config_theme');
+$background = !empty($config_theme['main_color']) ? $config_theme['main_color'] : 'white';
+$font = !empty($config_theme['font_color']) ? $config_theme['font_color'] : 'black';
 ?>
 <header class="main-header">
-  <a href="<?php echo base_url('admin') ?>" class="logo">
+  <a href="<?php echo base_url('admin') ?>" class="logo" style="background-color: <?php echo $background;?>; color: <?php echo $font;?>!important;">
     <span class="logo-mini"><img src="<?php echo image_module('config', 'site/'.@$this->esg->get_esg('site')['site']['image']); ?>" height="50"></span>
     <span class="logo-lg"><img src="<?php echo image_module('config', 'logo/'.@$this->esg->get_esg('site')['logo']['image']); ?>" height="40"></span>
   </a>
-  <nav class="navbar navbar-static-top">
+  <nav class="navbar navbar-static-top" style="background-color: <?php echo $background;?>; color: <?php echo $font;?> !important;">
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>

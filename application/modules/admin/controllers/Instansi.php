@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sekolah extends CI_Controller
+class Instansi extends CI_Controller
 {
 	public function __construct()
 	{
@@ -20,6 +20,8 @@ class Sekolah extends CI_Controller
 
 	public function edit()
 	{
+		$this->esg->add_css('https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css');
+		$this->esg->add_js(['https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js',base_url('assets/absensi/sekolah.js')]);
 		$this->load->view('index');
 	}
 }
