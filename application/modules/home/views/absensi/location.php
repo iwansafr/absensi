@@ -38,6 +38,15 @@
       var marker = new mapboxgl.Marker()
         .setLngLat([long, lat])
         .addTo(map);
+      var a = long;
+      var b = a.toFixed(4);
+      console.log(a);
+      console.log(b);
+
+      var a = lat;
+      var b = a.toFixed(4);
+      console.log(a);
+      console.log(b);
     }
     getLocation();
 </script>
