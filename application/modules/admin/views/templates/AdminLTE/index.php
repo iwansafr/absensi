@@ -51,17 +51,10 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
-        <?php if (is('root')): ?>
-          <?php $this->load->view('config/subscriber') ?>
-        <?php endif ?>
+        
       </div>
       <div class="tab-pane active" id="control-sidebar-settings-tab">
-        <?php if (is('root')): ?>
-          <a href="<?php echo base_url() ?>" target="_blank" class="btn btn-default"><i class="fa fa-image"></i> preview website</a><hr>
-          <form method="post">
-            <?php $this->load->view('config/templates') ?>
-          </form>
-        <?php endif ?>
+        
       </div>
     </div>
   </aside>
