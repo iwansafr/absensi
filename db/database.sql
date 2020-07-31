@@ -20,7 +20,7 @@ CREATE TABLE `admin_menu` (
   `sort_order` int NOT NULL DEFAULT '1',
   `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `link`, `sort_order`, `created`) VALUES
 (1, 0, ',1,2,3,4,', 'Dashboard', 'fa fa-tachometer-alt', '/', 1, '2019-03-30 03:05:59'),
@@ -78,7 +78,7 @@ CREATE TABLE `bank_account` (
   `bank_number` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `bank_account` (`id`, `bank_name`, `person_name`, `icon`, `bank_number`, `created`) VALUES
 (1, 'BCA', 'Iwan Safrudin', 'icon_BCA.png', '0312609779', '2019-04-14 16:18:57'),
@@ -92,11 +92,11 @@ CREATE TABLE `comment` (
   `module_id` int NOT NULL,
   `user_id` int NOT NULL DEFAULT '0',
   `username` varchar(255) NOT NULL,
-  `content` text NOT NULL,
+  `content` mediumtext NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=unread, 1=read',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
@@ -178,7 +178,7 @@ CREATE TABLE `content_tag` (
   `title` varchar(255) NOT NULL,
   `total` int NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `instansi`;
 CREATE TABLE `instansi` (
@@ -195,7 +195,7 @@ CREATE TABLE `instansi` (
   `website` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `instansi` (`id`, `nama`, `alamat`, `phone`, `email`, `province_id`, `regency_id`, `district_id`, `longitude`, `latitude`, `website`, `created`, `updated`) VALUES
 (1, 'MAN 1 PATI', 'pati', '085290335332', 'iwansafr@gmail.com', 33, 3318, 3318100, 110.8857718, -6.4702896999999995, 'https://man1pati.sch.id', '2020-07-26 23:40:19', '2020-07-31 18:44:38');
@@ -207,12 +207,12 @@ CREATE TABLE `invoice` (
   `receiver` varchar(255) NOT NULL,
   `payment_method` tinyint(1) NOT NULL DEFAULT '1',
   `notes` varchar(255) NOT NULL,
-  `items` text NOT NULL,
+  `items` mediumtext NOT NULL,
   `status` tinyint(1) NOT NULL,
   `ppn` int NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `karyawan`;
 CREATE TABLE `karyawan` (
@@ -234,7 +234,7 @@ CREATE TABLE `karyawan` (
   `riwayat_pendidikan` text NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `karyawan` (`id`, `instansi_id`, `kary_group_id`, `nip`, `nama`, `jk`, `foto`, `jabatan`, `golongan`, `tmpt_lahir`, `tgl_lahir`, `alamat`, `telp`, `hp`, `email`, `riwayat_pendidikan`, `created`) VALUES
 (1, 1, 1, 0, 'Iwan Safrudin, S.Kom', 1, 'foto_Iwan_Safrudin,_S.Kom.jpg', 0, 0, 'jepara', '1993-01-16', '', '', '', '', '-MI matholiul falah tulakan jepara\r\n-smp islam keling jepara\r\n-sma negeri 1 donrojo\r\n-universitas muria kudus', '2020-07-29 15:14:13'),
@@ -244,7 +244,7 @@ DROP TABLE IF EXISTS `karyawan_group`;
 CREATE TABLE `karyawan_group` (
   `id` int NOT NULL,
   `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `karyawan_group` (`id`, `title`) VALUES
 (1, 'guru'),
@@ -280,29 +280,29 @@ CREATE TABLE `message` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `subject` varchar(255) NOT NULL,
-  `message` text NOT NULL,
+  `message` mediumtext NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=unread,2=read',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int NOT NULL,
-  `cat_ids` text NOT NULL,
-  `tag_ids` text NOT NULL,
+  `cat_ids` mediumtext NOT NULL,
+  `tag_ids` mediumtext NOT NULL,
   `image` varchar(11) NOT NULL,
-  `images` text NOT NULL,
+  `images` mediumtext NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` mediumtext NOT NULL,
   `price` varchar(255) NOT NULL,
   `discount` double NOT NULL,
   `qty` int NOT NULL,
   `publish` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 = not publish, 1 = publish',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `product_cat`;
 CREATE TABLE `product_cat` (
@@ -323,7 +323,7 @@ CREATE TABLE `product_tag` (
   `title` varchar(255) NOT NULL,
   `total` int NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `subscriber`;
 CREATE TABLE `subscriber` (
@@ -331,7 +331,7 @@ CREATE TABLE `subscriber` (
   `email` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `subscriber` (`id`, `email`, `created`) VALUES
 (1, 'iwansafr@gmail.com', '2019-04-22 06:39:07');
@@ -342,11 +342,11 @@ CREATE TABLE `testimonial` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `profession` varchar(255) NOT NULL,
-  `testimonial` text NOT NULL,
+  `testimonial` mediumtext NOT NULL,
   `publish` tinyint(1) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `testimonial` (`id`, `name`, `email`, `profession`, `testimonial`, `publish`, `created`) VALUES
 (2, 'iwan', 'iwansafr@gmail.com', 'guru', 'keren websitenya', 0, '2019-08-27 11:53:56');
@@ -357,9 +357,9 @@ CREATE TABLE `trash` (
   `user_id` int NOT NULL,
   `table_id` int NOT NULL,
   `table_title` varchar(255) NOT NULL,
-  `table_content` text NOT NULL,
+  `table_content` mediumtext NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `trash` (`id`, `user_id`, `table_id`, `table_title`, `table_content`, `created`) VALUES
 (1, 1, 3, 'user', '{\"id\":\"3\",\"username\":\"root\",\"password\":\"$2y$10$oCNvK4jcYmDPvF35ZtYaTOTGstJoRVJFnYMvkZaobiGmudP0IxQMm\",\"email\":\"iwansafr@gmail.com\",\"image\":\"\",\"user_role_id\":\"2\",\"active\":\"1\",\"created\":\"2020-07-26 13:20:13\",\"updated\":\"2020-07-26 13:20:13\"}', '2020-07-26 13:58:46'),
@@ -400,7 +400,7 @@ CREATE TABLE `user_instansi` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user_instansi` (`id`, `instansi_id`, `user_id`, `user_role_id`, `username`, `email`, `sandi`, `nama`, `phone`, `active`) VALUES
 (4, 0, 1, 1, 'root', 'iwansafr@gmail.com', ',./\';[]-=90893eih897fjh9ru04jr934', 'root', '085290335332', 1),
@@ -414,7 +414,7 @@ CREATE TABLE `user_login` (
   `browser` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL COMMENT '0=failed, 1=success',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`) VALUES
 (1, 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', 1, '2020-07-23 07:11:28'),
@@ -444,7 +444,7 @@ CREATE TABLE `user_login_failed` (
   `user_login_id` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user_login_failed` (`id`, `user_login_id`, `username`, `password`) VALUES
 (1, 12, 'root', 'Dks_080308'),
@@ -455,10 +455,10 @@ CREATE TABLE `user_role` (
   `id` int NOT NULL,
   `level` tinyint NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` mediumtext NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user_role` (`id`, `level`, `title`, `description`, `created`) VALUES
 (1, 1, 'root', 'super user', '2018-11-02 22:57:22'),
@@ -476,7 +476,7 @@ CREATE TABLE `visitor` (
   `country` varchar(10) NOT NULL,
   `browser` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `browser`, `created`) VALUES
 (1, '::1', 'http://localhost/absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', '2020-07-23 08:12:42'),
