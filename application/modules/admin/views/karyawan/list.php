@@ -4,9 +4,18 @@ $form = new zea();
 
 $form->init('roll');
 $form->search();
-if(!empty($_GET['s_id']))
-{
-	$form->setWhere('instansi_id = '.$this->db->escape($_GET['s_id']));
+$is_sekolah = is('sekolah');
+if($is_sekolah){
+	$form->setWhere(
+		'instansi_id = '.$this->pengguna_model->get_instansi_id(
+			$this->session->userdata(base_url('_logged_in'))['id']
+		)
+	);
+}else{
+	if(!empty($_GET['s_id']))
+	{
+		$form->setWhere('instansi_id = '.$this->db->escape($_GET['s_id']));
+	}
 }
 $form->addInput('id','hidden');
 $form->setNumbering(true);

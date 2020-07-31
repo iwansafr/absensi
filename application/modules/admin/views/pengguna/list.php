@@ -4,7 +4,7 @@ if(is_root() || is_admin())
 {
 	$form = new zea();
 	$form->init('roll');
-	$form->setTable('user_sekolah');
+	$form->setTable('user_instansi');
 	$form->search();
 
 	$form->addInput('id','plaintext');

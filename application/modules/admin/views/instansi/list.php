@@ -4,10 +4,19 @@ $form = new zea();
 
 $form->init('roll');
 
+$is_sekolah = is('sekolah');
+
 $form->setTable('instansi');
 $form->addInput('id','plaintext');
+
+if($is_sekolah)
+{
+	$this->load->model('pengguna_model');
+	$form->setWhere('id = '.$this->pengguna_model->get_instansi_id($this->session->userdata(base_url('_logged_in'))['id']));
+}
+
 $form->setPlainText('id',[
-	base_url('admin/instansi/list?s_id={id}')=>'Daftar Guru',
+	base_url('admin/karyawan/list?s_id={id}')=>'Daftar Karyawan',
 ]);
 $form->setNumbering(true);
 $form->addInput('nama','plaintext');
@@ -55,8 +64,11 @@ $form->setAttribute('district_id','disabled');
 $form->setLabel('district_id','Kecamatan');
 
 $form->setEdit(true);
-$form->setDelete(true);
-
+if(is('root'))
+{
+	$form->setDelete(true);
+}
+$form->setUrl('admin/instansi/clear_list');
 $form->addInput('website','plaintext');
 
 $form->form();
