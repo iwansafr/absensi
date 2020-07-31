@@ -23,7 +23,7 @@ CREATE TABLE `admin_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `link`, `sort_order`, `created`) VALUES
-(1, 0, ',1,2,3,', 'Dashboard', 'fa fa-tachometer-alt', '/', 1, '2019-03-30 03:05:59'),
+(1, 0, ',1,2,3,4,', 'Dashboard', 'fa fa-tachometer-alt', '/', 1, '2019-03-30 03:05:59'),
 (2, 0, ',1,2,3,', 'Content', 'fa fa-file-alt', '/content', 2, '2019-03-30 03:24:19'),
 (3, 2, ',1,2,3,', 'Category', 'fa fa-list', '/content/category', 21, '2019-03-30 03:26:22'),
 (4, 2, ',1,2,3,', 'Add Content', 'fa fa-pencil-alt', '/content/edit', 22, '2019-03-30 03:35:27'),
@@ -59,12 +59,15 @@ INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `lin
 (34, 23, ',1,2,', 'Bank Account', 'fa fa-user', '/config/bank_account', 85, '2019-04-06 01:37:09'),
 (35, 23, ',1,', 'Dashboard', 'fa fa-chart-bar', '/config/dashboard', 88, '2019-04-19 18:37:39'),
 (37, 21, ',1,', 'Subscribers', 'fa fa-user', '/subscriber', 1, '2019-04-22 06:37:13'),
-(38, 0, ',1,2,', 'Sekolah', 'fa fa-school', '#', 1, '2020-07-23 00:12:17'),
+(38, 0, ',1,2,4,', 'Instansi', 'fa fa-school', '#', 1, '2020-07-23 00:12:17'),
 (39, 0, ',1,2,3,', 'Pengguna', 'fa fa-user', '#', 1, '2020-07-23 00:12:45'),
 (40, 39, ',1,2,3,', 'Tambah Pengguna', 'fa fa-plus', '/pengguna/edit', 1, '2020-07-23 00:13:05'),
 (41, 39, ',1,2,3,', 'Data Pengguna', 'fa fa-list', '/pengguna/list', 1, '2020-07-23 00:13:17'),
-(42, 38, ',1,2,3,', 'Tambah Sekolah', 'fa fa-plus', '/sekolah/edit', 1, '2020-07-23 00:13:41'),
-(43, 38, ',1,2,3,', 'Data Sekolah', 'fa fa-list', '/sekolah/list', 1, '2020-07-23 00:13:55');
+(42, 38, ',1,2,3,', 'Tambah Instansi', 'fa fa-plus', '/instansi/edit', 1, '2020-07-23 00:13:41'),
+(43, 38, ',1,2,3,4,', 'Data Instansi', 'fa fa-list', '/instansi/list', 1, '2020-07-23 00:13:55'),
+(44, 0, ',1,2,4,', 'Karyawan', 'fa fa-chalkboard-teacher', '#', 1, '2020-07-29 07:59:17'),
+(45, 44, ',1,2,4,', 'Tambah Karyawan', 'fa fa-plus', '/karyawan/edit', 1, '2020-07-29 08:00:44'),
+(46, 44, ',1,2,4,', 'Data Karyawan', 'fa fa-list', '/karyawan/list', 1, '2020-07-29 08:00:58');
 
 DROP TABLE IF EXISTS `bank_account`;
 CREATE TABLE `bank_account` (
@@ -103,9 +106,9 @@ CREATE TABLE `config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `config` (`id`, `name`, `value`) VALUES
-(1, 'templates', '{\"public_template\":\"magazine\",\"admin_template\":\"AdminLTE\"}'),
+(1, 'templates', '{\"public_template\":\"AdminLTE\",\"admin_template\":\"AdminLTE\"}'),
 (2, 'site', '{\"title\":\"sistem absensi\",\"link\":\"https:\\/\\/www.esoftgreat.com\",\"image\":\"image_esoftgreat_1545189785.png\",\"keyword\":\"\",\"description\":\"\",\"year\":\"2015\",\"lang\":\"id\",\"use_cache\":\"0\"}'),
-(3, 'logo', '{\"title\":\"sistem absensi\",\"image\":\"image_sarwabimbel_1546913142.png\",\"width\":\"250\",\"height\":\"50\",\"display\":\"image\"}'),
+(3, 'logo', '{\"title\":\"sistem absensi\",\"image\":\"image_sistem_absensi.png\",\"width\":\"250\",\"height\":\"150\",\"display\":\"title\"}'),
 (4, 'one-night_widget', '{\"template\":\"one-night\",\"menu_top\":{\"content\":\"1\"},\"content_slider\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_hot\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_top\":{\"content\":\"latest\",\"limit\":\"7\"},\"content\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_bottom\":{\"content\":\"latest\",\"limit\":\"7\"},\"right\":{\"content\":\"1\",\"limit\":\"7\"},\"menu_right\":{\"content\":\"1\"},\"right_extra\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_bottom_1\":{\"content\":\"2\"},\"menu_bottom_2\":{\"content\":\"2\"},\"menu_bottom_3\":{\"content\":\"2\"},\"menu_footer\":{\"content\":\"2\"}}'),
 (5, 'contact', '{\"name\":\"esoftgreat\",\"description\":\"jasa pembuatan website dan software. sesuai kebutuhan dan keinginan anda\",\"address\":\"Jl Tulakan Km 1 \\r\\nDukuh Krajan \\r\\nDesa Tulakan Rt 06\\/02 \\r\\nKec Donorojo Kab Jepara \\r\\nJawa Tengah\\r\\nKode Pos 59454\",\"phone\":\"+6285290335332\",\"wa\":\"6285290335332\",\"email\":\"info@esoftgreat.com\",\"google\":\"https:\\/\\/plus.google.com\\/115611472723876300931\",\"facebook\":\"https:\\/\\/web.facebook.com\\/esoftgreat\\/\",\"twitter\":\"https:\\/\\/twitter.com\",\"instagram\":\"https:\\/\\/instagram.com\",\"linkedin\":\"https:\\/\\/linkedin.com\",\"wordpress\":\"https:\\/\\/esoftgreat.wordrpress.com\",\"yahoo\":\"\",\"youtube\":\"https:\\/\\/www.youtube.com\\/channel\\/UC7QNxh1R6eo3mO2hRJtj6xw?view_as=subscriber\"}'),
 (6, 'header', '{\"image\":\"image_Selamat_Datang_di_Esoftgreat_1547957588.jpeg\",\"title\":\"Selamat Datang di Esoftgreat\",\"description\":\"JASA PEMBUATAN WEBSITE, DESAIN, ARTIKEL SEO, SOSIAL MEDIA MARKETING\"}'),
@@ -116,7 +119,8 @@ INSERT INTO `config` (`id`, `name`, `value`) VALUES
 (11, 'subscriber', '{\"broadcast\":0}'),
 (12, 'village_widget', '{\"template\":\"village\",\"menu_top\":{\"content\":\"1\"},\"content_slider\":{\"content\":\"3\",\"limit\":\"7\"},\"content_top\":{\"content\":\"5\",\"limit\":\"7\"},\"content\":{\"content\":\"6\",\"limit\":\"7\"},\"content_bottom\":{\"content\":\"7\",\"limit\":\"7\"},\"twitter_widget\":{\"content\":\"\",\"limit\":\"7\"},\"content_latest\":{\"content\":\"8\",\"limit\":\"7\"},\"content_popular\":{\"content\":\"10\",\"limit\":\"7\"},\"category\":{\"content\":\"1\",\"limit\":\"7\"},\"tag\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_bottom_1\":{\"content\":\"2\"},\"menu_bottom_2\":{\"content\":\"2\"},\"menu_bottom_3\":{\"content\":\"2\"},\"menu_footer\":{\"content\":\"2\"}}'),
 (13, 'magazine_widget', '{\"template\":\"magazine\",\"menu_top\":{\"content\":\"2\"},\"content_top_banner\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_main\":{\"content\":\"1\"},\"content_news\":{\"content\":\"4\",\"limit\":\"7\"},\"content_slider\":{\"content\":\"4\",\"limit\":\"7\"},\"content_block_1\":{\"content\":\"0\",\"limit\":\"7\"},\"content_banner\":{\"content\":\"0\",\"limit\":\"7\"},\"content_block_2\":{\"content\":\"0\",\"limit\":\"7\"},\"content_gallery\":{\"content\":\"0\",\"limit\":\"7\"},\"content_grid\":{\"content\":\"12\",\"limit\":\"7\"},\"content_advertisement\":{\"content\":\"0\",\"limit\":\"7\"},\"category\":{\"content\":\"0\",\"limit\":\"7\"},\"twitter_widget\":{\"content\":\"\",\"limit\":\"7\"},\"content_popular\":{\"content\":\"0\",\"limit\":\"7\"},\"content_latest\":{\"content\":\"0\",\"limit\":\"7\"},\"content_banner_right\":{\"content\":\"5\",\"limit\":\"7\"},\"menu_bottom\":{\"content\":\"0\"},\"content_bottom\":{\"content\":\"0\",\"limit\":\"7\"}}'),
-(16, 'http:__localhost_absensi__main', '{\"lembaga\":\"Kemenag\",\"image\":\"image_pati.jpg\",\"province_id\":\"33\",\"regency_id\":\"3318\"}');
+(16, 'http:__localhost_absensi__main', '{\"lembaga\":\"Kemenag\",\"image\":\"image_pati.jpg\",\"province_id\":\"33\",\"regency_id\":\"3318\"}'),
+(18, 'config_theme', '{\"main_color\":\"#27dd30\",\"font_color\":\"#f9f5f5\"}');
 
 DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
@@ -176,23 +180,25 @@ CREATE TABLE `content_tag` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `guru`;
-CREATE TABLE `guru` (
+DROP TABLE IF EXISTS `instansi`;
+CREATE TABLE `instansi` (
   `id` int NOT NULL,
-  `sekolah_id` int NOT NULL,
-  `nip` bigint NOT NULL,
-  `jabatan` tinyint NOT NULL,
-  `golongan` tinyint NOT NULL,
-  `tmpt_lahir` varchar(255) NOT NULL,
-  `tgl_lahir` date NOT NULL,
+  `nama` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
-  `telp` varchar(20) NOT NULL,
-  `hp` varchar(20) NOT NULL,
+  `phone` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `riwayat_pendidikan` json NOT NULL,
+  `province_id` int NOT NULL,
+  `regency_id` int NOT NULL,
+  `district_id` int NOT NULL,
+  `longitude` double NOT NULL,
+  `latitude` double NOT NULL,
+  `website` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `instansi` (`id`, `nama`, `alamat`, `phone`, `email`, `province_id`, `regency_id`, `district_id`, `longitude`, `latitude`, `website`, `created`, `updated`) VALUES
+(1, 'MAN 1 PATI', 'pati', '085290335332', 'iwansafr@gmail.com', 33, 3318, 3318100, 110.8857718, -6.4702896999999995, 'https://man1pati.sch.id', '2020-07-26 23:40:19', '2020-07-31 18:44:38');
 
 DROP TABLE IF EXISTS `invoice`;
 CREATE TABLE `invoice` (
@@ -207,6 +213,42 @@ CREATE TABLE `invoice` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `karyawan`;
+CREATE TABLE `karyawan` (
+  `id` int NOT NULL,
+  `instansi_id` int NOT NULL,
+  `kary_group_id` int NOT NULL,
+  `nip` bigint NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jk` tinyint(1) NOT NULL COMMENT '1=laki-laki,2=perempuan',
+  `foto` varchar(255) NOT NULL,
+  `jabatan` tinyint NOT NULL,
+  `golongan` tinyint NOT NULL,
+  `tmpt_lahir` varchar(255) NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `alamat` text NOT NULL,
+  `telp` varchar(20) NOT NULL,
+  `hp` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `riwayat_pendidikan` text NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `karyawan` (`id`, `instansi_id`, `kary_group_id`, `nip`, `nama`, `jk`, `foto`, `jabatan`, `golongan`, `tmpt_lahir`, `tgl_lahir`, `alamat`, `telp`, `hp`, `email`, `riwayat_pendidikan`, `created`) VALUES
+(1, 1, 1, 0, 'Iwan Safrudin, S.Kom', 1, 'foto_Iwan_Safrudin,_S.Kom.jpg', 0, 0, 'jepara', '1993-01-16', '', '', '', '', '-MI matholiul falah tulakan jepara\r\n-smp islam keling jepara\r\n-sma negeri 1 donrojo\r\n-universitas muria kudus', '2020-07-29 15:14:13'),
+(2, 1, 1, 0, 'marulina fivit octavia, S.I.pust', 2, 'foto_marulina_fivit_octavia,_S.I.pust.png', 0, 0, 'jepara', '1993-10-27', '', '', '', '', '-sd negeri 1 tunahan\r\n-mts darul falah sirahan pati\r\n-ma darul falah sirahan pati', '2020-07-29 15:24:54');
+
+DROP TABLE IF EXISTS `karyawan_group`;
+CREATE TABLE `karyawan_group` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `karyawan_group` (`id`, `title`) VALUES
+(1, 'guru'),
+(2, 'TU');
 
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
@@ -283,24 +325,6 @@ CREATE TABLE `product_tag` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `sekolah`;
-CREATE TABLE `sekolah` (
-  `id` int NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `alamat` text NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `province_id` int NOT NULL,
-  `regency_id` int NOT NULL,
-  `district_id` int NOT NULL,
-  `website` varchar(255) NOT NULL,
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-INSERT INTO `sekolah` (`id`, `nama`, `alamat`, `phone`, `email`, `province_id`, `regency_id`, `district_id`, `website`, `created`, `updated`) VALUES
-(1, 'MAN 1 PATI', 'pati', '085290335332', 'iwansafr@gmail.com', 33, 3318, 3318100, 'https://man1pati.sch.id', '2020-07-26 23:40:19', NULL);
-
 DROP TABLE IF EXISTS `subscriber`;
 CREATE TABLE `subscriber` (
   `id` int NOT NULL,
@@ -341,7 +365,9 @@ INSERT INTO `trash` (`id`, `user_id`, `table_id`, `table_title`, `table_content`
 (1, 1, 3, 'user', '{\"id\":\"3\",\"username\":\"root\",\"password\":\"$2y$10$oCNvK4jcYmDPvF35ZtYaTOTGstJoRVJFnYMvkZaobiGmudP0IxQMm\",\"email\":\"iwansafr@gmail.com\",\"image\":\"\",\"user_role_id\":\"2\",\"active\":\"1\",\"created\":\"2020-07-26 13:20:13\",\"updated\":\"2020-07-26 13:20:13\"}', '2020-07-26 13:58:46'),
 (2, 1, 2, 'user_sekolah', '{\"id\":\"2\",\"sekolah_id\":\"0\",\"user_id\":\"3\",\"user_role_id\":\"2\",\"username\":\"root\",\"email\":\"iwansafr@gmail.com\",\"sandi\":\"1\",\"nama\":\"root\",\"phone\":\"908908\",\"active\":\"1\",\"created\":\"2020-07-26 13:20:13\",\"updated\":\"2020-07-26 13:20:13\"}', '2020-07-26 13:58:52'),
 (3, 1, 4, 'user', '{\"id\":\"4\",\"username\":\"iwan\",\"password\":\"$2y$10$WYkAizO8lznat9x2l.b2tuEKBSj.VTzVMXYDfLxxjcz6JdOuoUSgG\",\"email\":\"iwansafr@gmail.com\",\"image\":\"\",\"user_role_id\":\"0\",\"active\":\"1\",\"created\":\"2020-07-26 13:52:31\",\"updated\":\"2020-07-26 13:52:31\"}', '2020-07-26 14:07:49'),
-(4, 1, 3, 'user_sekolah', '{\"id\":\"3\",\"sekolah_id\":\"0\",\"user_id\":\"4\",\"user_role_id\":\"0\",\"username\":\"iwan\",\"email\":\"iwansafr@gmail.com\",\"sandi\":\"1\",\"nama\":\"iwan\",\"phone\":\"080989\",\"active\":\"1\",\"created\":\"2020-07-26 13:52:31\",\"updated\":\"2020-07-26 13:52:31\"}', '2020-07-26 14:07:49');
+(4, 1, 3, 'user_sekolah', '{\"id\":\"3\",\"sekolah_id\":\"0\",\"user_id\":\"4\",\"user_role_id\":\"0\",\"username\":\"iwan\",\"email\":\"iwansafr@gmail.com\",\"sandi\":\"1\",\"nama\":\"iwan\",\"phone\":\"080989\",\"active\":\"1\",\"created\":\"2020-07-26 13:52:31\",\"updated\":\"2020-07-26 13:52:31\"}', '2020-07-26 14:07:49'),
+(5, 1, 5, 'user_instansi', '{\"id\":\"5\",\"instansi_id\":\"1\",\"user_id\":\"0\",\"user_role_id\":\"4\",\"username\":\"man1pati\",\"email\":\"man1pati@gmail.com\",\"sandi\":\"123456\",\"nama\":\"MAN 1 PATI\",\"phone\":\"081000000000\",\"active\":\"1\",\"created\":\"2020-08-01 01:40:45\",\"updated\":\"2020-08-01 01:40:45\"}', '2020-08-01 01:54:37'),
+(6, 1, 5, 'user', '{\"id\":\"5\",\"username\":\"man1pati\",\"password\":\"$2y$10$RHMASrOExH9yEDKJT4gN1e6LR.p8P4kGMWh.WQ38XPuHGB6dQ1vQe\",\"email\":\"man1pati@gmail.com\",\"image\":\"\",\"user_role_id\":\"4\",\"active\":\"1\",\"created\":\"2020-08-01 01:40:45\",\"updated\":\"2020-08-01 01:40:45\"}', '2020-08-01 01:54:44');
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -357,7 +383,28 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `image`, `user_role_id`, `active`, `created`) VALUES
-(1, 'root', '$2y$10$iN3I64zsXAyy9MCEVAPe3uqv1ygazlJgKFYEc2aNCiu2VDe/ZTKjO', 'root@esoftgreat.com', '', 1, 1, '2018-11-03 07:36:32');
+(1, 'root', '$2y$10$iN3I64zsXAyy9MCEVAPe3uqv1ygazlJgKFYEc2aNCiu2VDe/ZTKjO', 'root@esoftgreat.com', '', 1, 1, '2018-11-03 07:36:32'),
+(6, 'man1pati', '$2y$10$GL9lp1f0nNAIZ8kxCbITCO75tgEx4qR5OTOiYUqct1YWB9iG5fDKC', 'man1pati@gmail.com', '', 4, 1, '2020-08-01 01:55:08');
+
+DROP TABLE IF EXISTS `user_instansi`;
+CREATE TABLE `user_instansi` (
+  `id` int NOT NULL,
+  `instansi_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `user_role_id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `sandi` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `user_instansi` (`id`, `instansi_id`, `user_id`, `user_role_id`, `username`, `email`, `sandi`, `nama`, `phone`, `active`) VALUES
+(4, 0, 1, 1, 'root', 'iwansafr@gmail.com', ',./\';[]-=90893eih897fjh9ru04jr934', 'root', '085290335332', 1),
+(6, 1, 6, 4, 'man1pati', 'man1pati@gmail.com', '123456', 'MAN 1 PATI', '081000000000', 1);
 
 DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE `user_login` (
@@ -376,7 +423,20 @@ INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`)
 (4, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:19:25'),
 (5, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-26 23:39:11'),
 (6, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-28 18:40:51'),
-(7, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-29 05:57:14');
+(7, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-29 05:57:14'),
+(8, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-29 14:53:07'),
+(9, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 1, '2020-07-29 14:58:48'),
+(10, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-07-31 01:02:05'),
+(11, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-07-31 01:30:35'),
+(12, 0, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 0, '2020-07-31 01:54:05'),
+(13, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-07-31 01:54:06'),
+(14, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-07-31 18:24:25'),
+(15, 0, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 0, '2020-07-31 23:31:37'),
+(16, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-07-31 23:31:39'),
+(17, 5, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-08-01 01:41:31'),
+(18, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-08-01 01:44:57'),
+(19, 6, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-08-01 01:55:47'),
+(20, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', 1, '2020-08-01 02:23:36');
 
 DROP TABLE IF EXISTS `user_login_failed`;
 CREATE TABLE `user_login_failed` (
@@ -385,6 +445,10 @@ CREATE TABLE `user_login_failed` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `user_login_failed` (`id`, `user_login_id`, `username`, `password`) VALUES
+(1, 12, 'root', 'Dks_080308'),
+(2, 15, 'root', 'Dks_080308');
 
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
@@ -401,25 +465,6 @@ INSERT INTO `user_role` (`id`, `level`, `title`, `description`, `created`) VALUE
 (2, 2, 'admin', 'the administrator', '2018-11-02 22:57:22'),
 (3, 5, 'Member', 'User member yang hanya berlangganan saja', '2018-11-04 12:59:26'),
 (4, 5, 'Sekolah', 'Akun Sekolahan', '2020-07-26 07:12:41');
-
-DROP TABLE IF EXISTS `user_sekolah`;
-CREATE TABLE `user_sekolah` (
-  `id` int NOT NULL,
-  `sekolah_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `user_role_id` int NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `sandi` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `user_sekolah` (`id`, `sekolah_id`, `user_id`, `user_role_id`, `username`, `email`, `sandi`, `nama`, `phone`, `active`) VALUES
-(4, 0, 1, 1, 'root', 'iwansafr@gmail.com', ',./\';[]-=90893eih897fjh9ru04jr934', 'root', '085290335332', 1);
 
 DROP TABLE IF EXISTS `visitor`;
 CREATE TABLE `visitor` (
@@ -493,7 +538,660 @@ INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `brow
 (57, '::1', 'http://localhost/absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', '2020-07-23 11:04:51'),
 (58, '::1', 'http://localhost/absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', '2020-07-23 11:21:23'),
 (59, '::1', 'http://localhost/absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', '2020-07-23 11:24:59'),
-(60, '::1', 'http://localhost/absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', '2020-07-23 11:26:43');
+(60, '::1', 'http://localhost/absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15', '2020-07-23 11:26:43'),
+(61, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:53:16'),
+(62, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:55:19'),
+(63, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:55:19'),
+(64, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:56:13'),
+(65, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:56:13'),
+(66, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:56:29'),
+(67, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:56:29'),
+(68, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 14:56:44'),
+(69, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 15:33:00'),
+(70, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', '2020-07-29 15:33:00'),
+(71, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:05:52'),
+(72, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:05:53'),
+(73, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:07:04'),
+(74, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:07:04'),
+(75, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:07:47'),
+(76, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:06'),
+(77, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:06'),
+(78, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:06'),
+(79, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:07'),
+(80, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:29'),
+(81, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:30'),
+(82, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:43'),
+(83, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:10:43'),
+(84, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:11:03'),
+(85, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:11:03'),
+(86, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:12:04'),
+(87, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:12:04'),
+(88, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:12:06'),
+(89, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:12:06'),
+(90, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:12:06'),
+(91, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:12:07'),
+(92, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:14:50'),
+(93, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:14:50'),
+(94, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:46'),
+(95, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:46'),
+(96, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:47'),
+(97, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:47'),
+(98, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:47'),
+(99, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:48'),
+(100, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:59'),
+(101, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:15:59'),
+(102, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:16:56'),
+(103, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:16:56'),
+(104, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:17:31'),
+(105, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:18:00'),
+(106, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:18:23'),
+(107, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:18:24'),
+(108, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:18:48'),
+(109, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:18:49'),
+(110, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:22:51'),
+(111, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:22:51'),
+(112, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:23:08'),
+(113, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:23:38'),
+(114, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:24:08'),
+(115, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1', '2020-07-31 01:24:48'),
+(116, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:25:39'),
+(117, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:26:05'),
+(118, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:26:44'),
+(119, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:27:04'),
+(120, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:27:10'),
+(121, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:27:12'),
+(122, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:27:30'),
+(123, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:28:15'),
+(124, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:29:00'),
+(125, '::1', 'http://localhost/sistem_absensi/absensi/1', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:29:37'),
+(126, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:30:10'),
+(127, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:30:16'),
+(128, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:32:29'),
+(129, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:32:44'),
+(130, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:32:51'),
+(131, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:33:25'),
+(132, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:33:39'),
+(133, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:33:56'),
+(134, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:34:06'),
+(135, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:34:17'),
+(136, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:34:28'),
+(137, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:34:51'),
+(138, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:35:17'),
+(139, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:35:22'),
+(140, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:35:42'),
+(141, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:35:54'),
+(142, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:36:15'),
+(143, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:36:35'),
+(144, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:36:58'),
+(145, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:37:41'),
+(146, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:38:02'),
+(147, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:39:31'),
+(148, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:39:38'),
+(149, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:39:51'),
+(150, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:40:17'),
+(151, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:41:09'),
+(152, '::1', 'http://localhost/sistem_absensi/images/none.png', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:41:10'),
+(153, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:43:11'),
+(154, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:43:37'),
+(155, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:44:04'),
+(156, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:44:25'),
+(157, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:44:31'),
+(158, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:44:46'),
+(159, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:44:54'),
+(160, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:00'),
+(161, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:02'),
+(162, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:06'),
+(163, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:11'),
+(164, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:20'),
+(165, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:42'),
+(166, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:45:47'),
+(167, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:46:46'),
+(168, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:47:12'),
+(169, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:47:19'),
+(170, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:47:39'),
+(171, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:48:00'),
+(172, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:48:08'),
+(173, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:48:27'),
+(174, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:48:50'),
+(175, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:49:03'),
+(176, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:49:07'),
+(177, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:49:43'),
+(178, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:50:02'),
+(179, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:50:19'),
+(180, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:50:38'),
+(181, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:51:26'),
+(182, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:52:18'),
+(183, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:52:27'),
+(184, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:52:35'),
+(185, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:52:42'),
+(186, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:53:01'),
+(187, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:53:16'),
+(188, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:54:14'),
+(189, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 01:55:54'),
+(190, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:56:03'),
+(191, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:56:33'),
+(192, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:56:33'),
+(193, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:56:42'),
+(194, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:57:07'),
+(195, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:57:15'),
+(196, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:57:26'),
+(197, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:57:41'),
+(198, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:58:15'),
+(199, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:58:16'),
+(200, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:58:16'),
+(201, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:58:23'),
+(202, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:14'),
+(203, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:16'),
+(204, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:16'),
+(205, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:17'),
+(206, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:24'),
+(207, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:24'),
+(208, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:32'),
+(209, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:41'),
+(210, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:56'),
+(211, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:57'),
+(212, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:57'),
+(213, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 01:59:58'),
+(214, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:04'),
+(215, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:05'),
+(216, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:17'),
+(217, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:25'),
+(218, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:26'),
+(219, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:26'),
+(220, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:27'),
+(221, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:33'),
+(222, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:38'),
+(223, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:43'),
+(224, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:00:56'),
+(225, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:01:10');
+INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `browser`, `created`) VALUES
+(226, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:01:39'),
+(227, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:01:39'),
+(228, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:01:48'),
+(229, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:02:00'),
+(230, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:04:52'),
+(231, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:05:31'),
+(232, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:05:38'),
+(233, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:06:51'),
+(234, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:07:01'),
+(235, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:07:35'),
+(236, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:07:48'),
+(237, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:08:05'),
+(238, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:09:07'),
+(239, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:09:14'),
+(240, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:09:17'),
+(241, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:09:18'),
+(242, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:09:18'),
+(243, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:09:24'),
+(244, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:10:20'),
+(245, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:10:21'),
+(246, '::1', 'http://localhost/sistem_absensi/assets/modules/absensi/script.js', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:10:21'),
+(247, '::1', 'http://localhost/sistem_absensi/assets/modules/absensi/script.js', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:10:37'),
+(248, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:10:59'),
+(249, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:10:59'),
+(250, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:11:13'),
+(251, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:11:14'),
+(252, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:12:50'),
+(253, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:12:51'),
+(254, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:13:38'),
+(255, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:13:38'),
+(256, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:13:38'),
+(257, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:17:20'),
+(258, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:17:32'),
+(259, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:17:33'),
+(260, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:17:33'),
+(261, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:18:00'),
+(262, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:18:00'),
+(263, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:18:01'),
+(264, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:18:01'),
+(265, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:18:27'),
+(266, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:18:27'),
+(267, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:19:04'),
+(268, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:19:16'),
+(269, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:19:16'),
+(270, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:19:16'),
+(271, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:19:30'),
+(272, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:20:31'),
+(273, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:21:11'),
+(274, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:21:33'),
+(275, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:21:38'),
+(276, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:21:57'),
+(277, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:22:38'),
+(278, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:25:02'),
+(279, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:25:42'),
+(280, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:25:54'),
+(281, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:26:03'),
+(282, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:26:25'),
+(283, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:26:36'),
+(284, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:26:52'),
+(285, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:27:08'),
+(286, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:27:14'),
+(287, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:28:27'),
+(288, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:28:52'),
+(289, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:30:47'),
+(290, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 02:34:00'),
+(291, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:36:22'),
+(292, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:36:22'),
+(293, '::1', 'http://localhost/sistem_absensi/plugins/jvectormap/jquery-jvectormap-world-mill-en.js', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:36:22'),
+(294, '::1', 'http://localhost/sistem_absensi/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:36:23'),
+(295, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:36:58'),
+(296, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:36:59'),
+(297, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:38:04'),
+(298, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:38:04'),
+(299, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:39:43'),
+(300, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:42:05'),
+(301, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:42:57'),
+(302, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:45:10'),
+(303, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:45:10'),
+(304, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:45:32'),
+(305, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:45:45'),
+(306, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:47:04'),
+(307, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:47:11'),
+(308, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:47:31'),
+(309, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:47:47'),
+(310, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:48:02'),
+(311, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:48:08'),
+(312, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:48:13'),
+(313, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:49:28'),
+(314, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:49:29'),
+(315, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:50:45'),
+(316, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:51:02'),
+(317, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:56:15'),
+(318, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:56:28'),
+(319, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:56:28'),
+(320, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:56:28'),
+(321, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:56:28'),
+(322, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:57:06'),
+(323, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:57:06'),
+(324, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:57:06'),
+(325, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 02:58:39'),
+(326, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:01:40'),
+(327, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:02:04'),
+(328, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:02:52'),
+(329, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:02:52'),
+(330, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:05:36'),
+(331, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:05:50'),
+(332, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:10:37'),
+(333, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:11:05'),
+(334, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:11:05'),
+(335, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:11:06'),
+(336, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:12:41'),
+(337, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:12:42'),
+(338, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:12:42'),
+(339, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:12:58'),
+(340, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:12:58'),
+(341, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:13:49'),
+(342, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:14:24'),
+(343, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:14:33'),
+(344, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:14:42'),
+(345, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:19:25'),
+(346, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:20:02'),
+(347, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:21:41'),
+(348, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:22:19'),
+(349, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:22:19'),
+(350, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:23:05'),
+(351, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:24:17'),
+(352, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:24:17'),
+(353, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:24:35'),
+(354, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:24:49'),
+(355, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:24:50'),
+(356, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:25:23'),
+(357, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:25:36'),
+(358, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:26:32'),
+(359, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:27:02'),
+(360, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:27:34'),
+(361, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:27:45'),
+(362, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:28:00'),
+(363, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:28:11'),
+(364, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:28:20'),
+(365, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:28:52'),
+(366, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:29:09'),
+(367, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:29:20'),
+(368, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:33:54'),
+(369, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:34:24'),
+(370, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:37:14'),
+(371, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 03:47:47'),
+(372, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:47:58'),
+(373, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:48:21'),
+(374, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 03:48:35'),
+(375, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:21:57'),
+(376, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:22:01'),
+(377, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:22:01'),
+(378, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:24:18'),
+(379, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:25:40'),
+(380, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:27:04'),
+(381, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:27:44'),
+(382, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:28:23'),
+(383, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:28:49'),
+(384, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:29:06'),
+(385, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:29:22'),
+(386, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:29:36'),
+(387, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:29:56'),
+(388, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:30:32'),
+(389, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:31:48'),
+(390, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:31:52'),
+(391, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:31:57'),
+(392, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:31:59'),
+(393, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:31:59'),
+(394, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:34:15'),
+(395, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:34:35'),
+(396, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:34:41'),
+(397, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:34:49'),
+(398, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:35:01'),
+(399, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:35:06'),
+(400, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:35:15'),
+(401, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:35:20'),
+(402, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:35:30'),
+(403, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:36:24'),
+(404, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:43:20'),
+(405, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:43:35'),
+(406, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:43:51'),
+(407, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:43:51'),
+(408, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:43:52'),
+(409, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 04:43:52'),
+(410, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:44:04'),
+(411, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 04:44:06'),
+(412, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:10:51'),
+(413, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:11:18'),
+(414, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:12:04'),
+(415, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:12:24'),
+(416, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:12:42'),
+(417, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:12:54'),
+(418, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:13:14'),
+(419, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:13:32'),
+(420, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:14:24'),
+(421, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:14:34'),
+(422, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:14:45'),
+(423, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:15:06'),
+(424, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:17:19'),
+(425, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:18:13'),
+(426, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:18:37'),
+(427, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:18:57'),
+(428, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:01'),
+(429, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:01'),
+(430, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:01'),
+(431, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:15'),
+(432, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:15'),
+(433, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:15'),
+(434, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:15'),
+(435, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:19'),
+(436, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:22'),
+(437, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:19:43'),
+(438, '::1', 'http://localhost/sistem_absensi/home', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:09'),
+(439, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:09'),
+(440, '::1', 'http://localhost/sistem_absensi/home/absensi/location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:13'),
+(441, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:19'),
+(442, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:32'),
+(443, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:34'),
+(444, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:44'),
+(445, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:47'),
+(446, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:23:47'),
+(447, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:24:16'),
+(448, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:24:16'),
+(449, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:24:16'),
+(450, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:25:21'),
+(451, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:26:30'),
+(452, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:26:30'),
+(453, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:26:51'),
+(454, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:26:52'),
+(455, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:04'),
+(456, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:18'),
+(457, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:18'),
+(458, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:18'),
+(459, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:19'),
+(460, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:34'),
+(461, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:34'),
+(462, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:39'),
+(463, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:39'),
+(464, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:43'),
+(465, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:43'),
+(466, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:44'),
+(467, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:27:44'),
+(468, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:28:18');
+INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `browser`, `created`) VALUES
+(469, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:28:18'),
+(470, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:28:50'),
+(471, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:28:50'),
+(472, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:28:50'),
+(473, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:29:04'),
+(474, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:29:04'),
+(475, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:10'),
+(476, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:10'),
+(477, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:10'),
+(478, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:13'),
+(479, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:14'),
+(480, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:14'),
+(481, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:14'),
+(482, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:29:14'),
+(483, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:29:33'),
+(484, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 05:29:34'),
+(485, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:30:04'),
+(486, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:30:05'),
+(487, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:42:38'),
+(488, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:42:44'),
+(489, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:42:45'),
+(490, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:54:12'),
+(491, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 05:54:13'),
+(492, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:08:12'),
+(493, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:08:13'),
+(494, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:11:24'),
+(495, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:11:25'),
+(496, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:13:14'),
+(497, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:13:15'),
+(498, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:14:46'),
+(499, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:14:46'),
+(500, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:15:29'),
+(501, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:15:29'),
+(502, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:16:09'),
+(503, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:16:10'),
+(504, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:16:54'),
+(505, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:16:54'),
+(506, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:17:06'),
+(507, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:17:07'),
+(508, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:17:46'),
+(509, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:17:46'),
+(510, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:11'),
+(511, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:12'),
+(512, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:12'),
+(513, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:12'),
+(514, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:45'),
+(515, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:45'),
+(516, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:18:46'),
+(517, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:19:46'),
+(518, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:19:47'),
+(519, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:20:26'),
+(520, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:20:26'),
+(521, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:20:47'),
+(522, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:20:48'),
+(523, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:21:31'),
+(524, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:21:31'),
+(525, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:12'),
+(526, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:13'),
+(527, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:26'),
+(528, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:26'),
+(529, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:31'),
+(530, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:31'),
+(531, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:31'),
+(532, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:22:32'),
+(533, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:29:10'),
+(534, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:29:10'),
+(535, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:29:10'),
+(536, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:29:45'),
+(537, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:29:46'),
+(538, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:01'),
+(539, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:02'),
+(540, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:19'),
+(541, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:20'),
+(542, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:31'),
+(543, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:32'),
+(544, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:41'),
+(545, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:30:42'),
+(546, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:17'),
+(547, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:17'),
+(548, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:20'),
+(549, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:20'),
+(550, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:20'),
+(551, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:21'),
+(552, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:25'),
+(553, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:25'),
+(554, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:28'),
+(555, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:28'),
+(556, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:28'),
+(557, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:28'),
+(558, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:29'),
+(559, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:29'),
+(560, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:44'),
+(561, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:44'),
+(562, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:45'),
+(563, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:51'),
+(564, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:32:52'),
+(565, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:33:02'),
+(566, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:33:02'),
+(567, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:33:18'),
+(568, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:33:18'),
+(569, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:33:28'),
+(570, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:33:28'),
+(571, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:43:25'),
+(572, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:43:25'),
+(573, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:43:37'),
+(574, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:43:38'),
+(575, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:44:28'),
+(576, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:44:33'),
+(577, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:44:33'),
+(578, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:01'),
+(579, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:02'),
+(580, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:07'),
+(581, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:07'),
+(582, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:15'),
+(583, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:15'),
+(584, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:27'),
+(585, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:27'),
+(586, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:32'),
+(587, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:33'),
+(588, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:37'),
+(589, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:37'),
+(590, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:42'),
+(591, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 06:45:43'),
+(592, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:59:53'),
+(593, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 06:59:54'),
+(594, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:00:03'),
+(595, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:00:03'),
+(596, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:00:47'),
+(597, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:00:47'),
+(598, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:00:59'),
+(599, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:01:00'),
+(600, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:01:10'),
+(601, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:01:11'),
+(602, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:02:27'),
+(603, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:02:28'),
+(604, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:02:34'),
+(605, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:02:34'),
+(606, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:07:27'),
+(607, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:07:28'),
+(608, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:07:58'),
+(609, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:07:59'),
+(610, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:08:16'),
+(611, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:08:17'),
+(612, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:08:37'),
+(613, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:08:37'),
+(614, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:08:38'),
+(615, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:09:04'),
+(616, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:09:04'),
+(617, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:11:01'),
+(618, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:11:01'),
+(619, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:12:23'),
+(620, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:12:23'),
+(621, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:13:02'),
+(622, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:13:03'),
+(623, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:13:11'),
+(624, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:13:11'),
+(625, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:13:37'),
+(626, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:13:38'),
+(627, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:14:02'),
+(628, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:14:03'),
+(629, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:14:23'),
+(630, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:14:23'),
+(631, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:14:47'),
+(632, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:14:47'),
+(633, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:16:32'),
+(634, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:16:32'),
+(635, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:16:53'),
+(636, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:16:53'),
+(637, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:15'),
+(638, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:15'),
+(639, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:36'),
+(640, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:37'),
+(641, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:48'),
+(642, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:49'),
+(643, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:55'),
+(644, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:55'),
+(645, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:55'),
+(646, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 07:17:55'),
+(647, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:21:58'),
+(648, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:22:02'),
+(649, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 07:22:02'),
+(650, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:33:53'),
+(651, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:34:05'),
+(652, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:34:08'),
+(653, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:34:10'),
+(654, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:34:10'),
+(655, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:36:24'),
+(656, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 18:36:28'),
+(657, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:38:06'),
+(658, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:38:33'),
+(659, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:39:43'),
+(660, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:40:10'),
+(661, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:40:43'),
+(662, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:41:20'),
+(663, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:41:26'),
+(664, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:41:27'),
+(665, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:41:48'),
+(666, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:42:17'),
+(667, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:42:32'),
+(668, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 18:43:03'),
+(669, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 18:43:24'),
+(670, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1', '2020-07-31 18:44:14'),
+(671, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 19:03:52'),
+(672, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 19:03:53'),
+(673, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 19:03:55'),
+(674, '::1', 'http://localhost/sistem_absensi/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 19:03:57'),
+(675, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 19:03:57'),
+(676, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 19:07:12'),
+(677, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:20:47'),
+(678, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:26:13'),
+(679, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:27:05'),
+(680, '::1', 'http://localhost/sistem_absensi/home/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:20'),
+(681, '::1', 'http://localhost/sistem_absensi/home/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:25'),
+(682, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:25'),
+(683, '::1', 'http://localhost/sistem_absensi/home/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:27'),
+(684, '::1', 'http://localhost/sistem_absensi/home/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:27'),
+(685, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:28'),
+(686, '::1', 'http://localhost/sistem_absensi/home/absensi', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:33'),
+(687, '::1', 'http://localhost/sistem_absensi/home/absensi/my_location', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-07-31 20:29:33'),
+(688, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 00:17:01'),
+(689, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 01:57:07'),
+(690, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 01:57:16'),
+(691, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 01:57:59'),
+(692, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 01:58:14'),
+(693, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:10:04'),
+(694, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:12:01'),
+(695, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:12:19'),
+(696, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:13:34');
+INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `browser`, `created`) VALUES
+(697, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:13:53'),
+(698, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:13:59'),
+(699, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:14:26'),
+(700, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:14:29'),
+(701, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:14:36'),
+(702, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:14:41'),
+(703, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:15:16'),
+(704, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:15:17'),
+(705, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:15:48'),
+(706, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:15:49'),
+(707, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:16:24'),
+(708, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:16:30'),
+(709, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:21:45'),
+(710, '::1', 'http://localhost/sistem_absensi/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36', '2020-08-01 02:23:36');
 
 
 ALTER TABLE `admin_menu`
@@ -518,10 +1216,16 @@ ALTER TABLE `content_cat`
 ALTER TABLE `content_tag`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `guru`
+ALTER TABLE `instansi`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `karyawan`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `karyawan_group`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `menu`
@@ -541,9 +1245,6 @@ ALTER TABLE `product_cat`
   ADD KEY `id` (`id`);
 
 ALTER TABLE `product_tag`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `sekolah`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `subscriber`
@@ -559,6 +1260,9 @@ ALTER TABLE `trash`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `user_instansi`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `user_login`
   ADD PRIMARY KEY (`id`);
 
@@ -568,15 +1272,12 @@ ALTER TABLE `user_login_failed`
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `user_sekolah`
-  ADD PRIMARY KEY (`id`);
-
 ALTER TABLE `visitor`
   ADD PRIMARY KEY (`id`);
 
 
 ALTER TABLE `admin_menu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 ALTER TABLE `bank_account`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
@@ -585,7 +1286,7 @@ ALTER TABLE `comment`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `config`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 ALTER TABLE `content`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
@@ -596,11 +1297,17 @@ ALTER TABLE `content_cat`
 ALTER TABLE `content_tag`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `guru`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `instansi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `invoice`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `karyawan`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `karyawan_group`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `menu`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
@@ -620,9 +1327,6 @@ ALTER TABLE `product_cat`
 ALTER TABLE `product_tag`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `sekolah`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 ALTER TABLE `subscriber`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
@@ -630,25 +1334,25 @@ ALTER TABLE `testimonial`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `trash`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE `user_instansi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 ALTER TABLE `user_login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 ALTER TABLE `user_login_failed`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `user_role`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
-ALTER TABLE `user_sekolah`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 ALTER TABLE `visitor`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=711;
 
 
 ALTER TABLE `trash`
