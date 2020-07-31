@@ -86,7 +86,7 @@
       <h5 class="widget-user-desc"><?php echo !empty($data['jabatan']) ? $data['jabatan'] : '-' ?></h5>
     </div>
     <div class="widget-user-image">
-      <img class="img-circle" src="<?php echo image_module('guru',$data['id'].'/'.$data['foto']) ?>" alt="User Avatar">
+      <img class="img-circle" src="<?php echo image_module('karyawan',$data['id'].'/'.$data['foto']) ?>" alt="User Avatar">
     </div>
     <div class="box-footer">
       <hr>
