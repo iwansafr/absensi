@@ -110,7 +110,8 @@ $font = !empty($config_theme['font_color']) ? $config_theme['font_color'] : 'bla
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="<?php echo base_url('admin/user/edit/?id='.$user['id']) ?>" class="btn btn-default btn-flat">Profile</a>
+                <?php $pengguna_id = $this->pengguna_model->get_pengguna_id($user['id']) ?>
+                <a href="<?php echo base_url('admin/pengguna/edit/?id='.$pengguna_id); ?>" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat">Sign out</a>

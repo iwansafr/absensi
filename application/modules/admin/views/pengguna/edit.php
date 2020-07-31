@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-if(is_admin() || is_root())
+if(is_admin() || is_root() || ($_GET['id'] == $this->pengguna_model->get_pengguna_id($user['id'])))
 {
+	$is_sekolah = is('sekolah');
 	$this->zea->init('edit');
 	$this->zea->setTable('user_instansi');
 	$this->zea->setId(@intval($_GET['id']));
@@ -20,17 +21,27 @@ if(is_admin() || is_root())
 		}
 	}
 	$this->zea->addInput('nama','text');
-	$this->zea->addInput('username','text');
 	$this->zea->addInput('user_role_id','dropdown');
 	$this->zea->setLabel('user_role_id','group');
 	$this->zea->removeNone('user_role_id');
-	$this->zea->tableOptions('user_role_id','user_role','id','title','level > 1');
-	// $this->zea->setFirstOption('user_role_id',['0'=>'Pilih Group']);
-	$this->zea->setAttribute('user_role_id',['placeholder'=>'pilih group']);
+	$this->zea->addInput('instansi_id','dropdown');
 	$this->zea->addInput('instansi_id','dropdown');
 	$this->zea->setLabel('instansi_id','instansi');
 	$this->zea->removeNone('instansi_id');
-	$this->zea->tableOptions('instansi_id','instansi','id','nama');
+	if($is_sekolah){
+		$data = $this->zea->getData();
+		if(!empty($data)){
+			$this->zea->addInput('username','hidden');
+			$this->zea->setValue('username',$data['username']);
+			$this->zea->tableOptions('user_role_id','user_role','id','title','id = '.$data['user_role_id']);
+			$this->zea->setValue('instansi_id',$data['instansi_id']);
+			$this->zea->tableOptions('instansi_id','instansi','id','nama','id = '.$data['instansi_id']);
+		}
+	}else{
+		$this->zea->addInput('username','text');
+		$this->zea->tableOptions('user_role_id','user_role','id','title','level > 1');
+		$this->zea->tableOptions('instansi_id','instansi','id','nama');
+	}
 	$this->zea->setLabel('nama','Nama Lengkap');
 	$this->zea->addInput('email','text');
 	$this->zea->setAttribute('email',['type'=>'email']);

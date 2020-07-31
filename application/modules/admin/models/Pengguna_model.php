@@ -67,4 +67,12 @@ class Pengguna_model extends CI_Model
 			return $instansi['instansi_id'];
 		}
 	}
+	public function get_pengguna_id($user_id = 0)
+	{
+		$user = $this->db->query('SELECT id FROM user_instansi WHERE user_id = ?',$user_id)->row_array();
+		if(!empty($user))
+		{
+			return $user['id'];
+		}
+	}
 }
