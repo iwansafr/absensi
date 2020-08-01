@@ -77,9 +77,9 @@
   </style>
   <div class="box box-widget widget-user">
     <div class="widget-user-header" style="background-color: <?php echo $config_theme['main_color'] ?>;color : <?php echo $config_theme['font_color']; ?>">
-      <h3 class="widget-user-username" style="font-weight: bold;">
+      <h5 class="widget-user-username" style="font-size: 16px;font-weight: bold;">
         <?php echo $data['nama'] ?> 
-      </h3>
+      </h5>
       <div id="logo_image" >
         <div class="col-xs-3" style="float: right;margin-top: -36px;">
           <img src="<?php echo image_module('config','logo/'.$logo['image']) ?>" alt="" class="img img-responsive" height="<?php echo $logo['height'] ?>">
