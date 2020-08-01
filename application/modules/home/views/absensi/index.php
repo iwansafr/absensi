@@ -80,8 +80,10 @@
       <h3 class="widget-user-username" style="font-weight: bold;">
         <?php echo $data['nama'] ?> 
       </h3>
-      <div id="logo_image" style="float: right;margin-top: -36px;">
-        <img src="<?php echo image_module('config','logo/'.$logo['image']) ?>" alt="" height="<?php echo $logo['height'] ?>">
+      <div id="logo_image" >
+        <div class="col-xs-3" style="float: right;margin-top: -36px;">
+          <img src="<?php echo image_module('config','logo/'.$logo['image']) ?>" alt="" class="img img-responsive" height="<?php echo $logo['height'] ?>">
+        </div>
       </div>
       <h5 class="widget-user-desc"><?php echo !empty($data['jabatan']) ? $data['jabatan'] : '-' ?></h5>
     </div>
@@ -89,64 +91,42 @@
       <img class="img-circle" src="<?php echo image_module('karyawan',$data['id'].'/'.$data['foto']) ?>" alt="User Avatar">
     </div>
     <div class="box-footer">
-      <hr>
-      <div class="row">
-        <div class="col-sm-4 border-right">
-          <div class="description-block">
-            <h5 class="description-header">0</h5>
-            <span class="description-text">Berangkat</span>
+      <div class="box collapsed-box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Rekap</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
-        <div class="col-sm-4 border-right">
-          <div class="description-block">
-            <h5 class="description-header">0</h5>
-            <span class="description-text">Bolos</span>
+        <div class="box-body" style="display: none;">
+          <div class="row">
+            <div class="col-xs-4 border-right">
+              <div class="description-block">
+                <h5 class="description-header">0</h5>
+                <span class="description-text">Berangkat</span>
+              </div>
+            </div>
+            <div class="col-xs-4 border-right">
+              <div class="description-block">
+                <h5 class="description-header">0</h5>
+                <span class="description-text">Bolos</span>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="description-block">
+                <h5 class="description-header">0</h5>
+                <span class="description-text">Terlambat</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="description-block">
-            <h5 class="description-header">0</h5>
-            <span class="description-text">Terlambat</span>
-          </div>
+        <div class="box-footer" style="display: none;">
+          
         </div>
       </div>
-    </div>
-  </div>
-  <div class="box box-widget">
-    <div class="box-header">
-      <center>
-        <form action="" method="post">
-          <label class="fileContainer">
-            <img src="<?php echo base_url('images/person.png') ?>" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
-            <br>
-            <br>
-            <i class="fa fa-camera" style="font-size: 36px;"></i>
-            <input type="file" id="imageUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="capture">
-          </label>
-        </form>
-      </center>
-    </div>
-    <div class="box-body">
-      <center>
-        <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe>
-      </center>
-      <!-- <center>
-        <table class="table table-sm" style="width: 50%;">
-          <tr>
-            <td>longitude</td>
-            <td>:</td>
-            <td><div id="long">0</div></td>
-          </tr>
-          <tr>
-            <td>latitude</td>
-            <td>:</td>
-            <td><div id="lat">0</div></td>
-          </tr>
-        </table>
-      </center> -->
-    </div>
-    <div class="box-footer">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-status">
+      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-status">
         Status : Berangkat
       </button>
       <div class="modal fade" id="modal-status">
@@ -181,8 +161,37 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-      <h4 id="jam" class="pull-right" style="font-weight: bold;">
-      </h4>
+      <h5 id="jam" class="pull-right" style="font-weight: bold;">
+      </h5>
+      <center>
+        <form action="" method="post">
+          <label class="fileContainer">
+            <img src="<?php echo base_url('images/person.png') ?>" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
+            <br>
+            <br>
+            <i class="fa fa-camera" style="font-size: 36px;"></i>
+            <input type="file" id="imageUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="capture">
+          </label>
+        </form>
+      </center>
+      <div class="box collapsed-box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Lokasi</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="box-body" style="display: none;">
+          <div class="row">
+            <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe>
+          </div>
+        </div>
+        <div class="box-footer" style="display: none;">
+          
+        </div>
+      </div>
     </div>
   </div>
 <?php else: ?>
