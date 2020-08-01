@@ -166,7 +166,7 @@
       <center>
         <form action="" method="post">
           <label class="fileContainer">
-            <img src="<?php echo base_url('images/person.png') ?>" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
+            <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
             <br>
             <br>
             <i class="fa fa-camera" style="font-size: 36px;"></i>
