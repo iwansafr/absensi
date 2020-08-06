@@ -62,8 +62,7 @@ $(document).ready(function(){
 	}
 
 	function showPosition(position) {
-		// $("form").find(".panel-body").append("<label>LOKASI</label><br>Latitude: " + position.coords.latitude + 
-	 //  "<br>Longitude: " + position.coords.longitude+"<input type='hidden' name='koordinat' value='long:"+position.coords.longitude+",lat:"+position.coords.latitude+"'>");
+		$("#location").append("<input type='hidden' name='longitude' value='"+position.coords.longitude+"'><input type='hidden' name='latitude' value='"+position.coords.latitude+"'>");
 	  $("#long").html(position.coords.longitude);
 	  $("#lat").html(position.coords.latitude);
 	  long = position.coords.longitude;

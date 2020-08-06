@@ -126,9 +126,17 @@
           
         </div>
       </div>
-      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-status">
-        Status : Berangkat
-      </button>
+      <div class="row">
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-status">
+            Status : Berangkat
+          </button>
+        </div>
+        <div class="col-xs-6">
+          <h5 id="jam" class="pull-right" style="font-weight: bold;">
+          </h5>    
+        </div>
+      </div>
       <div class="modal fade" id="modal-status">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -161,10 +169,8 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-      <h5 id="jam" class="pull-right" style="font-weight: bold;">
-      </h5>
       <center>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
           <label class="fileContainer">
             <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
             <br>
@@ -172,6 +178,11 @@
             <i class="fa fa-camera" style="font-size: 36px;"></i>
             <input type="file" id="imageUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="capture">
           </label>
+          <div id="location"></div>
+          <div id="profile">
+            <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
+            <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
+          </div>
         </form>
       </center>
       <div class="box collapsed-box">
@@ -186,6 +197,16 @@
         <div class="box-body" style="display: none;">
           <div class="row">
             <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe>
+            <table class="table">
+              <tr>
+                <td>Latitude</td>
+                <td>: <label id="lat"></label></td>
+              </tr>
+              <tr>
+                <td>Longitude</td>
+                <td>: <label id="long"></label></td>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="box-footer" style="display: none;">

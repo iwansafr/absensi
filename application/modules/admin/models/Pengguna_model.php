@@ -61,6 +61,10 @@ class Pengguna_model extends CI_Model
 	}
 	public function get_instansi_id($user_id = 0)
 	{
+		if(empty($user_id))
+		{
+			$user_id = $_SESSION[base_url('_logged_in')]['id'];
+		}
 		$instansi = $this->db->query('SELECT instansi_id FROM user_instansi WHERE user_id = ?',$user_id)->row_array();
 		if(!empty($instansi))
 		{
