@@ -93,7 +93,7 @@ class Absensi_model extends CI_Model
 				$p1 = $jam['mulai_pulang_'.$hari_now];
 				$p2 = $jam['akhir_pulang_'.$hari_now];
 
-
+				$output['jam'] =[$jam_now,$p1,$p2,$b1,$b2];
 				if(($jam_now >= $b1) && ($jam_now <= $b2)){
 					$output['status'] = 'Berangkat';
 					$output['status_key'] = 1;
