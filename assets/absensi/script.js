@@ -89,6 +89,7 @@ $(document).ready(function(){
   }
   function getStatus(){
     $.getJSON(_URL+'/home/absensi/get_status/'+_G_ID,function(result){
+      console.log(result);
       $('#btnStatus').html('Status : '+result.status);
       $('#btnStatus').toggleClass('btn-'+result.class);
       if(result.status != 'Off' && result.exist == null){
