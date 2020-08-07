@@ -19,11 +19,17 @@ class Absensi extends CI_Controller
 		$this->esg->add_js([
 			base_url('assets/absensi/script.js'),
 		]);
-		$status = $this->absensi_model->get_status();
-		$this->load->view('index',['data'=>$data,'status'=>$status]);
+		pr($_POST);
+		pr($_FILES);
+		$this->absensi_model->save();
+		$this->load->view('index',['data'=>$data]);
 	}
 	public function my_location()
 	{
 		$this->load->view('home/absensi/location');
+	}
+	public function get_status()
+	{
+		output_json($this->absensi_model->get_status());
 	}
 }

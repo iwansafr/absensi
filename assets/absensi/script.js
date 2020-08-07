@@ -52,6 +52,7 @@ $(document).ready(function(){
 	$('#imageUpload').on('change',function(){
 		var a = $(this).siblings('#image_place');
 		readURL(this,a);
+    $('form').append('<button type="submit" class="btn btn-lg btn-info"><i class="fa fa-paper-plane"></i> Upload</button><hr>');
 	});
 	function getLocation() {
 	  if (navigator.geolocation) {
@@ -69,4 +70,19 @@ $(document).ready(function(){
 	  lat = position.coords.latitude;
 	}
 	getLocation();
+  function getStatus(){
+    $.getJSON(_URL+'/home/absensi/get_status/',function(result){
+      $('#btnStatus').html('Status : '+result.status);
+      $('#btnStatus').toggleClass('btn-'+result.class);
+      if(result.status != 'Off'){
+        $('form').removeClass('hidden');
+        $('form').append('<input type="hidden" name="status" value="'+result.status_key+'">');
+        $('#load').addClass('hidden');
+      }else{
+        $('#load').addClass('btn-danger');
+        $('#load').html('Absensi Sedang Off');
+      }
+    });
+  }
+  getStatus();
 });

@@ -11,6 +11,19 @@ class Absensi_model extends CI_Model
 		return ['1'=>'Senin','2'=>'Selasa','3'=>'Rabu','4'=>'Kamis','5'=>'Jumat','6'=>'Sabtu','7'=>'Ahad'];
 	}
 
+	public function save()
+	{
+		if(!empty($_FILES['foto']['tmp_name']))
+		{
+			$foto = $_FILES['foto'];
+			$data = $_POST;
+			if(!empty($data['karyawan_id']) && !empty($data['instansi_id']))
+			{
+
+			}
+		}
+	}
+
 	public function get_status()
 	{
 		$data_jam = $this->db->get_where('jam_absen',['name'=>'config_jam'])->row_array();
@@ -29,20 +42,25 @@ class Absensi_model extends CI_Model
 			$p2 = $jam['akhir_pulang_'.$hari_now];
 
 			$output['status'] = 'Off';
+			$output['status_key'] = 5;
+			$output['class'] = 'danger';
 
 			if(($jam_now >= $b1) && ($jam_now <= $b2)){
-				pr('berangkat');
+				$output['status'] = 'Berangkat';
+				$output['status_key'] = 1;
+				$output['class'] = 'success';
 			}
 			if(($jam_now >= $b2) && ($jam_now <= $p1)){
-				pr('terlambat');
+				$output['status'] = 'Terlambat';
+				$output['status_key'] = 3;
+				$output['class'] = 'danger';
 			}
 			if(($jam_now >= $p1) && ($jam_now <= $p2)){
-				pr('pulang');
+				$output['status'] = 'Pulang';
+				$output['status_key'] = 4;
+				$output['class'] = 'success';
 			}
 		}
-		pr($jam_today);
-		pr($hari_now);
-		pr($jam_now);
-		pr($jam);die();
+		return $output;
 	}
 }

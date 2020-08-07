@@ -128,8 +128,8 @@
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-status">
-            Status : Berangkat
+          <button type="button" id="btnStatus" class="btn btn-sm" data-toggle="modal" data-target="#modal-status">
+            Status : Off
           </button>
         </div>
         <div class="col-xs-6">
@@ -170,7 +170,10 @@
         <!-- /.modal-dialog -->
       </div>
       <center>
-        <form action="" method="post" enctype="multipart/form-data">
+        <div id="load">
+          Loading . . .
+        </div>
+        <form action="" method="post" enctype="multipart/form-data" class="hidden">
           <label class="fileContainer">
             <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
             <br>
@@ -185,16 +188,16 @@
           </div>
         </form>
       </center>
-      <div class="box collapsed-box">
+      <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Lokasi</h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
-        <div class="box-body" style="display: none;">
+        <div class="box-body" style="">
           <div class="row">
             <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe>
             <table class="table">
@@ -209,7 +212,7 @@
             </table>
           </div>
         </div>
-        <div class="box-footer" style="display: none;">
+        <div class="box-footer" style="">
           
         </div>
       </div>
