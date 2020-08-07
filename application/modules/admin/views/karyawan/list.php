@@ -4,7 +4,7 @@ $form = new zea();
 
 $form->init('roll');
 $form->search();
-$is_sekolah = is('sekolah');
+$is_sekolah = is($_SESSION[base_url('_logged_in')]['role']);
 if($is_sekolah){
 	$form->setWhere(
 		'instansi_id = '.$this->pengguna_model->get_instansi_id(

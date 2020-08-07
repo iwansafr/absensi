@@ -4,7 +4,7 @@ $form = new zea();
 
 $form->init('roll');
 
-$is_sekolah = is('sekolah');
+$is_sekolah = is($_SESSION[base_url('_logged_in')]['role']);
 
 $form->setTable('instansi');
 $form->addInput('id','plaintext');
