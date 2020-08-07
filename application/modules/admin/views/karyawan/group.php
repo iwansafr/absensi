@@ -2,7 +2,9 @@
 
 $form = new zea();
 
+$id= !empty($_GET['id']) ? intval($_GET['id']) : 0;
 $form->init('edit');
+$form->setId($id);
 $form->setTable('karyawan_group');
 $form->addInput('title', 'text');
 
@@ -17,6 +19,7 @@ $roll->addInput('id', 'hidden');
 $roll->addInput('title', 'plaintext');
 $roll->setEdit(true);
 $roll->setDelete(true);
+$roll->setEditLink('group?id=','id');
 $roll->setUrl('admin/karyawan/clear_group');
 
 $roll->form();
