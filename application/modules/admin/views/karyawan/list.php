@@ -21,7 +21,7 @@ $form->addInput('id','hidden');
 $form->setNumbering(true);
 $form->setTable('karyawan');
 $form->addInput('instansi_id','dropdown');
-$form->setLabel('instansi_id','sekolah');
+$form->setLabel('instansi_id','instansi');
 $form->tableOptions('instansi_id','instansi','id','nama');
 $form->setAttribute('instansi_id','disabled');
 $form->addInput('nama','plaintext');
