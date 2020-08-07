@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-8">
           <button type="button" id="btnStatus" class="btn btn-sm" data-toggle="modal" data-target="#modal-status">
             Status : Off
           </button>
@@ -138,7 +138,7 @@
             Refresh <i class="fa fa-refresh"></i>
           </a>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-4">
           <h5 id="jam" class="pull-right" style="font-weight: bold;">
           </h5>    
         </div>
