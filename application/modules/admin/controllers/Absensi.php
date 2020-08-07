@@ -30,4 +30,12 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('absensi/config_libur');
 	}
+	public function list()
+	{
+		$this->load->view('index');
+	}
+	public function clear_list()
+	{
+		$this->load->view('absensi/list');
+	}
 }

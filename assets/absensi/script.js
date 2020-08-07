@@ -68,21 +68,43 @@ $(document).ready(function(){
 	  $("#lat").html(position.coords.latitude);
 	  long = position.coords.longitude;
 	  lat = position.coords.latitude;
+    getStatus();
+    getTotal();
 	}
 	getLocation();
+  function getTotal(){
+    $.getJSON(_URL+'/home/absensi/get_berangkat/'+_G_ID,function(result){
+      console.log(result);
+      let total = parseInt(result.total);
+      $('#berangkat_tot').html(total);      
+    });
+    $.getJSON(_URL+'/home/absensi/get_absen/'+_G_ID,function(result){
+      let total = parseInt(result.total);
+      $('#absen_tot').html(total);      
+    });
+    $.getJSON(_URL+'/home/absensi/get_terlambat/'+_G_ID,function(result){
+      let total = parseInt(result.total);
+      $('#terlambat_tot').html(total);      
+    });
+  }
   function getStatus(){
-    $.getJSON(_URL+'/home/absensi/get_status/',function(result){
+    $.getJSON(_URL+'/home/absensi/get_status/'+_G_ID,function(result){
       $('#btnStatus').html('Status : '+result.status);
       $('#btnStatus').toggleClass('btn-'+result.class);
-      if(result.status != 'Off'){
+      if(result.status != 'Off' && result.exist == null){
         $('form').removeClass('hidden');
         $('form').append('<input type="hidden" name="status" value="'+result.status_key+'">');
         $('#load').addClass('hidden');
       }else{
-        $('#load').addClass('btn-danger');
-        $('#load').html('Absensi Sedang Off');
+        let nama = $('#nama').html();
+        if(result.exist.id > 0){
+          $('#load').addClass('btn-info');
+          $('#load').html(nama+'sudah melakukan absensi pada '+result.exist.waktu);
+        }else{
+          $('#load').addClass('btn-danger');
+          $('#load').html('Absensi Sedang Off');
+        }
       }
     });
   }
-  getStatus();
 });

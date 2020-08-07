@@ -76,8 +76,11 @@
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
   </style>
   <div class="box box-widget widget-user">
+    <?php if (!empty($output['alert'])): ?>
+      <?php msg($output['msg'],$output['alert']) ?>
+    <?php endif ?>
     <div class="widget-user-header" style="background-color: <?php echo $config_theme['main_color'] ?>;color : <?php echo $config_theme['font_color']; ?>">
-      <h5 class="widget-user-username" style="font-size: 16px;font-weight: bold;">
+      <h5 class="widget-user-username" id="nama" style="font-size: 16px;font-weight: bold;">
         <?php echo $data['nama'] ?> 
       </h5>
       <div id="logo_image" >
@@ -87,7 +90,7 @@
       </div>
       <h5 class="widget-user-desc"><?php echo !empty($data['jabatan']) ? $data['jabatan'] : '-' ?></h5>
     </div>
-    <div class="widget-user-image">
+    <div class="widget-user-image" style="z-index: 1;">
       <img class="img-circle" src="<?php echo image_module('karyawan',$data['id'].'/'.$data['foto']) ?>" alt="User Avatar">
     </div>
     <div class="box-footer">
@@ -102,21 +105,21 @@
         </div>
         <div class="box-body" style="display: none;">
           <div class="row">
-            <div class="col-xs-4 border-right">
+            <div class="col-xs-4 border-right bg-primary">
               <div class="description-block">
-                <h5 class="description-header">0</h5>
+                <h5 class="description-header" id="berangkat_tot">0</h5>
                 <span class="description-text">Berangkat</span>
               </div>
             </div>
-            <div class="col-xs-4 border-right">
+            <div class="col-xs-4 border-right bg-danger">
               <div class="description-block">
-                <h5 class="description-header">0</h5>
+                <h5 class="description-header" id="absen_tot">0</h5>
                 <span class="description-text">Bolos</span>
               </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4 border-right bg-warning">
               <div class="description-block">
-                <h5 class="description-header">0</h5>
+                <h5 class="description-header" id="terlambat_tot">0</h5>
                 <span class="description-text">Terlambat</span>
               </div>
             </div>
@@ -148,21 +151,21 @@
             <div class="modal-body">
               <table class="table">
                 <tr>
-                  <td><button class="btn btn-sm btn-success">Berangkat</button></td>
+                  <td><button style="width: 100%;" class="btn-success">Berangkat</button></td>
                   <td>: jam 06:00 - 08:00</td>
                 </tr>
                 <tr>
-                  <td><button class="btn btn-sm btn-danger">Terlambat</button></td>
+                  <td><button style="width: 100%;" class="btn-danger">Terlambat</button></td>
                   <td>: jam 08:01 - 11:00</td>
                 </tr>
                 <tr>
-                  <td><button class="btn btn-sm btn-success">Pulang</button></td>
+                  <td><button style="width: 100%;" class="btn-success">Pulang</button></td>
                   <td>: jam 11:01 - 16:00</td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><span aria-hidden="true">&times;</span> Tutup</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -218,6 +221,9 @@
       </div>
     </div>
   </div>
+  <script>
+    var _G_ID = "<?php echo intval($_GET['g_id']);?>";
+  </script>
 <?php else: ?>
   <?php msg('maaf data tidak ditemukan','danger') ?>
 <?php endif ?>

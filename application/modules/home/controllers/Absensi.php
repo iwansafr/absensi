@@ -19,17 +19,27 @@ class Absensi extends CI_Controller
 		$this->esg->add_js([
 			base_url('assets/absensi/script.js'),
 		]);
-		pr($_POST);
-		pr($_FILES);
-		$this->absensi_model->save();
-		$this->load->view('index',['data'=>$data]);
+		$output = $this->absensi_model->save();
+		$this->load->view('index',['data'=>$data,'output'=>$output]);
 	}
 	public function my_location()
 	{
 		$this->load->view('home/absensi/location');
 	}
-	public function get_status()
+	public function get_status($karyawan_id = 0)
 	{
-		output_json($this->absensi_model->get_status());
+		output_json($this->absensi_model->get_status($karyawan_id));
+	}
+	public function get_berangkat($karyawan_id = 0)
+	{
+		output_json($this->absensi_model->get_total_absensi($karyawan_id,1));
+	}
+	public function get_absen($karyawan_id = 0)
+	{
+		output_json($this->absensi_model->get_total_absensi($karyawan_id,5));
+	}
+	public function get_terlambat($karyawan_id = 0)
+	{
+		output_json($this->absensi_model->get_total_absensi($karyawan_id,3));
 	}
 }
