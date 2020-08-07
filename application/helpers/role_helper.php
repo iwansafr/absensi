@@ -20,7 +20,7 @@ function is($title = '')
 	$role   = @$_SESSION[base_url().'_logged_in']['role'];
 	if(!empty($role))
 	{
-		if(strtolower($role)==$title)
+		if(strtolower($role)==strtolower($title))
 		{
 			$return = true;
 		}

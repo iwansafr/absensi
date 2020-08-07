@@ -4,7 +4,7 @@ $form = new zea();
 
 $form->init('roll');
 $form->search();
-$is_sekolah = is('sekolah');
+$is_sekolah = is($_SESSION[base_url('_logged_in')]['role']);
 if($is_sekolah){
 	$form->setWhere(
 		'instansi_id = '.$this->pengguna_model->get_instansi_id(
@@ -21,7 +21,7 @@ $form->addInput('id','hidden');
 $form->setNumbering(true);
 $form->setTable('karyawan');
 $form->addInput('instansi_id','dropdown');
-$form->setLabel('instansi_id','sekolah');
+$form->setLabel('instansi_id','instansi');
 $form->tableOptions('instansi_id','instansi','id','nama');
 $form->setAttribute('instansi_id','disabled');
 $form->addInput('nama','plaintext');

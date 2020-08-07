@@ -1,8 +1,7 @@
 <?php
 
 $id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
-
-$is_sekolah = is('sekolah');
+$is_sekolah = is($user['role']);
 $is_root = is('root');
 
 $form = new zea();
@@ -11,7 +10,7 @@ $form->init('edit');
 $form->setId($id);
 $form->setTable('karyawan');
 $form->addInput('instansi_id', 'dropdown');
-$form->setLabel('instansi_id', 'sekolah');
+$form->setLabel('instansi_id', 'instansi');
 $form->removeNone('instansi_id');
 if($is_sekolah){
 	$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
