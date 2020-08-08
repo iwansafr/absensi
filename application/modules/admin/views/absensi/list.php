@@ -23,6 +23,7 @@ $form->setLabel('karyawan_id','karyawan');
 $form->addInput('status','dropdown');
 $form->setOptions('status',$this->absensi_model->status());
 $form->setAttribute('status','disabled');
+$form->setUrl('admin/absensi/clear_list');
 
 $form->addInput('waktu','plaintext');
 
