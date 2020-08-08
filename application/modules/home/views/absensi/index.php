@@ -76,9 +76,6 @@
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
   </style>
   <div class="box box-widget widget-user">
-    <?php if (!empty($output['alert'])): ?>
-      <?php msg($output['msg'],$output['alert']) ?>
-    <?php endif ?>
     <div class="widget-user-header" style="background-color: <?php echo $config_theme['main_color'] ?>;color : <?php echo $config_theme['font_color']; ?>">
       <h5 class="widget-user-username" id="nama" style="font-size: 16px;font-weight: bold;">
         <?php echo $data['nama'] ?> 
@@ -142,6 +139,11 @@
           <h5 id="jam" class="pull-right" style="font-weight: bold;">
           </h5>    
         </div>
+      </div>
+      <div class="row">
+        <?php if (!empty($output['alert'])): ?>
+          <?php msg($output['msg'],$output['alert']) ?>
+        <?php endif ?>
       </div>
       <div class="modal fade" id="modal-status">
         <div class="modal-dialog">

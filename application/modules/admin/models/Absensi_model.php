@@ -17,11 +17,18 @@ class Absensi_model extends CI_Model
 		{
 			$foto = $_FILES['foto'];
 			$data = $_POST;
-			$output = ['status'=>false,'msg'=>'gagal upload foto'];
+			$output = ['status'=>false,'msg'=>'gagal upload foto','alert'=>'danger'];
 			if(!empty($data['karyawan_id']) && !empty($data['instansi_id']) && $foto['error'] == 0)
 			{
-				$this->db->insert('absensi',$data);
-				$id = $this->db->insert_id();
+				$exist = $this->db->get_where('absensi',['instansi_id'=>$data['instansi_id'],'karyawan_id'=>$data['karyawan_id'],'CAST(waktu AS date)='=>date('Y-m-d')])->row_array();
+				$id    = 0;
+
+				if(empty($exist)){
+					$this->db->insert('absensi',$data);
+					$id = $this->db->insert_id();
+				}else{
+					$output = ['status'=>false,'msg'=>'Sudah Melakukan absensi','alert'=>'danger'];
+				}
 				if(!empty($id))
 				{
 					$dir = FCPATH.'images/modules/absensi/'.$id.'/';
@@ -56,8 +63,6 @@ class Absensi_model extends CI_Model
 						$this->image_lib->initialize($image_lib);
 	        }
 				}
-
-				// $data['foto'] = $foto['name'];
 			}
 			return $output;
 		}

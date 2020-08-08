@@ -26,6 +26,8 @@ $form->setOptions('status',$this->absensi_model->status());
 $form->setAttribute('status','disabled');
 $form->setUrl('admin/absensi/clear_list');
 
+
+$form->setDelete(true);
 $form->addInput('waktu','plaintext');
 
 $form->form();

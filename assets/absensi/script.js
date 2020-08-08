@@ -32,6 +32,7 @@ function jam() {
   x.innerHTML = "Jam : "+h + ":" + m + ":" + s;
 }
 setInterval(jam,1000);
+
 $(document).ready(function(){
 	var lat;
 	var long;
@@ -108,4 +109,12 @@ $(document).ready(function(){
       }
     });
   }
+  function block(){
+    $('form').addClass('hidden');
+    $('#btnStatus').html('Status : Stand By');
+    $('#btnStatus').toggleClass('btn-danger');
+    $('#load').html('pengguna tidak melakukan aktifitas lebih dari 5 menit');
+    $('#load').removeClass('hidden');
+  }
+  setInterval(block,5000);
 });
