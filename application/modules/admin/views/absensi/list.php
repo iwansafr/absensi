@@ -20,6 +20,7 @@ $form->tableOptions('karyawan_id','karyawan','id','nama');
 $form->setAttribute('karyawan_id','disabled');
 $form->setLabel('karyawan_id','karyawan');
 
+$form->addInput('foto','thumbnail');
 $form->addInput('status','dropdown');
 $form->setOptions('status',$this->absensi_model->status());
 $form->setAttribute('status','disabled');
