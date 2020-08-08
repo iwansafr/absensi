@@ -109,12 +109,13 @@ $(document).ready(function(){
       }
     });
   }
+  var stand_by = setInterval(block,60000*5);
   function block(){
     $('form').addClass('hidden');
     $('#btnStatus').html('Status : Stand By');
     $('#btnStatus').toggleClass('btn-danger');
     $('#load').html('pengguna tidak melakukan aktifitas lebih dari 5 menit');
     $('#load').removeClass('hidden');
+    clearInterval(stand_by);
   }
-  setInterval(block,5000);
 });
