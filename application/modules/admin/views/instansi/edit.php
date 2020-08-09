@@ -56,7 +56,7 @@ $form->addInput('website','text');
 $form->setRequired('All');
 
 $form->addInput('logo','image');
-// $form->setAccept('logo','.jpg,.png,.jpeg');
+$form->setAccept('logo','.jpg,.png,.jpeg');
 
 $form->form();
 ?>

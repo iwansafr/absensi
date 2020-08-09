@@ -46,6 +46,7 @@ if (empty($id)) {
 }
 
 $form->addInput('foto', 'image');
+$form->setAccept('foto','.jpg,.png,.jpeg');
 
 if(empty($id))
 {
