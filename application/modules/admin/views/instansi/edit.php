@@ -54,6 +54,10 @@ $form->setLabel('district_id','Kecamatan');
 
 $form->addInput('website','text');
 $form->setRequired('All');
+
+$form->addInput('logo','image');
+// $form->setAccept('logo','.jpg,.png,.jpeg');
+
 $form->form();
 ?>
 <div id="map" style="width: 70%; height: 300px;"></div>
