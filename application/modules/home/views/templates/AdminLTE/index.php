@@ -9,7 +9,7 @@
 	    <?php $this->load->view('navbar') ?>
 	  </header>
 	  <div class="content-wrapper">
-	    <div class="container">
+	    <div class="<?php echo $mod['name'] != 'absensi' ? 'container' : ''; ?>">
 	    	<?php if (!empty($mod)): ?>
 	    		<?php if ($mod['content'] == 'home/index'): ?>
 			      <?php $this->load->view('content_slider') ?>
@@ -47,7 +47,7 @@
 				        </ol>
 				      </section>
 	    			<?php endif ?>
-			      <section class="content">
+			      <section class="<?php echo $mod['name'] != 'absensi' ? 'content' : ''; ?>">
 		    			<?php $this->load->view($mod['content']) ?>
 		    		</section>
 	    		<?php endif ?>
