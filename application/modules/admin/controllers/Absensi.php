@@ -38,4 +38,17 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('absensi/list');
 	}
+
+	public function list_valid()
+	{
+		$this->load->view('index');
+	}
+	public function clear_list_valid()
+	{
+		$this->load->view('absensi/list_valid');
+	}
+	public function routine()
+	{
+		output_json($this->absensi_model->routine());
+	}
 }

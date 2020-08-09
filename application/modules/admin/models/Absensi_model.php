@@ -53,14 +53,15 @@ class Absensi_model extends CI_Model
 	        }
 	        if($output['status'])
 	        {
-						$image_lib['image_library']   = 'gd2';
-						$image_lib['source_image']    = $dir.$id.'/'.$file_name;
-						// $image_lib['create_thumb'] = TRUE;
-						$image_lib['maintain_ratio']  = TRUE;
-						$image_lib['width']           = 750;
-						$image_lib['height']          = 500;
+						$config_image_lib['image_library']   = 'gd2';
+						$config_image_lib['source_image']    = $dir.'/'.$file_name;
+						// $config_image_lib['create_thumb'] = TRUE;
+						$config_image_lib['maintain_ratio']  = TRUE;
+						$config_image_lib['width']           = 500;
+						$config_image_lib['height']          = 300;
 						$this->load->library('image_lib');
-						$this->image_lib->initialize($image_lib);
+						$this->image_lib->initialize($config_image_lib);
+						$this->image_lib->resize();
 	        }
 				}
 			}
@@ -82,12 +83,16 @@ class Absensi_model extends CI_Model
 		$output['exist'] = false;
 		if(!empty($karyawan_id))
 		{
-			$data_jam    = $this->db->get_where('jam_absen',['name'=>'config_jam'])->row_array();
 			$karyawan_id = intval($karyawan_id);
 			$instansi_id = $this->db->get_where('karyawan',['id'=>$karyawan_id])->row_array();
 			if(!empty($instansi_id))
 			{
 				$instansi_id = $instansi_id['instansi_id'];
+			}
+			$data_jam    = $this->db->get_where('jam_absen',['name'=>'config_jam_instansi_'.$instansi_id])->row_array();
+			if(empty($data_jam))
+			{
+				$data_jam    = $this->db->get_where('jam_absen',['name'=>'config_jam'])->row_array();
 			}
 
 			if(!empty($data_jam['value']))
@@ -151,6 +156,54 @@ class Absensi_model extends CI_Model
 				$total = 0;
 			}
 			output_json(['total'=>$total]);
+		}
+	}
+
+	public function del_image($table = '', $ids = array())
+	{
+		if(!empty($table) && is_array($ids))
+		{
+			foreach ($ids as $key => $value) 
+			{
+				recursive_rmdir(FCPATH.'images/modules/'.$table.'/'.$value.'/');
+			}
+		}
+	}
+	public function routine()
+	{	
+		$libur = $this->db->query('SELECT * FROM absensi_libur WHERE CAST(date AS date) = ?',date('Y-m-d'))->row_array();
+		$libur = [];
+		if(empty($libur))
+		{
+			$karyawan = $this->db->query('SELECT k.id,k.instansi_id FROM karyawan AS k LEFT JOIN absensi AS a ON(k.id=a.karyawan_id) WHERE waktu is NULL')->result_array();
+			if(!empty($karyawan))
+			{
+				$output = [];
+				$i = 0;
+				foreach ($karyawan as $key => $value) 
+				{
+					$output[$i] = [
+						'karyawan_id' => $value['id'],
+						'instansi_id' => $value['instansi_id'],
+						'longitude' => 0,
+						'latitude' => 0,
+						'valid' => 1,
+						'status' => 5
+					];
+					$i++;
+				}
+				if(!empty($output))
+				{
+					if($this->db->insert_batch('absensi', $output))
+					{
+						return ['status'=>1,'msg'=>'success insert data','alert'=>'success'];
+					}else{
+						return ['status'=>0,'msg'=>'failed insert data','alert'=>'danger'];
+					}
+				}
+			}
+		}else{
+			return ['status'=>0,'msg'=>'libur','alert'=>'danger'];
 		}
 	}
 }
