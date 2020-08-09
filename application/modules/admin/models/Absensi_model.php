@@ -172,10 +172,18 @@ class Absensi_model extends CI_Model
 	public function routine()
 	{	
 		$libur = $this->db->query('SELECT * FROM absensi_libur WHERE CAST(date AS date) = ?',date('Y-m-d'))->row_array();
-		$libur = [];
 		if(empty($libur))
 		{
-			$karyawan = $this->db->query('SELECT k.id,k.instansi_id FROM karyawan AS k LEFT JOIN absensi AS a ON(k.id=a.karyawan_id) WHERE waktu is NULL')->result_array();
+			$karyawan = $this->db->query('SELECT k.id FROM karyawan AS k LEFT JOIN absensi AS a ON(k.id=a.karyawan_id) WHERE CAST(waktu AS date) = ?',date('Y-m-d'))->result_array();
+			$karyawan_ids = [];
+			foreach ($karyawan as $key => $value)
+			{
+				$karyawan_ids[] = $value['id'];
+			}
+			$this->db->select('id');
+			$this->db->select('instansi_id');
+			$this->db->where_not_in('id',$karyawan_ids);
+			$karyawan = $this->db->get('karyawan')->result_array();
 			if(!empty($karyawan))
 			{
 				$output = [];
