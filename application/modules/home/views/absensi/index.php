@@ -125,7 +125,9 @@
         <div class="box-footer" style="display: none;">
           <center>
             <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formIzin">
-              <label for="">Foto Surat Izin</label>
+              <div class="form-group">
+                <label for="">Foto Surat Izin</label>
+              </div>
               <label class="fileContainer">
                 <img src="<?php echo base_url('images/envelope.png') ?>" class="img img-responsive" alt="" style="height: 300px; width: 300px; object-fit: contain;" id="image_place">
                 <br>
