@@ -105,8 +105,14 @@ $(document).ready(function(){
       }else{
         let nama = $('#nama').html();
         if(result.exist.id > 0){
+          let status_title = result.exist.status;
+          console.log(status_title);
+          let title = 'absensi';
+          if(status_title == '2'){
+            title = 'izin';
+          }
           $('#load').addClass('btn-info');
-          $('#load').html(nama+'sudah melakukan absensi pada '+result.exist.waktu);
+          $('#load').html(nama+'sudah melakukan '+title+' pada '+result.exist.waktu);
         }else{
           $('#load').addClass('btn-danger');
           $('#load').html('Absensi Sedang Off');
