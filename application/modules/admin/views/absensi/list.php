@@ -29,6 +29,8 @@ $form->setUrl('admin/absensi/clear_list');
 
 
 $form->setDelete(true);
+$form->addInput('latitude','plaintext');
+$form->addInput('longitude','plaintext');
 $form->addInput('waktu','plaintext');
 $form->addInput('valid','checkbox');
 
