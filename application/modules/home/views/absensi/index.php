@@ -123,7 +123,27 @@
           </div>
         </div>
         <div class="box-footer" style="display: none;">
-          
+          <center>
+            <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formIzin">
+              <label for="">Foto Surat Izin</label>
+              <label class="fileContainer">
+                <img src="<?php echo base_url('images/envelope.png') ?>" class="img img-responsive" alt="" style="height: 300px; width: 300px; object-fit: contain;" id="image_place">
+                <br>
+                <br>
+                <i class="fa fa-camera" style="font-size: 36px;"></i>
+                <input type="file" id="izinUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="capture">
+              </label>
+              <div id="location"></div>
+              <div id="profile">
+                <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
+                <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
+                <input type="hidden" name="status" value="2">
+              </div>
+              <div id="izin_btn">
+                
+              </div>
+            </form>
+          </center>
         </div>
       </div>
       <div class="row">
@@ -181,7 +201,7 @@
         <div id="load">
           Loading . . .
         </div>
-        <form action="" method="post" enctype="multipart/form-data" class="hidden">
+        <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formAbsen">
           <label class="fileContainer">
             <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
             <br>
@@ -193,6 +213,9 @@
           <div id="profile">
             <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
             <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
+          </div>
+          <div id="absen_btn">
+            
           </div>
         </form>
       </center>
