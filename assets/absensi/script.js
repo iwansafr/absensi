@@ -69,6 +69,7 @@ $(document).ready(function(){
 	}
 
 	function showPosition(position) {
+    console.log('ok lah jalan');
 		$("#location").append("<input type='hidden' name='longitude' value='"+position.coords.longitude+"'><input type='hidden' name='latitude' value='"+position.coords.latitude+"'>");
 	  $("#long").html(position.coords.longitude);
 	  $("#lat").html(position.coords.latitude);
