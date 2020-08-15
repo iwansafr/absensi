@@ -11,6 +11,36 @@ class Absensi_model extends CI_Model
 		return ['1'=>'Senin','2'=>'Selasa','3'=>'Rabu','4'=>'Kamis','5'=>'Jumat','6'=>'Sabtu','7'=>'Ahad'];
 	}
 
+	public function get_absensi_today()
+	{
+		$data = $this->db->query('SELECT * FROM absensi WHERE CAST(waktu AS date) = ?',date('Y-m-d'))->result_array();
+		$status = [
+			'berangkat' => ['total'=>0,'color'=>'success'],
+			'izin' => ['total'=>0,'color'=>'info'],
+			'terlambat' => ['total'=>0,'color'=>'warning'],
+			'pulang' => ['total'=>0,'color'=>'info'],
+			'absen' => ['total'=>0,'color'=>'danger'],
+		];
+		$karyawan_ids = [];
+		foreach ($data as $key => $value) 
+		{
+			$karyawan_ids[] = $value['karyawan_id'];
+			if($value['status'] == 1){
+				$status['berangkat']['total'] = @intval($status['berangkat']['total'])+1;
+			}else if($value['status'] == 2){
+				$status['izin']['total'] = @intval($status['izin']['total'])+1;
+			}else if($value['status'] == 3){
+				$status['terlambat']['total'] = @intval($status['terlambat']['total'])+1;
+			}else if($value['status'] == 4){
+				$status['pulang']['total'] = @intval($status['pulang']['total'])+1;
+			}
+		}
+		$this->db->select('id');
+		$this->db->where_not_in('id',$karyawan_ids);
+		$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+		return $status;
+	}
+
 	public function save()
 	{
 		if(!empty($_FILES['foto']['tmp_name']))
