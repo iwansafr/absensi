@@ -35,9 +35,12 @@ class Absensi_model extends CI_Model
 				$status['pulang']['total'] = @intval($status['pulang']['total'])+1;
 			}
 		}
-		$this->db->select('id');
-		$this->db->where_not_in('id',$karyawan_ids);
-		$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+		if(!empty($karyawan_ids))
+		{
+			$this->db->select('id');
+			$this->db->where_not_in('id',$karyawan_ids);
+			$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+		}
 		return $status;
 	}
 
