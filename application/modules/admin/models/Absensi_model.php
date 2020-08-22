@@ -157,7 +157,8 @@ class Absensi_model extends CI_Model
 					if(empty($output['exist'])){
 						$this->db->or_where(['status'=>3]);
 						$this->db->or_where(['status'=>1]);
-						$query = $this->db->get_where('absensi',['instansi_id'=>$instansi_id,'karyawan_id'=>$karyawan_id,'CAST(waktu AS date)='=>date('Y-m-d')]);
+						// $query = $this->db->get_where('absensi',['instansi_id'=>$instansi_id,'karyawan_id'=>$karyawan_id,'CAST(waktu AS date)='=>date('Y-m-d')]);
+						$query = $this->db->query('SELECT * FROM absensi WHERE instansi_id = ? AND karyawan_id = ? AND CAST(waktu AS date) = ? AND (status = 1 OR status = 3)', [$instansi_id, $karyawan_id,date('Y-m-d')]);
 						$pagi = $query->row_array();
 						$output['query'] = $this->db->last_query();
 						if(empty($pagi)){
