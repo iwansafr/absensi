@@ -16,6 +16,7 @@ class Absensi extends CI_Controller
 		$this->home_model->home();
 		$g_id = !empty($_GET['g_id']) ? intval($_GET['g_id']) : 0;
 		$data = $this->karyawan_model->get_profile($g_id);
+		$data['status'] = @intval($this->absensi_model->get_status($g_id)['status_key']);
 		$this->esg->add_js([
 			base_url('assets/absensi/script.js'),
 		]);

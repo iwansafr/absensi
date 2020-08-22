@@ -214,6 +214,7 @@
           <div id="profile">
             <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
             <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
+            <input type="hidden" name="status" value="<?php echo $data['status'] ?>">
           </div>
           <div id="absen_btn">
             

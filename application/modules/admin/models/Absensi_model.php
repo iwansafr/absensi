@@ -53,7 +53,7 @@ class Absensi_model extends CI_Model
 			$output = ['status'=>false,'msg'=>'gagal upload foto','alert'=>'danger'];
 			if(!empty($data['karyawan_id']) && !empty($data['instansi_id']) && $foto['error'] == 0)
 			{
-				$exist = $this->db->get_where('absensi',['instansi_id'=>$data['instansi_id'],'karyawan_id'=>$data['karyawan_id'],'CAST(waktu AS date)='=>date('Y-m-d')])->row_array();
+				$exist = $this->db->get_where('absensi',['instansi_id'=>$data['instansi_id'],'karyawan_id'=>$data['karyawan_id'],'CAST(waktu AS date)='=>date('Y-m-d'),'status'=>$data['status']])->row_array();
 				$id    = 0;
 
 				if(empty($exist)){
