@@ -116,7 +116,12 @@ $(document).ready(function(){
           $('#load').html(nama+'sudah melakukan '+title+' pada '+result.exist.waktu);
         }else{
           $('#load').addClass('btn-danger');
-          $('#load').html('Absensi Sedang Off');
+          alert(result.bolos);
+          if(result.bolos == true){
+            $('#load').html('Tidak Melakukan Absensi Berangkat');
+          }else{
+            $('#load').html('Absensi Sedang Off');
+          }
         }
       }
     });

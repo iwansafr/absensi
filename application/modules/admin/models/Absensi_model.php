@@ -154,6 +154,19 @@ class Absensi_model extends CI_Model
 					$output['status_key'] = 4;
 					$output['class'] = 'success';
 					$output['exist'] = $this->db->get_where('absensi',['instansi_id'=>$instansi_id,'karyawan_id'=>$karyawan_id,'CAST(waktu AS date)='=>date('Y-m-d'),'status'=>4])->row_array();
+					if(empty($output['exist'])){
+						$this->db->or_where(['status'=>3]);
+						$this->db->or_where(['status'=>1]);
+						$query = $this->db->get_where('absensi',['instansi_id'=>$instansi_id,'karyawan_id'=>$karyawan_id,'CAST(waktu AS date)='=>date('Y-m-d')]);
+						$pagi = $query->row_array();
+						$output['query'] = $this->db->last_query();
+						if(empty($pagi)){
+							$output['bolos'] = true;
+							$output['exist'] = true;
+						}else{
+							$output['bolos'] = false;
+						}
+					}
 				}
 			}
 		}
