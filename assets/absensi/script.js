@@ -96,7 +96,7 @@ $(document).ready(function(){
   }
   function getStatus(){
     $.getJSON(_URL+'/home/absensi/get_status/'+_G_ID,function(result){
-      console.log(result);
+      // console.log(result);
       $('#btnStatus').html('Status : '+result.status);
       $('#btnStatus').toggleClass('btn-'+result.class);
       if(result.status != 'Off' && result.exist == null){
@@ -116,7 +116,7 @@ $(document).ready(function(){
           $('#load').html(nama+'sudah melakukan '+title+' pada '+result.exist.waktu);
         }else{
           $('#load').addClass('btn-danger');
-          alert(result.bolos);
+          // alert(result.bolos);
           if(result.bolos == true){
             $('#load').html('Tidak Melakukan Absensi Berangkat');
           }else{
