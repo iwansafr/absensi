@@ -36,6 +36,7 @@ setInterval(jam,1000);
 $(document).ready(function(){
 	var lat;
 	var long;
+	getLocation();
 	function readURL(input,a){
     if (input.files && input.files[0]){
       var reader = new FileReader();
@@ -78,7 +79,6 @@ $(document).ready(function(){
     getStatus();
     getTotal();
 	}
-	getLocation();
   function getTotal(){
     $.getJSON(_URL+'/home/absensi/get_berangkat/'+_G_ID,function(result){
       console.log(result);
