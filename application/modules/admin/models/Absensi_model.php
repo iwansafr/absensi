@@ -258,4 +258,53 @@ class Absensi_model extends CI_Model
 			return ['status'=>0,'msg'=>'libur','alert'=>'danger'];
 		}
 	}
+	public function rekap($k_id = 0,$year = '' , $month = '' )
+	{
+		if(empty($year))
+		{
+			$year = date('Y');
+			pr($year);
+		}
+		if(empty($month))
+		{
+			$month = date('m');
+			pr($month);
+		}
+		$data = $this->db->get_where('absensi',['karyawan_id'=>$k_id])->result_array();
+		$tgl = $this->tgl($year.'-'.$month.'-01');
+		// pr($tgl);
+		// pr($data);
+		$merge_data = [];
+		foreach($data as $dkey => $dvalue)
+		{
+			foreach ($tgl as $key => $value) 
+			{
+				if(substr($dvalue['waktu'],0,10)==$value['date'])
+				{
+					$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+				}else{
+					$merge_data[$value['date']]['libur'] = 'libur';
+				}
+			}
+		}
+		pr($merge_data);
+	}
+	public function tgl($date)
+	{
+		if(!empty($date))
+		{
+			$date_set = substr($date, 0,8);
+			$end = $date_set . date('t', strtotime($date)); //get end date of month
+			$tgl = [];
+			while(strtotime($date) <= strtotime($end))
+			{
+				$current_date = $date;
+	      $day_num = date('d', strtotime($date));
+	      $day_name = date('l', strtotime($date));
+	      $date = date("Y-m-d", strtotime("+1 day", strtotime($date)));
+	      $tgl[] = ['num'=>$day_num,'name'=>$day_name,'date'=>$current_date];
+	    }
+	    return $tgl;
+		}
+	}
 }

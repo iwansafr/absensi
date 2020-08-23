@@ -51,4 +51,13 @@ class Absensi extends CI_Controller
 	{
 		output_json($this->absensi_model->routine());
 	}
+	public function rekap($k_id = 0)
+	{
+		if(!empty($k_id))
+		{
+			$year  = @$_GET['year'];
+			$month = @$_GET['month'];
+			$this->absensi_model->rekap($k_id,$year,$month);
+		}
+	}
 }
