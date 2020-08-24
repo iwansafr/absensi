@@ -55,9 +55,12 @@ class Absensi extends CI_Controller
 	{
 		if(!empty($k_id))
 		{
-			$year  = @$_GET['year'];
-			$month = @$_GET['month'];
-			$this->absensi_model->rekap($k_id,$year,$month);
+			$year  = !empty($_GET['year']) ? $_GET['year'] : date('Y');
+			$month = !empty($_GET['month']) ? $_GET['month'] : date('m');
+			$data = $this->absensi_model->rekap($k_id,$year,$month);
+			// pr($data);die();
+			$karyawan = $this->absensi_model->get_karyawan($k_id,1);
+			$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year]);
 		}
 	}
 }

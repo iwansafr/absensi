@@ -263,12 +263,10 @@ class Absensi_model extends CI_Model
 		if(empty($year))
 		{
 			$year = date('Y');
-			pr($year);
 		}
 		if(empty($month))
 		{
 			$month = date('m');
-			pr($month);
 		}
 		$data = $this->db->get_where('absensi',['karyawan_id'=>$k_id])->result_array();
 		$tgl = $this->tgl($year.'-'.$month.'-01');
@@ -279,15 +277,20 @@ class Absensi_model extends CI_Model
 		{
 			foreach ($tgl as $key => $value) 
 			{
+				$merge_data[$value['date']]['hari'] = $value['name'];
 				if(substr($dvalue['waktu'],0,10)==$value['date'])
 				{
 					$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+					$merge_data[$value['date']]['status'] = 'on';
 				}else{
-					$merge_data[$value['date']]['libur'] = 'libur';
+					if(empty($merge_data[$value['date']]['status']))
+					{
+						$merge_data[$value['date']]['status'] = 'off';
+					}
 				}
 			}
 		}
-		pr($merge_data);
+		return $merge_data;
 	}
 	public function tgl($date)
 	{
@@ -296,15 +299,33 @@ class Absensi_model extends CI_Model
 			$date_set = substr($date, 0,8);
 			$end = $date_set . date('t', strtotime($date)); //get end date of month
 			$tgl = [];
+			$hari = ['Saturday'=>'Sabtu','Sunday'=>'Ahad','Monday'=>'Senin','Tuesday'=>'Selasa','Wednesday'=>'Rabu','Thursday'=>'Kamis','Friday'=>'Jumat'];
 			while(strtotime($date) <= strtotime($end))
 			{
 				$current_date = $date;
 	      $day_num = date('d', strtotime($date));
 	      $day_name = date('l', strtotime($date));
+	      $day_name = $hari[$day_name];
 	      $date = date("Y-m-d", strtotime("+1 day", strtotime($date)));
 	      $tgl[] = ['num'=>$day_num,'name'=>$day_name,'date'=>$current_date];
 	    }
 	    return $tgl;
 		}
+	}
+	public function get_karyawan($k_id = 0, $instansi_id = 0)
+	{
+		if(!empty($instansi_id))
+		{
+			$this->db->where(['instansi_id'=>$instansi_id]);
+			if(!empty($k_id))
+			{
+				$this->db->where(['id'=>$k_id]);
+				$data = $this->db->get('karyawan')->row_array();
+			}else{
+				$data = $this->db->get('karyawan')->result_array();
+			}
+			return $data;
+		}
+
 	}
 }

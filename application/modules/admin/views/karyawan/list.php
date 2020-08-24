@@ -17,7 +17,8 @@ if($is_sekolah){
 		$form->setWhere('instansi_id = '.$this->db->escape($_GET['s_id']));
 	}
 }
-$form->addInput('id','hidden');
+$form->addInput('id','plaintext');
+$form->setPlainText('id',[base_url('admin/absensi/rekap/{id}/Rekap-bulanan')=>'Rekap']);
 $form->setNumbering(true);
 $form->setTable('karyawan');
 $form->addInput('instansi_id','dropdown');
