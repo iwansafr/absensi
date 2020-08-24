@@ -5,6 +5,11 @@ if(!empty($data))
 	<div class="box">
 		<div class="box-header">
 			<h4>Rekap <?php echo $karyawan['nama'] ?>, bulan <?php echo $month ?> Tahun <?php echo $year ?></h4>
+			<?php if (!empty($_GET['print'])): ?>
+				<script>window.print()</script>
+			<?php else: ?>
+				<a class="btn btn-default" href="?print=1"><i class="fa fa-print"></i> Cetak/Save</a>
+			<?php endif ?>
 		</div>
 		<div class="box-body">
 			<div class="table-responsive">
