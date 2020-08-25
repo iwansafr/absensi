@@ -27,17 +27,17 @@ class Absensi_model extends CI_Model
 			$karyawan_ids[] = $value['karyawan_id'];
 			if($value['status'] == 1){
 				$status['berangkat']['total'] = @intval($status['berangkat']['total'])+1;
-				$status['berangkat']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['berangkat']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 
 			}else if($value['status'] == 2){
 				$status['izin']['total'] = @intval($status['izin']['total'])+1;
-				$status['izin']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['izin']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 			}else if($value['status'] == 3){
 				$status['terlambat']['total'] = @intval($status['terlambat']['total'])+1;
-				$status['terlambat']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['terlambat']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 			}else if($value['status'] == 4){
 				$status['pulang']['total'] = @intval($status['pulang']['total'])+1;
-				$status['pulang']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['pulang']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 			}
 		}
 		if(!empty($karyawan_ids))
