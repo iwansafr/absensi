@@ -13,7 +13,7 @@ class Absensi_model extends CI_Model
 
 	public function get_absensi_today()
 	{
-		$data = $this->db->query('SELECT absensi.*,karyawan.nama FROM absensi INNER JOIN karyawan WHERE CAST(waktu AS date) = ?',date('Y-m-d'))->result_array();
+		$data = $this->db->query('SELECT absensi.*,karyawan.nama FROM absensi INNER JOIN karyawan ON(karyawan.id = karyawan_id) WHERE CAST(waktu AS date) = ?',date('Y-m-d'))->result_array();
 		$status = [
 			'berangkat' => ['total'=>0,'color'=>'success'],
 			'izin' => ['total'=>0,'color'=>'info'],
