@@ -43,6 +43,37 @@ $date = date('Y-m-d');
 		    		<td>:</td>
 		    		<td>
 		    			<?php echo $value['total'] ?>
+		    			<?php if (!empty($value['karyawan'])): ?>
+	              <button type="button" class="pull-right btn btn-<?php echo $value['color'];?> btn-sm" data-toggle="modal" data-target="#modal-<?php echo $key;?>">
+	                <i class="fa fa-search"></i> detail
+	              </button>
+	              <div class="modal modal-<?php echo $value['color'];?> fade" id="modal-<?php echo $key;?>">
+				          <div class="modal-dialog">
+				            <div class="modal-content">
+				              <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                  <span aria-hidden="true">&times;</span></button>
+				                <h4 class="modal-title">Detail <?php echo $key ?></h4>
+				              </div>
+				              <div class="modal-body">
+				              	<ol>
+					                <?php foreach ($value['karyawan'] as $kkey => $kvalue): ?>
+					                	<?php if (!empty($kvalue['nama'])): ?>
+					                		<?php $text = $kvalue['nama'].' - '.substr($kvalue['jam'],11,18) ?>
+					                	<?php else: ?>
+					                		<?php $text = $kvalue ?>
+					                	<?php endif ?>
+														<li><?php echo $text ?></li>
+					                <?php endforeach ?>
+				              	</ol>
+				              </div>
+				              <div class="modal-footer">
+				                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+				              </div>
+				            </div>
+				          </div>
+				        </div>
+		    			<?php endif ?>
 		    		</td>
 		    	</tr>
 		    <?php endforeach ?>

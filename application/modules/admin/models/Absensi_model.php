@@ -13,7 +13,7 @@ class Absensi_model extends CI_Model
 
 	public function get_absensi_today()
 	{
-		$data = $this->db->query('SELECT * FROM absensi WHERE CAST(waktu AS date) = ?',date('Y-m-d'))->result_array();
+		$data = $this->db->query('SELECT absensi.*,karyawan.nama FROM absensi INNER JOIN karyawan WHERE CAST(waktu AS date) = ?',date('Y-m-d'))->result_array();
 		$status = [
 			'berangkat' => ['total'=>0,'color'=>'success'],
 			'izin' => ['total'=>0,'color'=>'info'],
@@ -27,12 +27,17 @@ class Absensi_model extends CI_Model
 			$karyawan_ids[] = $value['karyawan_id'];
 			if($value['status'] == 1){
 				$status['berangkat']['total'] = @intval($status['berangkat']['total'])+1;
+				$status['berangkat']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+
 			}else if($value['status'] == 2){
 				$status['izin']['total'] = @intval($status['izin']['total'])+1;
+				$status['izin']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 			}else if($value['status'] == 3){
 				$status['terlambat']['total'] = @intval($status['terlambat']['total'])+1;
+				$status['terlambat']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 			}else if($value['status'] == 4){
 				$status['pulang']['total'] = @intval($status['pulang']['total'])+1;
+				$status['pulang']['karyawan'][] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
 			}
 		}
 		if(!empty($karyawan_ids))
@@ -40,6 +45,16 @@ class Absensi_model extends CI_Model
 			$this->db->select('id');
 			$this->db->where_not_in('id',$karyawan_ids);
 			$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+			$this->db->select('nama');
+			$this->db->where_not_in('id',$karyawan_ids);
+			$karyawan_absen = $this->db->get('karyawan')->result_array();
+			if(!empty($karyawan_absen))
+			{
+				foreach ($karyawan_absen as $key => $value) 
+				{
+					$status['absen']['karyawan'][] = $value['nama'];
+				}
+			}
 		}
 		return $status;
 	}
