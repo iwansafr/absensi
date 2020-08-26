@@ -13,14 +13,48 @@ class Absensi extends CI_Controller
 	}
 	public function index()
 	{
+		if(!$this->db->field_exists('jam_jadwal','absensi'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+        'jam_jadwal' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '6',
+                'default' => '00:00',
+                'after' => 'waktu'
+        ),
+			);
+			$this->dbforge->add_column('absensi',$fields);
+		}
+		if(!$this->db->field_exists('selisih_waktu','absensi'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+        'selisih_waktu' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '6',
+                'default' => '00:00',
+                'after' => 'waktu'
+        ),
+			);
+			$this->dbforge->add_column('absensi',$fields);
+		}
 		$this->home_model->home();
 		$g_id = !empty($_GET['g_id']) ? intval($_GET['g_id']) : 0;
 		$data = $this->karyawan_model->get_profile($g_id);
+
 		if(!empty($data))
 		{
+			$jam_today = $this->absensi_model->get_jam_today($g_id);
 			$status_key = @intval($this->absensi_model->get_status($g_id)['status_key']);
 			if(!empty($status_key))
 			{
+				if($status_key == 1 || $status_key == 3)
+				{
+					$data['jam_jadwal'] = $jam_today['berangkat'];
+				}else{
+					$data['jam_jadwal'] = $jam_today['pulang'];
+				}
 				$data['status'] = $status_key;
 			}
 		}

@@ -215,6 +215,9 @@
             <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
             <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
             <input type="hidden" name="status" value="<?php echo $data['status'] ?>">
+            <?php if (!empty($data['jam_jadwal'])): ?>
+              <input type="hidden" name="jam_jadwal" value="<?php echo $data['jam_jadwal'] ?>">
+            <?php endif ?>
           </div>
           <div id="absen_btn">
             
@@ -232,7 +235,7 @@
         </div>
         <div class="box-body" style="">
           <div class="row">
-            <!-- <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe> -->
+            <iframe src="<?php echo base_url('home/absensi/my_location') ?>" frameborder="0" style="width: 100%; height: 350px;"></iframe>
             <table class="table">
               <tr>
                 <td>Latitude</td>

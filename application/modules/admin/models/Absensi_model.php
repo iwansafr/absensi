@@ -27,17 +27,17 @@ class Absensi_model extends CI_Model
 			$karyawan_ids[] = $value['karyawan_id'];
 			if($value['status'] == 1){
 				$status['berangkat']['total'] = @intval($status['berangkat']['total'])+1;
-				$status['berangkat']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['berangkat']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu'],'selisih'=>$value['selisih_waktu']];
 
 			}else if($value['status'] == 2){
 				$status['izin']['total'] = @intval($status['izin']['total'])+1;
-				$status['izin']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['izin']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu'],'selisih'=>$value['selisih_waktu']];
 			}else if($value['status'] == 3){
 				$status['terlambat']['total'] = @intval($status['terlambat']['total'])+1;
-				$status['terlambat']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['terlambat']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu'],'selisih'=>$value['selisih_waktu']];
 			}else if($value['status'] == 4){
 				$status['pulang']['total'] = @intval($status['pulang']['total'])+1;
-				$status['pulang']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu']];
+				$status['pulang']['karyawan'][$value['karyawan_id']] = ['nama'=>$value['nama'],'jam'=>$value['waktu'],'selisih'=>$value['selisih_waktu']];
 			}
 		}
 		if(!empty($karyawan_ids))
@@ -71,6 +71,13 @@ class Absensi_model extends CI_Model
 				$exist = $this->db->get_where('absensi',['instansi_id'=>$data['instansi_id'],'karyawan_id'=>$data['karyawan_id'],'CAST(waktu AS date)='=>date('Y-m-d'),'status'=>$data['status']])->row_array();
 				$id    = 0;
 
+				$waktu      = strtotime(date('h:i'));
+				$jam_jadwal = strtotime($data['jam_jadwal']);
+
+				$selisih = $waktu-$jam_jadwal;
+				$selisih = $selisih/60;
+				$data['selisih_waktu'] = $selisih;
+ 
 				if(empty($exist)){
 					$this->db->insert('absensi',$data);
 					$id = $this->db->insert_id();
@@ -115,6 +122,33 @@ class Absensi_model extends CI_Model
 			}
 			return $output;
 		}
+	}
+
+	public function get_jam_today($karyawan_id = 0)
+	{
+		$output = [];
+		$hari_now = date('N');
+		if(!empty($karyawan_id))
+		{
+			$karyawan_id = intval($karyawan_id);
+			$instansi_id = $this->db->get_where('karyawan',['id'=>$karyawan_id])->row_array();
+			if(!empty($instansi_id))
+			{
+				$instansi_id = $instansi_id['instansi_id'];
+			}
+			$data_jam    = $this->db->get_where('jam_absen',['name'=>'config_jam_instansi_'.$instansi_id])->row_array();
+			if(empty($data_jam))
+			{
+				$data_jam    = $this->db->get_where('jam_absen',['name'=>'config_jam'])->row_array();
+			}
+		}
+		if(!empty($data_jam))
+		{
+			$data_jam = json_decode($data_jam['value'],1);
+			$output['berangkat'] = $data_jam['akhir_berangkat_'.$hari_now];
+			$output['pulang'] = $data_jam['mulai_pulang_'.$hari_now];
+		}
+		return $output;
 	}
 
 	public function get_status($karyawan_id = 0)
