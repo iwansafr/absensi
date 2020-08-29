@@ -139,6 +139,9 @@
                 <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
                 <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
                 <input type="hidden" name="status" value="2">
+                <?php if (!empty($_SERVER['HTTP_USER_AGENT'])): ?>
+                  <input type="hidden" name="device" value="<?php echo $_SERVER['HTTP_USER_AGENT'] ?>">
+                <?php endif ?>
               </div>
               <div id="izin_btn">
                 
@@ -217,6 +220,9 @@
             <input type="hidden" name="status" value="<?php echo $data['status'] ?>">
             <?php if (!empty($data['jam_jadwal'])): ?>
               <input type="hidden" name="jam_jadwal" value="<?php echo $data['jam_jadwal'] ?>">
+            <?php endif ?>
+            <?php if (!empty($_SERVER['HTTP_USER_AGENT'])): ?>
+              <input type="hidden" name="device" value="<?php echo $_SERVER['HTTP_USER_AGENT'] ?>">
             <?php endif ?>
           </div>
           <div id="absen_btn">

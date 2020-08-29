@@ -23,4 +23,38 @@
       <?php $this->load->view('user_menu') ?>
     </div>
   </nav>
+<?php else: ?>
+  <nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <aside class="main-sidebar">
+    <section class="sidebar">
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MENU NAVIGASI</li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Utama</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('home/absensi/?g_id='.$_GET['g_id']) ?>"><i class="fa fa-circle-o"></i> Absensi</a></li>
+            <li><a href="<?php echo base_url('home/absensi/agenda?g_id='.$_GET['g_id']) ?>"><i class="fa fa-circle-o"></i> Agenda</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </aside>
 <?php endif ?>

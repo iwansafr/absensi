@@ -11,6 +11,10 @@ class Absensi extends CI_Controller
 		$this->load->helper('content');
 		$this->load->library('esg');
 	}
+	public function agenda()
+	{
+		$this->load->view('index');
+	}
 	public function index()
 	{
 		if(!$this->db->field_exists('jam_jadwal','absensi'))
@@ -39,6 +43,17 @@ class Absensi extends CI_Controller
 			);
 			$this->dbforge->add_column('absensi',$fields);
 		}
+		if(!$this->db->field_exists('device','absensi'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+        'device' => array(
+                'type' => 'TEXT',
+                'after' => 'waktu'
+        ),
+			);
+			$this->dbforge->add_column('absensi',$fields);
+		}
 		$this->home_model->home();
 		$g_id = !empty($_GET['g_id']) ? intval($_GET['g_id']) : 0;
 		$data = $this->karyawan_model->get_profile($g_id);
@@ -46,6 +61,7 @@ class Absensi extends CI_Controller
 		if(!empty($data))
 		{
 			$jam_today = $this->absensi_model->get_jam_today($g_id);
+			// pr($jam_today);
 			$status_key = @intval($this->absensi_model->get_status($g_id)['status_key']);
 			if(!empty($status_key))
 			{
