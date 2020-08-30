@@ -71,7 +71,7 @@ class Absensi_model extends CI_Model
 				$exist = $this->db->get_where('absensi',['instansi_id'=>$data['instansi_id'],'karyawan_id'=>$data['karyawan_id'],'CAST(waktu AS date)='=>date('Y-m-d'),'status'=>$data['status']])->row_array();
 				$id    = 0;
 
-				$waktu      = strtotime(date('h:i'));
+				$waktu      = strtotime(date('H:i'));
 				$jam_jadwal = strtotime($data['jam_jadwal']);
 
 				$selisih = $waktu-$jam_jadwal;
