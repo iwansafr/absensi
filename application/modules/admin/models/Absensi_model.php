@@ -317,7 +317,12 @@ class Absensi_model extends CI_Model
 		{
 			$month = date('m');
 		}
-		$data = $this->db->get_where('absensi',['karyawan_id'=>$k_id])->result_array();
+		if(empty($k_id))
+		{
+			$data = $this->db->get_where('absensi',['YEAR(waktu)'=>$year,'MONTH(waktu)'=>$month])->result_array();
+		}else{
+			$data = $this->db->get_where('absensi',['karyawan_id'=>$k_id])->result_array();
+		}
 		$tgl = $this->tgl($year.'-'.$month.'-01');
 		// pr($tgl);
 		// pr($data);
@@ -329,7 +334,12 @@ class Absensi_model extends CI_Model
 				$merge_data[$value['date']]['hari'] = $value['name'];
 				if(substr($dvalue['waktu'],0,10)==$value['date'])
 				{
-					$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+					if(empty($k_id))
+					{
+						$merge_data[$value['date']][$dvalue['status']][$dvalue['karyawan_id']] = $dvalue;
+					}else{
+						$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+					}
 					$merge_data[$value['date']]['status'] = 'on';
 				}else{
 					if(empty($merge_data[$value['date']]['status']))
