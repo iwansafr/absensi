@@ -5,6 +5,7 @@ $form = new zea();
 $form->init('roll');
 $form->setTable('absensi');
 
+$form->setHeading('<a href="'.base_url('admin/absensi/rekap_all').'" class="btn btn-info">Rekap Bulanan</a>');
 $form->search();
 $form->addInput('id','hidden');
 $form->setNumbering();

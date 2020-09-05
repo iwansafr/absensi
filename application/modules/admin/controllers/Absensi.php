@@ -57,6 +57,21 @@ class Absensi extends CI_Controller
 		{
 			$year  = !empty($_GET['year']) ? $_GET['year'] : date('Y');
 			$month = !empty($_GET['month']) ? $_GET['month'] : date('m');
+
+			if(!empty($_GET['my']))
+			{
+				$get_month = !empty($_GET['my']) ? $_GET['my'] : date('m');
+				$get_month = explode('-',$get_month);
+				if(!empty($get_month[0]))
+				{
+					$year = $get_month[0];
+				}
+				if(!empty($get_month[1]))
+				{
+					$month = $get_month[1];
+				}
+			}
+
 			$data = $this->absensi_model->rekap($k_id,$year,$month);
 			// pr($data);die();
 			$karyawan = $this->absensi_model->get_karyawan($k_id,1);
@@ -67,9 +82,24 @@ class Absensi extends CI_Controller
 	{
 		$year  = !empty($_GET['year']) ? $_GET['year'] : date('Y');
 		$month = !empty($_GET['month']) ? $_GET['month'] : date('m');
+
+		if(!empty($_GET['my']))
+		{
+			$get_month = !empty($_GET['my']) ? $_GET['my'] : date('m');
+			$get_month = explode('-',$get_month);
+			if(!empty($get_month[0]))
+			{
+				$year = $get_month[0];
+			}
+			if(!empty($get_month[1]))
+			{
+				$month = $get_month[1];
+			}
+		}
+		
 		$data = $this->absensi_model->rekap(0,$year,$month);
 		// pr($data);die();
 		$karyawan = $this->absensi_model->get_karyawan(0,1);
-		$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan]);
+		$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'year'=>$year,'month'=>$month]);
 	}
 }

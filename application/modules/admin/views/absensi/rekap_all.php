@@ -1,21 +1,25 @@
-<?php
-if(!empty($data))
-{
-	?>
-	<div class="box">
-		<div class="box-header">
-			<?php if (!empty($_GET['print'])): ?>
-				<script>window.print()</script>
-			<?php else: ?>
-				<?php $get = ''; ?>
-				<?php if (!empty($_GET)): ?>
-					<?php foreach ($_GET as $key => $value): ?>
-						<?php $get .= '&'.$key.'='.$value; ?>
-					<?php endforeach ?>
-				<?php endif ?>
-				<a class="btn btn-default" href="?print=1<?php echo $get;?>"><i class="fa fa-print"></i> Cetak/Save</a>
-			<?php endif ?>
-		</div>
+
+<div class="box">
+	<div class="box-header">
+		<?php if (!empty($_GET['print'])): ?>
+			<script>window.print()</script>
+		<?php else: ?>
+			<!-- <a class="btn btn-default" href="?print=1<?php echo $get;?>"><i class="fa fa-print"></i> Cetak/Save</a> -->
+			<div class="form-group">
+				<a class="btn btn-default" href="?print=1&year=<?php echo $year;?>&month=<?php echo $month;?>"><i class="fa fa-print"></i> Cetak/Save</a>
+				<hr>
+				<form action="" method="get">
+					<div class="form-group">
+						<input type="month" class="form-control" name="my" value="<?php echo !empty($_GET['my']) ? $_GET['my'] : '';?>">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-default">Submit</button>
+					</div>
+				</form>
+			</div>	
+		<?php endif ?>
+	</div>
+	<?php if (!empty($data)): ?>
 		<div class="box-body">
 			<div class="table-responsive">
 				<table class="table table-bordered">
@@ -68,6 +72,5 @@ if(!empty($data))
 				</table>
 			</div>
 		</div>
-	</div>
-	<?php
-}
+	<?php endif ?>
+</div>
