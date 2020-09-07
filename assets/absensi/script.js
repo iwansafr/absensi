@@ -74,6 +74,10 @@ $(document).ready(function(){
 		$("#location").append("<input type='hidden' name='longitude' value='"+position.coords.longitude+"'><input type='hidden' name='latitude' value='"+position.coords.latitude+"'>");
 	  $("#long").html(position.coords.longitude);
 	  $("#lat").html(position.coords.latitude);
+    var ins_long = $('div[field=longitude]').val();
+    var ins_lat = $('div[field=latitude]').val();
+    console.log('lat '+ins_lat);
+    console.log('long '+ins_long);
 	  long = position.coords.longitude;
 	  lat = position.coords.latitude;
     getStatus();

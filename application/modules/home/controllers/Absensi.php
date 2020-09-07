@@ -63,6 +63,8 @@ class Absensi extends CI_Controller
 			$jam_today = $this->absensi_model->get_jam_today($g_id);
 			// pr($jam_today);
 			$status_key = @intval($this->absensi_model->get_status($g_id)['status_key']);
+			$instansi = $this->absensi_model->get_instansi($data['instansi_id']);
+			$data['instansi'] = $instansi;
 			if(!empty($status_key))
 			{
 				if($status_key == 1 || $status_key == 3)

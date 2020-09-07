@@ -205,6 +205,11 @@
         <div id="load">
           Loading . . .
         </div>
+        <div id="instansi" class="d-none">
+          <?php foreach ($data['instansi'] as $key => $value): ?>
+            <div class="instansi" field="<?php echo $key ?>" value="<?php echo $value ?>"></div>
+          <?php endforeach ?>
+        </div>
         <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formAbsen">
           <label class="fileContainer">
             <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">

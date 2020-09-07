@@ -387,4 +387,12 @@ class Absensi_model extends CI_Model
 		}
 
 	}
+
+	public function get_instansi($instansi_id = 0)
+	{
+		if(!empty($instansi_id))
+		{
+			return $this->db->get_where('instansi',['id'=>$instansi_id])->row_array();
+		}
+	}
 }

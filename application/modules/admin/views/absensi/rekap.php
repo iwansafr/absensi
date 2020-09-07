@@ -9,7 +9,7 @@ if(!empty($data))
 				<script>window.print()</script>
 			<?php else: ?>
 				<div class="form-group">
-					<a class="btn btn-default" href="?print=1&year=<?php echo $year;?>&month=<?php echo $month;?>"><i class="fa fa-print"></i> Cetak/Save</a>
+					<a class="btn btn-default" target="_blank" href="?print=1&year=<?php echo $year;?>&month=<?php echo $month;?>"><i class="fa fa-print"></i> Cetak/Save</a>
 					<hr>
 					<form action="" method="get">
 						<div class="form-group">
