@@ -11,6 +11,7 @@ $form->addInput('id','hidden');
 $form->setNumbering();
 
 $form->setWhere(' valid = 0');
+$form->join('karyawan','ON(karyawan.id=karyawan_id)','karyawan.nama,absensi.id,absensi.karyawan_id,absensi.instansi_id,absensi.foto,absensi.status,absensi.latitude,absensi.longitude,absensi.waktu,absensi.valid');
 $form->order_by('waktu','DESC');
 $form->addInput('instansi_id','dropdown');
 $form->tableOptions('instansi_id','instansi','id','nama');
