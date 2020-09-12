@@ -47,6 +47,7 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('absensi/list_valid');
 	}
+	
 	public function routine()
 	{
 		output_json($this->absensi_model->routine());

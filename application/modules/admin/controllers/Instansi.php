@@ -22,10 +22,24 @@ class Instansi extends CI_Controller
 		$this->load->view('instansi/list');
 	}
 
+	public function batas_jarak($id = 0)
+	{
+		$this->load->view('index',['id'=>$id]);
+	}
+
 	public function edit()
 	{
 		$this->esg->add_css('https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css');
 		$this->esg->add_js(['https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js',base_url('assets/absensi/sekolah.js')]);
 		$this->load->view('index');
+	}
+
+	public function config($instansi_id=0)
+	{
+		if(!empty($instansi_id))
+		{
+			$config = $this->esg->get_config('jarak_instansi_'.$instansi_id);
+			output_json($config);
+		}
 	}
 }

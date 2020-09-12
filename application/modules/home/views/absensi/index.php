@@ -207,7 +207,7 @@
         </div>
         <div id="instansi" class="d-none">
           <?php foreach ($data['instansi'] as $key => $value): ?>
-            <div class="instansi" field="<?php echo $key ?>" value="<?php echo $value ?>"></div>
+            <div class="instansi" field="<?php echo $key ?>" data-<?php echo $key;?>="<?php echo $value ?>"></div>
           <?php endforeach ?>
         </div>
         <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formAbsen">

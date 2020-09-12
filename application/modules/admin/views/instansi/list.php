@@ -17,7 +17,9 @@ if($is_sekolah)
 
 $form->setPlainText('id',[
 	base_url('admin/karyawan/list?s_id={id}')=>'Daftar Karyawan',
+	base_url('admin/instansi/batas_jarak/{id}/atur-jarak')=>'Batas Jarak',
 ]);
+$form->setLabel('id','Menu');
 $form->setNumbering(true);
 $form->addInput('nama','plaintext');
 

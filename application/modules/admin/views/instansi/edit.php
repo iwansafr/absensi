@@ -5,6 +5,8 @@ $form = new zea();
 
 $form->init('edit');
 
+$form->setHeading('<a href="'.base_url('admin/instansi/batas_jarak/'.$id.'/atur-jarak').'" class="pull-right btn-sm btn btn-warning"><i class="fa fa-cog"></i>Atur Jarak</a>');
+
 $form->setId($id);
 $form->setTable('instansi');
 $form->addInput('nama','text');

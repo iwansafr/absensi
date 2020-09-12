@@ -40,13 +40,13 @@
         .addTo(map);
       var a = long;
       var b = a.toFixed(4);
-      console.log(a);
-      console.log(b);
+      // console.log(a);
+      // console.log(b);
 
       var a = lat;
       var b = a.toFixed(4);
-      console.log(a);
-      console.log(b);
+      // console.log(a);
+      // console.log(b);
     }
     getLocation();
 </script>

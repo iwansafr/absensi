@@ -11,24 +11,6 @@ function jam() {
   var m = addZero(d.getMinutes());
   var s = addZero(d.getSeconds());
   var now = h*60 + parseInt(m);
-  // var selesai_masuk = config_jam.selesai_masuk.split(':');
-  // var mulai_masuk = config_jam.mulai_masuk.split(':');
-  // var selesai_pulang = config_jam.selesai_pulang.split(':');
-  // var mulai_pulang = config_jam.mulai_pulang.split(':');
-
-  // var brgkt_start = mulai_masuk[0] * 60 + parseInt(mulai_masuk[1]);
-  // var brgkt_end = selesai_masuk[0] * 60 + parseInt(selesai_masuk[1]);
-  // var plg_start = mulai_pulang[0] * 60 + parseInt(mulai_pulang[1]);
-  // var plg_end = selesai_pulang[0] * 60 + parseInt(selesai_pulang[1]);
-  // if(brgkt_start<= now && now <= brgkt_end){
-  // 	brgkt();
-  // }else if(brgkt_end<= now && now <= plg_start){
-  // 	terlambat();
-  // }else if(now <=plg_end && now >= plg_start){
-  // 	plg();
-  // }else{
-  // 	off();
-  // }
   x.innerHTML = "Jam : "+h + ":" + m + ":" + s;
 }
 setInterval(jam,1000);
@@ -41,12 +23,7 @@ $(document).ready(function(){
     if (input.files && input.files[0]){
       var reader = new FileReader();
       reader.onload = function(e){
-      	// if(e.total>500000 && isFileImage(input.files[0])){
-      	// 	var suc = $(a).siblings('input[type="file"]').val('');
-    			// alert('ukuran file tidak boleh lebih dari 500KB');
-      	// }else{
-        	$(a).attr('src', e.target.result);
-      	// }
+      	$(a).attr('src', e.target.result);
       };
       reader.readAsDataURL(input.files[0]);
     }
@@ -70,22 +47,72 @@ $(document).ready(function(){
 	}
 
 	function showPosition(position) {
-    console.log('ok lah jalan');
-		$("#location").append("<input type='hidden' name='longitude' value='"+position.coords.longitude+"'><input type='hidden' name='latitude' value='"+position.coords.latitude+"'>");
-	  $("#long").html(position.coords.longitude);
-	  $("#lat").html(position.coords.latitude);
-    var ins_long = $('div[field=longitude]').val();
-    var ins_lat = $('div[field=latitude]').val();
-    console.log('lat '+ins_lat);
-    console.log('long '+ins_long);
-	  long = position.coords.longitude;
-	  lat = position.coords.latitude;
+    // console.log('ok lah jalan');
+    var ins_id = $('div[field="id"]').data();
+    ins_id = ins_id['id'];
+    var ins_long = $('div[field="longitude"]').data();
+    var ins_lat = $('div[field="latitude"]').data();
+	  long = ins_long['longitude'].toFixed(6);
+	  lat = ins_lat['latitude'].toFixed(6);
+    var cur_long = position.coords.longitude.toFixed(6);
+    var cur_lat = position.coords.latitude.toFixed(6);
+    getConfig(ins_id,cur_long,cur_lat,long,lat);
+		$("#location").append("<input type='hidden' name='longitude' value='"+cur_long+"'><input type='hidden' name='latitude' value='"+cur_lat+"'>");
+	  $("#long").html(cur_long);
+	  $("#lat").html(cur_lat);
     getStatus();
     getTotal();
 	}
+
+  function getConfig(id,cur_long,cur_lat,long,lat){
+    $.getJSON(_URL+'/admin/instansi/config/'+id,function(result){
+      if(result.wfh == 0){
+
+        var jarak = result.jarak;
+        jarak = jarak/100000;
+        long = long/1;
+        lat = lat/1;
+
+        max_long = long+jarak;
+        max_lat = lat+jarak;
+        min_long = long-jarak;
+        min_lat = lat-jarak;
+        max_long = max_long.toFixed(6);
+        max_lat = max_lat.toFixed(6);
+        min_long = min_long.toFixed(6);
+        min_lat = min_lat.toFixed(6);
+
+        if(lat > 0){
+          if(cur_lat > max_lat || cur_lat < min_lat){
+            console.log(max_lat);
+            console.log('diluar lat');
+            console.log(cur_lat);
+            block('Anda berada diluar area absensi');
+          }
+        }else{
+          if(cur_lat < max_lat || cur_lat > min_lat){
+            console.log(max_lat);
+            console.log('diluar lat');
+            console.log(cur_lat);
+            block('Anda berada diluar area absensi');
+          }
+        }
+
+        if(cur_long > max_long || cur_long < min_long){
+          console.log('diluar long');
+          console.log(cur_long);
+          block('Anda berada diluar area absensi');
+        }
+
+      }
+    });
+  }
+
+
+
   function getTotal(){
     $.getJSON(_URL+'/home/absensi/get_berangkat/'+_G_ID,function(result){
-      console.log(result);
+      // console.log(result);
       let total = parseInt(result.total);
       $('#berangkat_tot').html(total);      
     });
@@ -111,7 +138,7 @@ $(document).ready(function(){
         let nama = $('#nama').html();
         if(result.exist.id > 0){
           let status_title = result.exist.status;
-          console.log(status_title);
+          // console.log(status_title);
           let title = 'absensi';
           if(status_title == '2'){
             title = 'izin';
@@ -131,11 +158,11 @@ $(document).ready(function(){
     });
   }
   var stand_by = setInterval(block,60000*5);
-  function block(){
+  function block(msg = 'pengguna tidak melakukan aktifitas lebih dari 5 menit'){
     $('form').addClass('hidden');
     $('#btnStatus').html('Status : Stand By');
     $('#btnStatus').toggleClass('btn-danger');
-    $('#load').html('pengguna tidak melakukan aktifitas lebih dari 5 menit');
+    $('#load').html(msg);
     $('#load').removeClass('hidden');
     clearInterval(stand_by);
   }
