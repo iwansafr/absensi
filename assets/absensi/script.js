@@ -56,12 +56,12 @@ $(document).ready(function(){
 	  lat = ins_lat['latitude'].toFixed(6);
     var cur_long = position.coords.longitude.toFixed(6);
     var cur_lat = position.coords.latitude.toFixed(6);
-    getConfig(ins_id,cur_long,cur_lat,long,lat);
 		$("#location").append("<input type='hidden' name='longitude' value='"+cur_long+"'><input type='hidden' name='latitude' value='"+cur_lat+"'>");
 	  $("#long").html(cur_long);
 	  $("#lat").html(cur_lat);
     getStatus();
     getTotal();
+    getConfig(ins_id,cur_long,cur_lat,long,lat);
 	}
 
   function getConfig(id,cur_long,cur_lat,long,lat){
