@@ -67,8 +67,12 @@ $(document).ready(function(){
   function getConfig(id,cur_long,cur_lat,long,lat){
     $.getJSON(_URL+'/admin/instansi/config/'+id,function(result){
       if(result.wfh == 0){
-
-        var jarak = result.jarak;
+        var jarak = 0;
+        if(result.jarak>0){
+          jarak = result.jarak;
+        }else{
+          jarak = 100;
+        }
         jarak = jarak/100000;
         long = long/1;
         lat = lat/1;
