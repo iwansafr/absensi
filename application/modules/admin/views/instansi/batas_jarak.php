@@ -15,6 +15,10 @@ if(!empty($id))
   $form->addInput('jarak','text');
   $form->setType('jarak','number');
   $form->setLabel('jarak','masukkan batas jarak (Meter)');
+
+  $form->addInput('button','dropdown');
+  $form->setLabel('button','aktifkan absensi sekali klik');
+  $form->setOptions('button',['Tidak','Iya']);
   
   $form->form();
 }
