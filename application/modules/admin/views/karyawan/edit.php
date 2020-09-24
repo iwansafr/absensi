@@ -1,7 +1,7 @@
 <?php
 
 $id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
-$is_sekolah = is($user['role']);
+$is_instansi = is_instansi();
 $is_root = is('root');
 
 $form = new zea();
@@ -12,10 +12,10 @@ $form->setTable('karyawan');
 $form->addInput('instansi_id', 'dropdown');
 $form->setLabel('instansi_id', 'instansi');
 $form->removeNone('instansi_id');
-if($is_sekolah){
+if ($is_instansi) {
 	$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
-	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama',['id'=>$this->pengguna_model->get_instansi_id($user_id)]);
-}else{
+	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama', ['id' => $this->pengguna_model->get_instansi_id($user_id)]);
+} else {
 	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama');
 }
 $form->addInput('nama', 'text');
@@ -46,12 +46,11 @@ if (empty($id)) {
 }
 
 $form->addInput('foto', 'image');
-$form->setAccept('foto','.jpg,.png,.jpeg');
+$form->setAccept('foto', '.jpg,.png,.jpeg');
 
-if(empty($id))
-{
-	$form->setRequired(['nama','foto']);
-}else{
+if (empty($id)) {
+	$form->setRequired(['nama', 'foto']);
+} else {
 	$form->setRequired(['nama']);
 }
 
