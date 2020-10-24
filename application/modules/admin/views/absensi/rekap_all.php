@@ -32,7 +32,7 @@
 								{
 									?>
 									<th style="width: 200px;">
-										<?php echo content_date($key); ?>
+										<?php echo substr($key,-2); ?>
 									</th>
 									<?php
 								}?>
@@ -49,19 +49,19 @@
 										<?php
 										if (!empty($dvalue[1][$value['id']]))
 										{
-											echo '<button class="btn-success">berangkat</button>';
+											echo '<button class="btn-success">B</button>';
 										}
 										else if(!empty($dvalue[2][$value['id']])){
-											echo '<button class="btn-info">izin</button>';
+											echo '<button class="btn-info">I</button>';
 										}
 										else if(!empty($dvalue[3][$value['id']])){
-											echo '<button class="btn-warning">terlambat</button>';
+											echo '<button class="btn-warning">T</button>';
 										}
 										else if(!empty($dvalue[5][$value['id']])){
-											echo '<button class="btn-danger">absen</button>';
+											echo '<button class="btn-danger">A</button>';
 										}
 										if($dvalue['status']=='off'){
-											echo '<button class="btn-default">Off</button>';
+											echo '<button class="btn-default">O</button>';
 										}
 										?>
 									</td>
@@ -69,6 +69,38 @@
 							</tr>
 						<?php endforeach ?>
 					</tbody>			
+				</table>
+				<table class="table-responsive">
+					<thead>
+						<th>Catatan</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td><button style="width: 100%;" class="btn-success">B</button></td>
+							<td>:</td>
+							<td>Berangkat</td>
+						</tr>
+						<tr>
+							<td><button style="width: 100%;" class="btn-danger">A</button></td>
+							<td>:</td>
+							<td>Absen</td>
+						</tr>
+						<tr>
+							<td><button style="width: 100%;" class="btn-info">I</button></td>
+							<td>:</td>
+							<td>Izin</td>
+						</tr>
+						<tr>
+							<td><button style="width: 100%;" class="btn-warning">T</button></td>
+							<td>:</td>
+							<td>Terlambat</td>
+						</tr>
+						<tr>
+							<td><button style="width: 100%;" class="btn-default">O</button></td>
+							<td>:</td>
+							<td>Off</td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>
