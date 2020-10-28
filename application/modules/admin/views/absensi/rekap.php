@@ -86,7 +86,9 @@ if(!empty($data))
 								<?php endif ?>
 								<?php if (!empty($value[3])): ?>
 									<?php $total[3]++; ?>
-									<td class="bg-warning"><?php echo substr($value[3]['waktu'],11,19); ?></td>
+									<td class="bg-info"><?php echo $value[3]['jam_jadwal']; ?></td>
+									<td class="bg-info"><?php echo substr($value[3]['waktu'],11,19); ?></td>
+									<td class="bg-info"><?php echo $value[3]['selisih_waktu']; ?> Menit</td>
 								<?php endif ?>
 
 								<?php if (!empty($value[4])): ?>
