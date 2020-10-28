@@ -44,7 +44,6 @@ if(!empty($data))
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
-					<thead>
 						<tr>
 							<!-- <th rowspan="2">No</th> -->
 							<th rowspan="2">Tgl</th>
@@ -60,7 +59,6 @@ if(!empty($data))
 							<th>Scan Keluar</th>
 							<th>P. Cepat (Menit)</th>
 						</tr>
-					</thead>
 					<tbody>
 						
 					<?php
