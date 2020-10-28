@@ -93,7 +93,7 @@ if(!empty($data))
 									<?php $total[4]++; ?>
 									<td class="bg-info"><?php echo $value[4]['jam_jadwal']; ?></td>
 									<td class="bg-info"><?php echo substr($value[4]['waktu'],11,19); ?></td>
-									<td class="bg-info"><?php echo $value[1]['selisih_waktu']; ?> Menit</td>
+									<td class="bg-info"><?php echo $value[4]['selisih_waktu']; ?> Menit</td>
 								<?php else: ?>
 									<?php if (!empty($value[1]) || !empty($value[3])): ?>
 									<?php $total[6]++; ?>
