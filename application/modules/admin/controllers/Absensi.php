@@ -76,7 +76,8 @@ class Absensi extends CI_Controller
 			$data = $this->absensi_model->rekap($k_id,$year,$month);
 			// pr($data);die();
 			$karyawan = $this->absensi_model->get_karyawan($k_id,1);
-			$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year]);
+			$instansi = $this->absensi_model->get_instansi($karyawan['instansi_id']);
+			$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
 		}
 	}
 	public function rekap_all()

@@ -1,6 +1,8 @@
 <?php
 if(!empty($data))
 {
+	$start_date = array_key_first($data);
+	$end_date = array_key_last($data);
 	?>
 	<div class="box">
 		<div class="box-header">
@@ -23,19 +25,40 @@ if(!empty($data))
 			<?php endif ?>
 		</div>
 		<div class="box-body">
+			<h3 class="text-center text-bold">LAPORAN RINCIAN HARIAN KEHADIRAN (FINGER PRINT)</h3>
+			<div class="row">
+				<div class="col-md-6">
+					<table class="table text-bold">
+						<tr>
+							<td>Nama Instansi : <?php echo $instansi['nama'] ?></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<table class="table text-bold">
+						<tr>
+							<td>Tgl Periode  : <?php echo content_date($start_date).' s/d '.content_date($end_date) ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th rowspan="2">No</th>
+							<!-- <th rowspan="2">No</th> -->
 							<th rowspan="2">Tgl</th>
 							<th rowspan="2">Hari</th>
-							<th colspan="2" style="text-align: center;">Rekap</th>
+							<th colspan="6" style="text-align: center;">Rekap</th>
 							<!-- <th rowspan="2">data</th> -->
 						</tr>
 						<tr>
-							<th>Berangkat</th>
-							<th>Pulang</th>
+							<th>Jam Masuk</th>
+							<th>Scan Masuk</th>
+							<th>Terlambat (Menit)</th>
+							<th>Jam Keluar</th>
+							<th>Scan Keluar</th>
+							<th>P. Cepat (Menit)</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,17 +70,19 @@ if(!empty($data))
 					{
 						?>
 						<tr>
-							<td><?php echo $i++ ?></td>
+							<!-- <td><?php echo $i++ ?></td> -->
 							<td><?php echo content_date($key); ?></td>
 							<td><?php echo $value['hari'] ?></td>
 							<?php if ($value['status'] == 'on'): ?>
 								<?php if (!empty($value[1])): ?>
 									<?php $total[1]++; ?>
+									<td class="bg-info"><?php echo $value[1]['jam_jadwal']; ?></td>
 									<td class="bg-info"><?php echo substr($value[1]['waktu'],11,19); ?></td>
+									<td class="bg-info"><?php echo $value[1]['selisih_waktu']; ?> Menit</td>
 								<?php endif ?>
 								<?php if (!empty($value[2])): ?>
 									<?php $total[2]++; ?>
-									<td class="bg-success" colspan="2">Izin <?php echo substr($value[2]['waktu'],11,19); ?></td>
+									<td class="bg-success" colspan="3">Izin <?php echo substr($value[2]['waktu'],11,19); ?></td>
 								<?php endif ?>
 								<?php if (!empty($value[3])): ?>
 									<?php $total[3]++; ?>
@@ -66,19 +91,21 @@ if(!empty($data))
 
 								<?php if (!empty($value[4])): ?>
 									<?php $total[4]++; ?>
+									<td class="bg-info"><?php echo $value[4]['jam_jadwal']; ?></td>
 									<td class="bg-info"><?php echo substr($value[4]['waktu'],11,19); ?></td>
+									<td class="bg-info"><?php echo $value[1]['selisih_waktu']; ?> Menit</td>
 								<?php else: ?>
 									<?php if (!empty($value[1]) || !empty($value[3])): ?>
 									<?php $total[6]++; ?>
-										<td class="bg-danger">Tidak Absen Pulang</td>
+										<td class="bg-danger text-center" colspan="3">Tidak Absen Pulang</td>
 									<?php endif ?>
 								<?php endif ?>
 								<?php if (!empty($value[5])): ?>
 									<?php $total[5]++; ?>
-									<td class="bg-danger" colspan="2">Absen <?php echo substr($value[5]['waktu'],11,19); ?></td>
+									<td class="bg-danger text-center" colspan="6">Absen <?php echo substr($value[5]['waktu'],11,19); ?></td>
 								<?php endif ?>
 							<?php else: ?>
-								<td colspan="2" class="bg-danger"><?php echo $value['status'] ?></td>
+								<td class="bg-warning text-center" colspan="6">Libur</td>
 							<?php endif ?>
 						</tr>
 						<?php
