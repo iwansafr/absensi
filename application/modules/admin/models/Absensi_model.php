@@ -355,6 +355,16 @@ class Absensi_model extends CI_Model
 	{
 		if (!empty($instansi_id)) {
 			return $this->db->get_where('instansi', ['id' => $instansi_id])->row_array();
+		}else{
+			$user = $this->session->userdata(base_url('_logged_in'));
+			if(!empty($user))
+			{
+				$user_instansi = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
+				if(!empty($user_instansi['instansi_id']))
+				{
+					return $this->db->get_where('instansi', ['id' => $user_instansi['instansi_id']])->row_array();
+				}
+			}
 		}
 	}
 }
