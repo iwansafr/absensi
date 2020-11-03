@@ -20,5 +20,7 @@ if(!empty($id))
   $form->setLabel('button','aktifkan absensi sekali klik');
   $form->setOptions('button',['Tidak','Iya']);
   
+  $form->addInput('tampil_rekap','dropdown');
+  $form->setOptions('tampil_rekap',['Sembunyikan','Tampilkan']);
   $form->form();
 }

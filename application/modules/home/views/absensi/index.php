@@ -90,7 +90,7 @@
     <div class="widget-user-image" style="z-index: 1;">
       <img class="img-circle" src="<?php echo image_module('karyawan',$data['id'].'/'.$data['foto']) ?>" alt="User Avatar">
     </div>
-    <div class="box-footer">
+    <div class="box-footer" id="rekap_form">
       <div class="box collapsed-box">
         <div class="box-header with-border">
           <h3 class="box-title">Rekap</h3>

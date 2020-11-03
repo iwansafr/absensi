@@ -70,6 +70,9 @@ $(document).ready(function () {
         $('#absen_btn').html('<button type="submit" name="button" value="1" class="btn btn-lg btn-info"><i class="fa fa-paper-plane"></i> Absen Tanpa Foto</button><hr>');
         $('.fileContainer').html('');
       }
+      if(result.tampil_rekap == 0){
+        $('#rekap_form').remove();
+      }
       if (result.wfh == 0) {
         var jarak = 0;
         if (result.jarak > 0) {
