@@ -283,7 +283,7 @@ class Absensi_model extends CI_Model
 			return ['status' => 0, 'msg' => 'libur', 'alert' => 'danger'];
 		}
 	}
-	public function rekap($k_id = 0, $year = '', $month = '')
+	public function rekap($k_id = 0, $year = '', $month = '',$instansi_id = 0)
 	{
 		if (empty($year)) {
 			$year = date('Y');
@@ -300,22 +300,29 @@ class Absensi_model extends CI_Model
 		// pr($tgl);
 		// pr($data);
 		$merge_data = [];
-		foreach ($data as $dkey => $dvalue) {
-			foreach ($tgl as $key => $value) {
-				$merge_data[$value['date']]['hari'] = $value['name'];
-				if (substr($dvalue['waktu'], 0, 10) == $value['date']) {
-					if (empty($k_id)) {
-						$merge_data[$value['date']][$dvalue['status']][$dvalue['karyawan_id']] = $dvalue;
+		if(!empty($data))
+		{
+			foreach ($data as $dkey => $dvalue) {
+				foreach ($tgl as $key => $value) {
+					$merge_data[$value['date']]['hari'] = $value['name'];
+					if (substr($dvalue['waktu'], 0, 10) == $value['date']) {
+						if (empty($k_id)) {
+							$merge_data[$value['date']][$dvalue['status']][$dvalue['karyawan_id']] = $dvalue;
+						} else {
+							$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+						}
+						$merge_data[$value['date']]['status'] = 'on';
 					} else {
-						$merge_data[$value['date']][$dvalue['status']] = $dvalue;
-					}
-					$merge_data[$value['date']]['status'] = 'on';
-				} else {
-					if (empty($merge_data[$value['date']]['status'])) {
-						$merge_data[$value['date']]['status'] = 'off';
+						if (empty($merge_data[$value['date']]['status'])) {
+							$merge_data[$value['date']]['status'] = 'off';
+						}
 					}
 				}
 			}
+		}else{
+			$data = $this->get_karyawan(0,$instansi_id);
+			pr($data);die();
+			pr($tgl);
 		}
 		return $merge_data;
 	}
