@@ -71,7 +71,7 @@ $(document).ready(function () {
         $('.fileContainer').html('');
       }
       if(result.tampil_rekap == 0){
-        $('#rekap_form').remove();
+        $('#rekap_form').addClass('hidden')
       }
       if (result.wfh == 0) {
         var jarak = 0;
