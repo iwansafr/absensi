@@ -91,33 +91,35 @@
       <img class="img-circle" src="<?php echo image_module('karyawan',$data['id'].'/'.$data['foto']) ?>" alt="User Avatar">
     </div>
     <div class="box-footer">
-      <div class="box collapsed-box" id="rekap_form">
-        <div class="box-header with-border">
-          <h3 class="box-title">Rekap</h3>
+      <div class="box collapsed-box">
+        <div id="rekap_form">
+          <div class="box-header with-border">
+            <h3 class="box-title">Rekap</h3>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-            </button>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="box-body" style="display: none;">
-          <div class="row">
-            <div class="col-xs-4 border-right bg-primary">
-              <div class="description-block">
-                <h5 class="description-header" id="berangkat_tot">0</h5>
-                <span class="description-text">Berangkat</span>
+          <div class="box-body" style="display: none;">
+            <div class="row">
+              <div class="col-xs-4 border-right bg-primary">
+                <div class="description-block">
+                  <h5 class="description-header" id="berangkat_tot">0</h5>
+                  <span class="description-text">Berangkat</span>
+                </div>
               </div>
-            </div>
-            <div class="col-xs-4 border-right bg-danger">
-              <div class="description-block">
-                <h5 class="description-header" id="absen_tot">0</h5>
-                <span class="description-text">Bolos</span>
+              <div class="col-xs-4 border-right bg-danger">
+                <div class="description-block">
+                  <h5 class="description-header" id="absen_tot">0</h5>
+                  <span class="description-text">Bolos</span>
+                </div>
               </div>
-            </div>
-            <div class="col-xs-4 border-right bg-warning">
-              <div class="description-block">
-                <h5 class="description-header" id="terlambat_tot">0</h5>
-                <span class="description-text">Terlambat</span>
+              <div class="col-xs-4 border-right bg-warning">
+                <div class="description-block">
+                  <h5 class="description-header" id="terlambat_tot">0</h5>
+                  <span class="description-text">Terlambat</span>
+                </div>
               </div>
             </div>
           </div>
