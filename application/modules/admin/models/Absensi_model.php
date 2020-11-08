@@ -333,7 +333,6 @@ class Absensi_model extends CI_Model
 				}
 			}
 		}
-		pr($merge_data);die();
 		return $merge_data;
 	}
 	public function tgl($date)
