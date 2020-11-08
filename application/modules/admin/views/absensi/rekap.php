@@ -80,7 +80,7 @@ if(!empty($data))
 								<?php endif ?>
 								<?php if (!empty($value[2])): ?>
 									<?php $total[2]++; ?>
-									<td class="bg-success" colspan="3">Izin <?php echo substr($value[2]['waktu'],11,19); ?></td>
+									<td class="bg-success text-center" colspan="6">Izin <?php echo substr($value[2]['waktu'],11,19); ?></td>
 								<?php endif ?>
 								<?php if (!empty($value[3])): ?>
 									<?php $total[3]++; ?>

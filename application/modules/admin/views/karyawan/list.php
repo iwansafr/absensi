@@ -16,7 +16,7 @@ if ($is_instansi) {
 		$form->setWhere('instansi_id = ' . $this->db->escape($_GET['s_id']));
 	}
 }
-// $form->setHeading('<a href="'.base_url('/admin/absensi/rekap_absensi').'" class="btn btn-default btn-sm"><i class="fa fa-chart-bar"></i> Rekap Absensi</a>');
+$form->setHeading('<a href="'.base_url('/admin/absensi/rekap_absensi').'" class="btn btn-default btn-sm"><i class="fa fa-chart-bar"></i> Rekap Absensi</a>');
 $form->addInput('id', 'plaintext');
 $form->setLabel('id', 'action');
 $form->setPlainText('id', [base_url('admin/absensi/rekap/{id}/Rekap-bulanan') => 'Rekap']);
