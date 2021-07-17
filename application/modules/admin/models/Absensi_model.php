@@ -312,24 +312,26 @@ class Absensi_model extends CI_Model
 	private function merge_data_tgl($k_id = 0 ,$data = array(), $tgl = array())
 	{
 		$merge_data = [];
-		foreach ($data as $dkey => $dvalue) {
-			foreach ($tgl as $key => $value) {
-				$merge_data[$value['date']]['hari'] = $value['name'];
-				if (!empty($dvalue['waktu'])) {
-					if (substr($dvalue['waktu'], 0, 10) == $value['date']) {
-						if (empty($k_id)) {
-							$merge_data[$value['date']][$dvalue['status']][$dvalue['karyawan_id']] = $dvalue;
-						} else {
-							$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+		if (!empty($data)) {
+			foreach ($data as $dkey => $dvalue) {
+				foreach ($tgl as $key => $value) {
+					$merge_data[$value['date']]['hari'] = $value['name'];
+					if (!empty($dvalue['waktu'])) {
+						if (substr($dvalue['waktu'], 0, 10) == $value['date']) {
+							if (empty($k_id)) {
+								$merge_data[$value['date']][$dvalue['status']][$dvalue['karyawan_id']] = $dvalue;
+							} else {
+								$merge_data[$value['date']][$dvalue['status']] = $dvalue;
+							}
+							$merge_data[$value['date']]['status'] = 'on';
+						}else{
+							if (empty($merge_data[$value['date']]['status'])) {
+								$merge_data[$value['date']]['status'] = 'off';
+							}
 						}
-						$merge_data[$value['date']]['status'] = 'on';
-					}else{
-						if (empty($merge_data[$value['date']]['status'])) {
-							$merge_data[$value['date']]['status'] = 'off';
-						}
+					}else {
+						$merge_data[$value['date']][0][$dvalue['id']] = 'off';
 					}
-				}else {
-					$merge_data[$value['date']][0][$dvalue['id']] = 'off';
 				}
 			}
 		}

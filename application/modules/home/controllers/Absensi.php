@@ -21,36 +21,36 @@ class Absensi extends CI_Controller
 		{
 			$this->load->dbforge();
 			$fields = array(
-        'jam_jadwal' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '6',
-                'default' => '00:00',
-                'after' => 'waktu'
-        ),
-			);
-			$this->dbforge->add_column('absensi',$fields);
-		}
-		if(!$this->db->field_exists('selisih_waktu','absensi'))
-		{
-			$this->load->dbforge();
-			$fields = array(
-        'selisih_waktu' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '6',
-                'default' => '00:00',
-                'after' => 'waktu'
-        ),
-			);
-			$this->dbforge->add_column('absensi',$fields);
-		}
-		if(!$this->db->field_exists('device','absensi'))
-		{
-			$this->load->dbforge();
-			$fields = array(
-        'device' => array(
-                'type' => 'TEXT',
-                'after' => 'waktu'
-        ),
+		'jam_jadwal' => array(
+			'type' => 'VARCHAR',
+			'constraint' => '6',
+			'default' => '00:00',
+			'after' => 'waktu'
+		),
+				);
+				$this->dbforge->add_column('absensi',$fields);
+			}
+			if(!$this->db->field_exists('selisih_waktu','absensi'))
+			{
+				$this->load->dbforge();
+				$fields = array(
+		'selisih_waktu' => array(
+			'type' => 'VARCHAR',
+			'constraint' => '6',
+			'default' => '00:00',
+			'after' => 'waktu'
+		),
+				);
+				$this->dbforge->add_column('absensi',$fields);
+			}
+			if(!$this->db->field_exists('device','absensi'))
+			{
+				$this->load->dbforge();
+				$fields = array(
+		'device' => array(
+			'type' => 'TEXT',
+			'after' => 'waktu'
+		),
 			);
 			$this->dbforge->add_column('absensi',$fields);
 		}
@@ -82,6 +82,23 @@ class Absensi extends CI_Controller
 		$output = $this->absensi_model->save();
 		$this->load->view('index',['data'=>$data,'output'=>$output]);
 	}
+
+	public function face()
+	{
+		$this->load->view('home/absensi/face');
+	}
+	public function get_karyawan()
+  {
+    $data = $this->db->get_where('karyawan')->result_array();
+    echo json_encode($data);
+  }
+
+  public function save($id = 0)
+  {
+  	$data = $this->karyawan_model->get_profile($id);
+  	pr($data);
+
+  }
 	public function my_location()
 	{
 		$this->load->view('home/absensi/location');
