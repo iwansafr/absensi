@@ -21,6 +21,7 @@ class Absensi extends CI_Controller
 		$karyawan_id = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
 		$this->esg->add_js(
 			[
+				'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
 				base_url('assets/absensi/js/face-api.min.js?v='.time()),
 				base_url('assets/absensi/js/script-in.js?v='.time()),
 				'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
@@ -144,5 +145,77 @@ class Absensi extends CI_Controller
 		// pr($data);die();
 		$karyawan = $this->absensi_model->get_karyawan(0,1);
 		$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'year'=>$year,'month'=>$month]);
+	}
+
+	public function masuk()
+	{
+		$this->load->model('Home/home_model');
+		$this->load->model('Home/karyawan_model','kary_model');
+
+		if(!$this->db->field_exists('jam_jadwal','absensi'))
+		{
+			$this->load->dbforge();
+			$fields = array(
+			'jam_jadwal' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '6',
+				'default' => '00:00',
+				'after' => 'waktu'
+			),
+					);
+					$this->dbforge->add_column('absensi',$fields);
+				}
+				if(!$this->db->field_exists('selisih_waktu','absensi'))
+				{
+					$this->load->dbforge();
+					$fields = array(
+			'selisih_waktu' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '6',
+				'default' => '00:00',
+				'after' => 'waktu'
+			),
+					);
+					$this->dbforge->add_column('absensi',$fields);
+				}
+				if(!$this->db->field_exists('device','absensi'))
+				{
+					$this->load->dbforge();
+					$fields = array(
+			'device' => array(
+				'type' => 'TEXT',
+				'after' => 'waktu'
+			),
+			);
+			$this->dbforge->add_column('absensi',$fields);
+		}
+		$this->home_model->home();
+		$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
+		$g_id = $this->db->query('SELECT id FROM karyawan WHERE user_id = ?',[$user_id])->row_array()['id'];
+		$data = $this->kary_model->get_profile($g_id);
+
+		if(!empty($data))
+		{
+			$jam_today = $this->absensi_model->get_jam_today($g_id);
+			// pr($jam_today);
+			$status_key = @intval($this->absensi_model->get_status($g_id)['status_key']);
+			$instansi = $this->absensi_model->get_instansi($data['instansi_id']);
+			$data['instansi'] = $instansi;
+			if(!empty($status_key))
+			{
+				if($status_key == 1 || $status_key == 3)
+				{
+					$data['jam_jadwal'] = $jam_today['berangkat'];
+				}else{
+					$data['jam_jadwal'] = $jam_today['pulang'];
+				}
+				$data['status'] = $status_key;
+			}
+		}
+		$this->esg->add_js([
+			base_url('assets/absensi/script.js'),
+		]);
+		$output = $this->absensi_model->save();
+		$this->load->view('index',['data'=>$data,'output'=>$output]);
 	}
 }

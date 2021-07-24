@@ -21,36 +21,36 @@ class Absensi extends CI_Controller
 		{
 			$this->load->dbforge();
 			$fields = array(
-		'jam_jadwal' => array(
-			'type' => 'VARCHAR',
-			'constraint' => '6',
-			'default' => '00:00',
-			'after' => 'waktu'
-		),
-				);
-				$this->dbforge->add_column('absensi',$fields);
-			}
-			if(!$this->db->field_exists('selisih_waktu','absensi'))
-			{
-				$this->load->dbforge();
-				$fields = array(
-		'selisih_waktu' => array(
-			'type' => 'VARCHAR',
-			'constraint' => '6',
-			'default' => '00:00',
-			'after' => 'waktu'
-		),
-				);
-				$this->dbforge->add_column('absensi',$fields);
-			}
-			if(!$this->db->field_exists('device','absensi'))
-			{
-				$this->load->dbforge();
-				$fields = array(
-		'device' => array(
-			'type' => 'TEXT',
-			'after' => 'waktu'
-		),
+			'jam_jadwal' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '6',
+				'default' => '00:00',
+				'after' => 'waktu'
+			),
+					);
+					$this->dbforge->add_column('absensi',$fields);
+				}
+				if(!$this->db->field_exists('selisih_waktu','absensi'))
+				{
+					$this->load->dbforge();
+					$fields = array(
+			'selisih_waktu' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '6',
+				'default' => '00:00',
+				'after' => 'waktu'
+			),
+					);
+					$this->dbforge->add_column('absensi',$fields);
+				}
+				if(!$this->db->field_exists('device','absensi'))
+				{
+					$this->load->dbforge();
+					$fields = array(
+			'device' => array(
+				'type' => 'TEXT',
+				'after' => 'waktu'
+			),
 			);
 			$this->dbforge->add_column('absensi',$fields);
 		}

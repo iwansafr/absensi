@@ -102,6 +102,7 @@ async function start() {
       var hasil = results.toString();
       if (hasil.match('unknown')) {
         hasil = 'tidak dikenali';
+        btn_upload.classList.add('hidden');
       }else{
         btn_upload.classList.remove('hidden');
       }
