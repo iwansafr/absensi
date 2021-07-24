@@ -15,6 +15,11 @@ class Absensi extends CI_Controller
 		$this->esg_model->init();
 	}
 
+	public function index()
+	{
+		$this->load->view('index');
+	}
+
 	public function config_jam()
 	{
 		$instansi_id = $this->pengguna_model->get_instansi_id();

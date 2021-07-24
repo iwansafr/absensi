@@ -1,5 +1,4 @@
 <?php
-
 $id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
 $is_instansi = is_instansi();
 $is_root = is('root');
@@ -49,9 +48,22 @@ $form->addInput('foto', 'image');
 $form->setAccept('foto', '.jpg,.png,.jpeg');
 
 if (empty($id)) {
-	$form->setRequired(['nama', 'foto']);
+	$form->setRequired(['nama','nip','tgl_lahir','email', 'foto']);
 } else {
-	$form->setRequired(['nama']);
+	$form->setRequired(['nama','nip','tgl_lahir','email']);
 }
 
+$form->setUnique(['nip','email']);
+
 $form->form();
+if(!empty($_POST) && !empty($form->success))
+{
+	$data = $form->getData();
+	if(!empty($data))
+	{
+		$post_data = $data;
+	}else{
+		$post_data = $_POST;
+	}
+	$this->karyawan_model->update_user($form->id, $_POST);
+}
