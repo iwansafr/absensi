@@ -35,7 +35,7 @@
 	.fileContainer [type=file] {
 		 cursor: inherit;
 		 display: block;
-		 font-size: 999px;
+		 font-size: 599px;
 		 filter: alpha(opacity=0);
 		 min-height: 100%;
 		 min-width: 100%;
@@ -65,15 +65,15 @@
 <script>
 	var _karyawan_id = <?php echo $karyawan_id;?>
 </script>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post">
 	<hr>
-	<div class="panel panel-success card card-success">
-		<div class="card-header panel panel-heading" style="padding-bottom:1px;">
+	<div class="panel panel-default">
+		<div class="panel panel-heading" style="padding-bottom:1px;">
 			<div class="form-group">
 				<h5>Absensi </h5>
 			</div>		
 		</div>
-		<div class="panel-body panel card-body">
+		<div class="panel-body panel">
 			<?php 
 			if(!empty($status))
 			{
@@ -83,9 +83,10 @@
 			<div class="form-group" style="text-align: center;">
 				<label for="foto">Foto</label>
 				<br>
-				<label class="fileContainer hidden" style="padding: 10%;">
-					<i class="fa fa-camera" style="font-size: 500%;"></i>
-					<input type="file" id="imageUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="user">
+				<div id="loading_label">Loading Camera...</div>
+				<label class="fileContainer hidden" id="camera">
+					<i class="fa fa-camera" style="font-size: 400%;"></i>
+					<input type="file" id="imageUpload" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="user">
 				</label>
 				<br>
 				<img src="" class="image_place" class="img img-responsive" style="object-fit: cover; height: 200px;" alt="foto">
@@ -98,15 +99,12 @@
 			 <div class="data-container" id="container-data">
 
 			 </div>
-			 <div id="loading">
-
-			 </div>
 			</div>
 		</div>
-		<div class="panel-footer panel card-footer">
-			<button class="btn btn-success d-none" id="btn_upload"><i class="fa fa-upload"></i> Upload</button>
+		<div class="panel-footer panel">
+			<button class="btn btn-default d-none hidden" id="btn_upload"><i class="fa fa-upload"></i> Upload</button>
 			<div class="jam float-right">
-				<span class="badge badge-success">
+				<span class="badge badge-default">
 					<div id="jam">
 						
 					</div>
