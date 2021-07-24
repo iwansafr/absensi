@@ -35,4 +35,9 @@ class Karyawan extends CI_Controller
 	{
 		$this->load->view('karyawan/group');
 	}
+	public function get_karyawan($id = 0)
+	{
+		$data = $this->db->get_where('karyawan',['id'=>$id])->result_array();
+		output_json($data);
+	}
 }

@@ -17,7 +17,18 @@ class Absensi extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('index');
+		$user = $this->session->userdata(base_url('_logged_in'));
+		$karyawan_id = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
+		$this->esg->add_js(
+			[
+				base_url('assets/absensi/js/face-api.min.js?v='.time()),
+				base_url('assets/absensi/js/script-in.js?v='.time()),
+				'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
+			]
+		);
+		$data = [];
+		$data['karyawan_id'] = @intval($karyawan_id['id']);
+		$this->load->view('index',$data);
 	}
 
 	public function config_jam()
