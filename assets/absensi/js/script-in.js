@@ -1,43 +1,5 @@
-function addZero(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function jam() {
-  var d = new Date();
-  var x = document.getElementById("jam");
-  var h = addZero(d.getHours());
-  var m = addZero(d.getMinutes());
-  var s = addZero(d.getSeconds());
-  var now = h * 60 + parseInt(m);
-  // var selesai_masuk = config_jam.selesai_masuk.split(':');
-  // var mulai_masuk = config_jam.mulai_masuk.split(':');
-  // var selesai_pulang = config_jam.selesai_pulang.split(':');
-  // var mulai_pulang = config_jam.mulai_pulang.split(':');
-
-  // var brgkt_start = mulai_masuk[0] * 60 + parseInt(mulai_masuk[1]);
-  // var brgkt_end = selesai_masuk[0] * 60 + parseInt(selesai_masuk[1]);
-  // var plg_start = mulai_pulang[0] * 60 + parseInt(mulai_pulang[1]);
-  // var plg_end = selesai_pulang[0] * 60 + parseInt(selesai_pulang[1]);
-  // if (brgkt_start <= now && now <= brgkt_end) {
-  //   brgkt();
-  // } else if (brgkt_end <= now && now <= plg_start) {
-  //   terlambat();
-  // } else if (now <= plg_end && now >= plg_start) {
-  //   plg();
-  // } else {
-  //   off();
-  // }
-  x.innerHTML = "Jam : " + h + ":" + m + ":" + s;
-}
-setInterval(jam, 1000);
-
 const imageUpload = document.getElementById("imageUpload");
-const camera = document.getElementById("camera");
-const loading_label = document.getElementById("loading_label");
-const btn_upload = document.getElementById("btn_upload");
+// const btn_upload = document.getElementById("btn_upload");
 
 const MODEL_URL = _URL + "assets/models";
 Promise.all([
@@ -48,8 +10,6 @@ Promise.all([
 async function start() {
   const labeledFaceDescriptors = await loadLableImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
-  camera.classList.remove('hidden');
-  loading_label.classList.add('hidden');
   imageUpload.addEventListener("change", async () => {
 
     document.getElementById("container-image").innerHTML = "";
@@ -74,7 +34,7 @@ async function start() {
     document.getElementById("loading").innerHTML = "";
 
     let contentImage =
-      '<img src="' +
+      '<img class="img img-responsive" src="' +
       image.src +
       '" style="width: ' +
       displaySize.width +
@@ -102,9 +62,9 @@ async function start() {
       var hasil = results.toString();
       if (hasil.match('unknown')) {
         hasil = 'tidak dikenali';
-        btn_upload.classList.add('hidden');
+        // btn_upload.classList.add('hidden');
       }else{
-        btn_upload.classList.remove('hidden');
+        // btn_upload.classList.remove('hidden');
       }
       contentImage += `<div style="position:absolute;border:solid;border-color:red;width:${Math.round(
         box.width
@@ -114,16 +74,16 @@ async function start() {
 
       contentImage += `<p style="position:absolute;color:#fff;background:red;width:${Math.round(
         box.width
-      )}px;top:${Math.round(box.y) - 20}px;left: ${
+      )}px;bottom:${Math.round(box.y) - 20}px;left: ${
         box.x
       }px;border:solid;border-color:red;margin-top: 0px; font-size: 12px;">${hasil}</p>`;
-      if (addData) {
-        newDataQuery += `<div class="user"><img src="images/${addData.image}" style='max-width: 100px; max-height: 100px;' />${addData.name}</div>`;
-      }
+      // if (addData) {
+      //   newDataQuery += `<div class="user"><img src="images/${addData.image}" style='max-width: 100px; max-height: 100px;' />${addData.name}</div>`;
+      // }
     });
 
     document.getElementById("container-image").innerHTML = contentImage;
-    document.getElementById("container-data").innerHTML = newDataQuery;
+    // document.getElementById("container-data").innerHTML = newDataQuery;
   });
 
 }

@@ -76,7 +76,7 @@
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
   </style>
   <div class="box box-widget widget-user">
-    <div class="widget-user-header" style="background-color: <?php echo $config_theme['main_color'] ?>;color : <?php echo $config_theme['font_color']; ?>">
+    <div class="widget-user-header">
       <h5 class="widget-user-username" id="nama" style="font-size: 16px;font-weight: bold;">
         <?php echo $data['nama'] ?> 
       </h5>
@@ -214,12 +214,27 @@
         </div>
         <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formAbsen">
           <label class="fileContainer">
-            <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
+            <div class="container-detected">
+              <div class="container-image" id="container-image">
+                <img src="<?php echo base_url('images/person.png') ?>" class="img img-responsive" alt="" style="background: #8080805c; height: 350px; width: 300px; object-fit: cover;" id="image_place">
+              </div>
+              <div class="data-container" id="container-data">
+                
+              </div>
+            </div>
             <br>
             <br>
             <i class="fa fa-camera" style="font-size: 36px;"></i>
             <input type="file" id="imageUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="capture">
           </label>
+          <!-- <div class="container-detected">
+            <div class="container-image" id="container-image">
+
+             </div>
+             <div class="data-container" id="container-data">
+
+             </div>
+          </div> -->
           <div id="location"></div>
           <div id="profile">
             <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
@@ -269,6 +284,7 @@
   </div>
   <script>
     var _G_ID = "<?php echo intval($data['id']);?>";
+    var _karyawan_id = "<?php echo intval($data['id']);?>";
   </script>
 <?php else: ?>
   <?php msg('maaf data tidak ditemukan','danger') ?>

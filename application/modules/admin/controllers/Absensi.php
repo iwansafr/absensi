@@ -213,7 +213,11 @@ class Absensi extends CI_Controller
 			}
 		}
 		$this->esg->add_js([
+			'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
 			base_url('assets/absensi/script.js'),
+			base_url('assets/absensi/js/face-api.min.js?v='.time()),
+			base_url('assets/absensi/js/script-in.js?v='.time()),
+			'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
 		]);
 		$output = $this->absensi_model->save();
 		$this->load->view('index',['data'=>$data,'output'=>$output]);
