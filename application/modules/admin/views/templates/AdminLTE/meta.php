@@ -12,7 +12,7 @@ $template = $this->esg->get_esg('templates')['admin_template'];
 <meta name="developer" content="esoftgreat.com">
 <meta name="author" content="esoftgreat">
 <meta name="ROBOTS" content="all, index, follow">
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo @$meta['icon']; ?>">
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo @image_module('config','site/'.$meta['icon']); ?>">
 <!-- Bootstrap 3.3.7 -->
 <link rel="stylesheet" href="<?php echo base_url('templates/'.$template); ?>/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo base_url('templates/'.$template); ?>/assets/bootstrap/css/bootstrap-tagsinput.css">

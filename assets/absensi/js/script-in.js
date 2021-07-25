@@ -1,5 +1,4 @@
 const imageUpload = document.getElementById("imageUpload");
-// const btn_upload = document.getElementById("btn_upload");
 
 const MODEL_URL = _URL + "assets/models";
 Promise.all([
@@ -62,9 +61,11 @@ async function start() {
       var hasil = results.toString();
       if (hasil.match('unknown')) {
         hasil = 'tidak dikenali';
-        // btn_upload.classList.add('hidden');
+        const btn_upload = document.getElementById("btn_upload");
+        btn_upload.classList.add('hidden');
       }else{
-        // btn_upload.classList.remove('hidden');
+        const btn_upload = document.getElementById("btn_upload");
+        btn_upload.classList.remove('hidden');
       }
       contentImage += `<div style="position:absolute;border:solid;border-color:red;width:${Math.round(
         box.width
