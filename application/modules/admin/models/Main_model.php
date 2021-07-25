@@ -21,7 +21,7 @@ class Main_model extends CI_Model
 			}
 			if(!empty($user)){
 				if(empty($user['pengguna'])){
-					$pengguna = $this->db->get_where('user_sekolah',['user_id'=>$user['id']])->row_array();
+					$pengguna = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
 					if(!empty($pengguna['district_id'])){
 						$user['district'] = $this->db->get_where('districts',['id'=>$pengguna['district_id']])->row_array();
 					}

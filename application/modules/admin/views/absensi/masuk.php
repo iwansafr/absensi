@@ -101,7 +101,7 @@
               </button>
             </div>
           </div>
-          <div class="box-body" style="display: none;">
+          <div class="box-body">
             <div class="row">
               <div class="col-xs-4 border-right bg-primary">
                 <div class="description-block">

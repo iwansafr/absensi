@@ -89,7 +89,7 @@ class Absensi_model extends CI_Model
 						mkdir($dir, 0777, 1);
 					}
 					$config['upload_path']   = $dir;
-					$config['allowed_types'] = 'gif|jpg|png';
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
 					$config['encrypt_name']  = true;
 
 					$this->load->library('upload');
