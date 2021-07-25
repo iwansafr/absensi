@@ -22,13 +22,17 @@ class Karyawan_model extends CI_Model{
 		}else{
 			$strtime = strtotime($data['tgl_lahir']);
 			$password = date('dmY', $strtime);
-			if($this->db->insert('user',['username'=>$data['nip'],'email'=>$data['email'],'password'=>encrypt($password),'user_role_id'=>$kary_role_id,'active'=>1])){
-				if($this->db->update('karyawan',['user_id'=>$this->db->insert_id()],['id'=>$karyawan_id])){
-					return true;
-				}
-			}else{
-				echo '<script>alert("pembuatan akun karyawan gagal")</script>';
-			}	
+			$user_exist = $this->db->query('SELECT id FROM user WHERE username = ? ',$data['nip'])->row_array();
+			if(empty($user_exist))
+			{
+				if($this->db->insert('user',['username'=>$data['nip'],'email'=>$data['email'],'password'=>encrypt($password),'user_role_id'=>$kary_role_id,'active'=>1])){
+					if($this->db->update('karyawan',['user_id'=>$this->db->insert_id()],['id'=>$karyawan_id])){
+						return true;
+					}
+				}else{
+					echo '<script>alert("pembuatan akun karyawan gagal")</script>';
+				}	
+			}
 		}
 	}
 
