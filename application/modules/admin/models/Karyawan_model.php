@@ -3,6 +3,7 @@
 class Karyawan_model extends CI_Model{
 	public function update_user($karyawan_id = 0, $data = [])
 	{
+		pr($karyawan_id);
 		$kary_role_exist = $this->get_kary_role_id();
 		$kary_role_id = 0;
 		if(empty($kary_role_exist)){
@@ -39,6 +40,29 @@ class Karyawan_model extends CI_Model{
 			return $get_kary_role->id;
 		}else{
 			return false;
+		}
+	}
+
+	public function delete_user($data = [])
+	{
+		if(!empty($data))
+		{
+			if(!empty($data['del_row']))
+			{
+				$this->db->select('user_id');
+				$this->db->where_in(['id'=>$data['del_row']]);
+				$user_ids_tmp = $this->db->get('karyawan')->result_array();
+				$user_ids = [];
+				if(!empty($user_ids_tmp))
+				{
+					foreach ($user_ids_tmp as $key => $value) 
+					{
+						$user_ids[] = $value['user_id']	;
+					}
+					$tmp_zea = new Zea();
+					$tmp_zea->del_to_trash('user', $user_ids);
+				}
+			}
 		}
 	}
 }

@@ -38,4 +38,5 @@ $form->setDelete(true);
 $form->setRequired('nama');
 $form->setUrl('admin/karyawan/clear_list');
 
+$this->karyawan_model->delete_user($this->input->post());
 $form->form();

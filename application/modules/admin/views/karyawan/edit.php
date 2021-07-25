@@ -2,7 +2,6 @@
 $id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
 $is_instansi = is_instansi();
 $is_root = is('root');
-
 $form = new zea();
 
 $form->init('edit');
@@ -10,7 +9,7 @@ $form->setId($id);
 $form->setTable('karyawan');
 $form->addInput('instansi_id', 'dropdown');
 $form->setLabel('instansi_id', 'instansi');
-$form->removeNone('instansi_id');
+// $form->removeNone('instansi_id');
 if ($is_instansi) {
 	$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
 	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama', ['id' => $this->pengguna_model->get_instansi_id($user_id)]);
@@ -25,7 +24,7 @@ $form->setOptions('jk', ['1' => 'Laki-laki', '2' => 'Perempuan']);
 $form->addInput('nip', 'text');
 $form->addINput('kary_group_id', 'dropdown');
 $form->setLabel('kary_group_id', 'Kelompok');
-$form->removeNone('kary_group_id');
+// $form->removeNone('kary_group_id');
 $form->tableOptions('kary_group_id', 'karyawan_group', 'id', 'title');
 $form->addInput('jabatan', 'text');
 $form->addInput('golongan', 'text');
@@ -52,18 +51,18 @@ if (empty($id)) {
 } else {
 	$form->setRequired(['nama','nip','tgl_lahir','email']);
 }
-
+$form->removeNone(['instansi_id','kary_group_id']);
 $form->setUnique(['nip','email']);
-
 $form->form();
 if(!empty($_POST) && !empty($form->success))
 {
 	$data = $form->getData();
+	$form_id = !empty($form->id) ? $form->id : $form->insert_id;
 	if(!empty($data))
 	{
 		$post_data = $data;
 	}else{
 		$post_data = $_POST;
 	}
-	$this->karyawan_model->update_user($form->id, $_POST);
+	$this->karyawan_model->update_user($form_id, $_POST);
 }
