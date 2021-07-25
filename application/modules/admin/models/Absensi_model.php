@@ -78,6 +78,7 @@ class Absensi_model extends CI_Model
 				$data['selisih_waktu'] = $selisih;
 
 				if (empty($exist)) {
+					unset($data['button']);
 					$this->db->insert('absensi', $data);
 					$id = $this->db->insert_id();
 				} else {
