@@ -94,7 +94,11 @@ class Absensi extends CI_Controller
 		$karyawan = $this->absensi_model->get_karyawan(0,$user_instansi['instansi_id']);
 		$instansi = $this->db->get_where('instansi',['id'=>$user_instansi['instansi_id']])->row_array();
 		$data = $this->absensi_model->rekap(0,$year,$month,$instansi['id']);
-		$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+		if(empty($_GET['excel'])){
+			$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+		}else{
+			$this->load->view('admin/absensi/rekap_absensi',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+		}
 	}
 	public function rekap($k_id = 0)
 	{
@@ -121,7 +125,11 @@ class Absensi extends CI_Controller
 			$karyawan = $this->db->query('SELECT * FROM karyawan WHERE id = ?', $k_id)->row_array();
 			$instansi = $this->absensi_model->get_instansi(@$karyawan['instansi_id']);
 			$data = $this->absensi_model->rekap($k_id,$year,$month,@$instansi['id']);
-			$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+			if(empty($_GET['excel'])){
+				$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+			}else{
+				$this->load->view('admin/absensi/rekap',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+			}
 		}
 	}
 	public function rekap_all()

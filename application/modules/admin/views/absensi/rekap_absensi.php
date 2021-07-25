@@ -3,9 +3,15 @@
 		<h4>Rekap bulan <?php echo $month ?> Tahun <?php echo $year ?></h4>
 		<?php if (!empty($_GET['print'])): ?>
 			<script>window.print()</script>
+		<?php elseif(!empty($_GET['excel'])): ?>
+			<?php
+			header("Content-type: application/vnd-ms-excel");
+			header("Content-Disposition: attachment; filename=Rekap Absensi $month $year.xls");
+			?>
 		<?php else: ?>
 			<div class="form-group">
-				<a class="btn btn-default" target="_blank" href="?print=1&year=<?php echo $year;?>&month=<?php echo $month;?>"><i class="fa fa-print"></i> Cetak/Save</a>
+				<a class="btn btn-danger" target="_blank" href="?print=1&year=<?php echo $year;?>&month=<?php echo $month;?>"><i class="fa fa-print"></i> Cetak/Save</a>
+				<a class="btn btn-success" target="_blank" href="?excel=1&year=<?php echo $year;?>&month=<?php echo $month;?>"><i class="fa fa-file-excel"></i> Export</a>
 				<hr>
 				<form action="" method="get">
 					<div class="form-group">
@@ -15,7 +21,7 @@
 						<button class="btn btn-default">Submit</button>
 					</div>
 				</form>
-			</div>	
+			</div>
 		<?php endif ?>
 	</div>
 	<div class="box-body">
