@@ -1,65 +1,111 @@
 <?php
 
-$id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
-$form = new zea();
+$get = $_GET;
+$id = !empty($get['id']) ? intval($get['id']) : 0;
+if(empty($get['p'])){
+  ?>
+  <form action="" method="get">
+    <div class="panel panel-default">
+      <div class="panel-heading">Pilih Provinsi</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="">Provinsi</label>
+          <select name="p" class="form-control select2">
+            <?php foreach ($provinces as $key => $value): ?>
+              <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+            <?php endforeach ?>
+          </select>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-sm btn-default" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  <?php
+}else if(empty($get['r'])){
+  ?>
+  <form action="" method="get">
+    <div class="panel panel-default">
+      <div class="panel-heading">Pilih Kabupaten</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <input type="hidden" name="p" value="<?php echo $get['p'] ?>">
+          <label for="">Kabupaten</label>
+          <select name="r" class="form-control select2">
+            <?php foreach ($regencies as $key => $value): ?>
+              <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+            <?php endforeach ?>
+          </select>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-sm btn-default" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  <?php
+}else if(empty($get['d'])){
+  ?>
+  <form action="" method="get">
+    <div class="panel panel-default">
+      <div class="panel-heading">Pilih Kecamatan</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <input type="hidden" name="p" value="<?php echo $get['p'] ?>">
+          <input type="hidden" name="r" value="<?php echo $get['r'] ?>">
+          <label for="">Kecamatan</label>
+          <select name="d" class="form-control select2">
+            <?php foreach ($districts as $key => $value): ?>
+              <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+            <?php endforeach ?>
+          </select>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-sm btn-default" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  <?php
+}else{
+  $form = new zea();
 
-$form->init('edit');
+  $form->init('edit');
 
-$form->setHeading('<a href="'.base_url('admin/instansi/batas_jarak/'.$id.'/atur-jarak').'" class="pull-right btn-sm btn btn-warning"><i class="fa fa-cog"></i>Atur Jarak</a>');
+  $form->setHeading('<a href="'.base_url('admin/instansi/batas_jarak/'.$id.'/atur-jarak').'" class="pull-right btn-sm btn btn-warning"><i class="fa fa-cog"></i>Atur Jarak</a>');
 
-$form->setId($id);
-$form->setTable('instansi');
-$form->addInput('nama','text');
+  $form->setId($id);
+  $form->setTable('instansi');
+  $form->addInput('nama','text');
 
-$form->addInput('alamat','textarea');
+  $form->addInput('alamat','textarea');
 
-$form->addInput('longitude','hidden');
-$form->addInput('latitude','hidden');
-$form->addInput('phone','text');
-$form->setType('phone','number');
-$form->addInput('email','text');
-$form->setType('email','email');
+  $form->addInput('longitude','hidden');
+  $form->addInput('latitude','hidden');
+  $form->addInput('phone','text');
+  $form->setType('phone','number');
+  $form->addInput('email','text');
+  $form->setType('email','email');
 
-$form->addInput('province_id','dropdown');
-$form->setOptions('province_id',['33'=>'Jawa Tengah']);
-$form->setLabel('province_id','Provinsi');
-$form->addInput('regency_id','dropdown');
-$form->setOptions('regency_id',['3318'=>'KABUPATEN PATI']);
-$form->setLabel('regency_id','Kabupaten');
-$form->addInput('district_id','dropdown');
-$form->setOptions('district_id',
-	[
-    '3318010' => 'SUKOLILO',
-    '3318020' => 'KAYEN',
-    '3318030' => 'TAMBAKROMO',
-    '3318040' => 'WINONG',
-    '3318050' => 'PUCAKWANGI',
-    '3318060' => 'JAKEN',
-    '3318070' => 'BATANGAN',
-    '3318080' => 'JUWANA',
-    '3318090' => 'JAKENAN',
-    '3318100' => 'PATI',
-    '3318110' => 'GABUS',
-    '3318120' => 'MARGOREJO',
-    '3318130' => 'GEMBONG',
-    '3318140' => 'TLOGOWUNGU',
-    '3318150' => 'WEDARIJAKSA',
-    '3318160' => 'TRANGKIL',
-    '3318170' => 'MARGOYOSO',
-    '3318180' => 'GUNUNG WUNGKAL',
-    '3318190' => 'CLUWAK',
-    '3318200' => 'TAYU',
-    '3318210' => 'DUKUHSETI',
-	]
-);
-$form->setLabel('district_id','Kecamatan');
+  $form->addInput('province_id','dropdown');
+  $form->setOptions('province_id',[$provinces['id']=>$provinces['name']]);
+  $form->setLabel('province_id','Provinsi');
+  $form->addInput('regency_id','dropdown');
+  $form->setOptions('regency_id',[$regencies['id']=>$regencies['name']]);
+  $form->setLabel('regency_id','Kabupaten');
+  $form->addInput('district_id','dropdown');
+  $form->setOptions('district_id',[$districts['id']=>$districts['name']]);
+  $form->setLabel('district_id','Kecamatan');
 
-$form->addInput('website','text');
-$form->setRequired('All');
+  $form->addInput('website','text');
+  $form->setRequired('All');
 
-$form->addInput('logo','image');
-$form->setAccept('logo','.jpg,.png,.jpeg');
+  $form->addInput('logo','image');
+  $form->setAccept('logo','.jpg,.png,.jpeg');
 
-$form->form();
-?>
-<div id="map" style="width: 70%; height: 300px;"></div>
+  $form->form();
+  ?>
+  <div id="map" style="width: 70%; height: 300px;"></div>
+  <?php
+}
