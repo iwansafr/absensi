@@ -31,6 +31,7 @@ if(empty($get['p'])){
       <div class="panel-heading">Pilih Kabupaten</div>
       <div class="panel-body">
         <div class="form-group">
+          <input type="hidden" name="id" value="<?php echo $id;?>">
           <input type="hidden" name="p" value="<?php echo $get['p'] ?>">
           <label for="">Kabupaten</label>
           <select name="r" class="form-control select2">
@@ -53,6 +54,7 @@ if(empty($get['p'])){
       <div class="panel-heading">Pilih Kecamatan</div>
       <div class="panel-body">
         <div class="form-group">
+          <input type="hidden" name="id" value="<?php echo $id;?>">
           <input type="hidden" name="p" value="<?php echo $get['p'] ?>">
           <input type="hidden" name="r" value="<?php echo $get['r'] ?>">
           <label for="">Kecamatan</label>
