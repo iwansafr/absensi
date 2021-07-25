@@ -10,6 +10,7 @@ if(empty($get['p'])){
       <div class="panel-body">
         <div class="form-group">
           <label for="">Provinsi</label>
+          <input type="hidden" name="id" value="<?php echo $id;?>">
           <select name="p" class="form-control select2">
             <?php foreach ($provinces as $key => $value): ?>
               <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
