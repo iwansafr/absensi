@@ -56,20 +56,20 @@ class Absensi_model extends CI_Model
 
 	public function save()
 	{
-		if (!empty($_FILES['foto']['tmp_name']) || !empty($_POST['button'])) {
+		if (!empty($_FILES['foto']['tmp_name']) || !empty($_POST['button']) || !empty($_POST['absen'])) {
 			$data = $_POST;
+			$output = ['status' => true, 'msg' => 'Absensi Berhasil, Terima Kasih', 'alert' => 'success'];
 			if (!empty($_POST['button'])) {
 				$foto = ['error' => 0];
 				unset($data['button']);
 				$output = ['status' => true, 'msg' => 'Anda berhasil absen tanpa foto', 'alert' => 'success'];
-			} else {
+			} else if(!empty($_FILES['foto'])){
 				$foto = $_FILES['foto'];
 				$output = ['status' => false, 'msg' => 'gagal upload foto', 'alert' => 'danger'];
 			}
-			if (!empty($data['karyawan_id']) && !empty($data['instansi_id']) && $foto['error'] == 0) {
+			if (!empty($data['karyawan_id']) && !empty($data['instansi_id']) && @$foto['error'] == 0) {
 				$exist = $this->db->get_where('absensi', ['instansi_id' => $data['instansi_id'], 'karyawan_id' => $data['karyawan_id'], 'CAST(waktu AS date)=' => date('Y-m-d'), 'status' => $data['status']])->row_array();
 				$id    = 0;
-
 				$waktu      = strtotime(date('H:i'));
 				$jam_jadwal = strtotime($data['jam_jadwal']);
 
@@ -79,12 +79,13 @@ class Absensi_model extends CI_Model
 
 				if (empty($exist)) {
 					unset($data['button']);
+					unset($data['absen']);
 					$this->db->insert('absensi', $data);
 					$id = $this->db->insert_id();
 				} else {
 					$output = ['status' => false, 'msg' => 'Sudah Melakukan absensi', 'alert' => 'danger'];
 				}
-				if (!empty($id) && empty($_POST['button'])) {
+				if (!empty($id) && empty($_POST['button']) && !empty($_FILES['foto'])) {
 					$dir = FCPATH . 'images/modules/absensi/' . $id . '/';
 					if (!is_dir($dir)) {
 						mkdir($dir, 0777, 1);

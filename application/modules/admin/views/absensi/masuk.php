@@ -141,6 +141,9 @@
                 <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
                 <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
                 <input type="hidden" name="status" value="2">
+                <?php if (!empty($data['jam_jadwal'])): ?>
+                  <input type="hidden" name="jam_jadwal" value="<?php echo $data['jam_jadwal'] ?>">
+                <?php endif ?>
                 <?php if (!empty($_SERVER['HTTP_USER_AGENT'])): ?>
                   <input type="hidden" name="device" value="<?php echo $_SERVER['HTTP_USER_AGENT'] ?>">
                 <?php endif ?>
@@ -212,7 +215,7 @@
             <div class="instansi" field="<?php echo $key ?>" data-<?php echo $key;?>="<?php echo $value ?>"></div>
           <?php endforeach ?>
         </div>
-        <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formAbsen">
+        <form action="" method="post" class="hidden" id="formAbsen">
           <div id="loading_image"></div>
           <label class="fileContainer">
             <div class="container-detected">
