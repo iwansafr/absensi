@@ -21,7 +21,7 @@ class Absensi extends CI_Controller
 		$karyawan_id = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
 		$this->esg->add_js(
 			[
-				'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
+				// 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
 				base_url('assets/absensi/js/face-api.min.js?v='.time()),
 				base_url('assets/absensi/js/script-in.js?v='.time()),
 				'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
@@ -213,7 +213,7 @@ class Absensi extends CI_Controller
 			}
 		}
 		$this->esg->add_js([
-			'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
+			// 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
 			base_url('assets/absensi/script.js'),
 			base_url('assets/absensi/js/face-api.min.js?v='.time()),
 			base_url('assets/absensi/js/script-in.js?v='.time()),
