@@ -85,7 +85,7 @@
 									<!-- <td><?php echo $i++ ?></td> -->
 									<td><?php echo content_date($key); ?></td>
 									<td><?php echo $value['hari'] ?></td>
-									<?php if ($value['status'] == 'on'): ?>
+									<?php if (@$value['status'] == 'on'): ?>
 										<?php if (!empty($value[1][$kvalue['id']])): ?>
 											<?php $total[1]++; ?>
 											<td class="bg-info"><?php echo $value[1][$kvalue['id']]['jam_jadwal']; ?></td>
