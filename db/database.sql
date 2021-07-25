@@ -8,6 +8,205 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
+DROP TABLE IF EXISTS `absensi`;
+CREATE TABLE `absensi` (
+  `id` int NOT NULL,
+  `instansi_id` int NOT NULL,
+  `karyawan_id` int NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `longitude` double NOT NULL,
+  `latitude` double NOT NULL,
+  `valid` tinyint(1) NOT NULL,
+  `status` tinyint NOT NULL COMMENT '1=berangkat,2=izin,3=telat,4=pulang, 5=absen',
+  `waktu` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `device` text,
+  `selisih_waktu` varchar(6) DEFAULT '00:00',
+  `jam_jadwal` varchar(6) DEFAULT '00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `absensi_libur`;
+CREATE TABLE `absensi_libur` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL COMMENT '1=libur nasional,2=libur mandiri',
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `admin_menu`;
+CREATE TABLE `admin_menu` (
+  `id` int NOT NULL,
+  `par_id` int DEFAULT NULL,
+  `user_role_ids` varchar(255) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `icon` varchar(45) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `sort_order` int NOT NULL DEFAULT '1',
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `link`, `sort_order`, `created`, `updated`) VALUES
+(1, 0, ',1,2,3,4,5,6,', 'Dashboard', 'fa fa-tachometer-alt', '/', 1, '2019-03-30 03:05:59', '2021-07-25 02:27:18'),
+(2, 0, ',1,2,3,', 'Content', 'fa fa-file-alt', '/content', 2, '2019-03-30 03:24:19', '2020-07-26 06:08:27'),
+(3, 2, ',1,2,3,', 'Category', 'fa fa-list', '/content/category', 21, '2019-03-30 03:26:22', '2020-07-26 06:08:27'),
+(4, 2, ',1,2,3,', 'Add Content', 'fa fa-pencil-alt', '/content/edit', 22, '2019-03-30 03:35:27', '2020-07-26 06:08:27'),
+(5, 2, ',1,2,3,', 'Content List', 'fa fa-list', '/content/list', 23, '2019-03-30 03:35:44', '2020-07-26 06:08:27'),
+(6, 2, ',1,2,3,', 'Tag', 'fa fa-list', '/content/tag', 24, '2019-03-30 03:36:06', '2020-07-26 06:08:27'),
+(7, 0, ',1,2,3,', 'Gallery', 'fa fa-images', '/gallery', 3, '2019-03-31 22:53:29', '2020-07-26 06:08:27'),
+(8, 7, ',1,2,3,', 'Images', 'fa fa-image', '/gallery', 31, '2019-03-31 22:53:57', '2020-07-26 06:08:27'),
+(9, 0, ',1,2,', 'User', 'fa fa-user', '/user', 4, '2019-03-31 22:54:25', '2020-07-26 06:08:27'),
+(10, 9, ',1,2,', 'User List', 'fa fa-dot-circle', '/user/list', 41, '2019-03-31 22:55:32', '2020-07-26 06:08:27'),
+(11, 9, ',1,2,', 'User Edit', 'fa fa-dot-circle', '/user/edit', 42, '2019-03-31 22:58:48', '2020-07-26 06:08:27'),
+(12, 9, ',1,', 'User Role', 'fa fa-dot-circle', '/user/role', 43, '2019-03-31 22:59:13', '2020-07-26 06:08:27'),
+(13, 0, ',1,2,', 'Menu', 'fa fa-list', '/menu', 5, '2019-03-31 22:59:33', '2020-07-26 06:08:27'),
+(14, 13, ',1,2,', 'Add Menu', 'fa fa-pencil-alt', '/menu/edit', 51, '2019-03-31 22:59:58', '2020-07-26 06:08:27'),
+(15, 13, ',1,2,', 'Menu List', 'fa fa-pencil-alt', '/menu/list', 52, '2019-03-31 23:00:18', '2020-07-26 06:08:27'),
+(16, 13, ',1,2,', 'Menu Position', 'fa fa-list', '/menu/position', 53, '2019-03-31 23:00:37', '2020-07-26 06:08:27'),
+(17, 0, ',1,', 'Admin Menu', 'fa fa-list', '/admin_menu', 6, '2019-03-31 23:01:10', '2020-07-26 06:08:27'),
+(18, 17, ',1,', 'Add Menu', 'fa fa-pencil-alt', '/admin_menu/edit', 61, '2019-04-01 05:45:00', '2020-07-26 06:08:27'),
+(19, 17, ',1,', 'Menu List', 'fa fa-list', '/admin_menu/list', 62, '2019-04-01 05:45:20', '2020-07-26 06:08:27'),
+(20, 17, ',1,', 'Menu Parent', 'fa fa-list', '/admin_menu/list?id=0', 63, '2019-04-01 05:46:00', '2020-07-26 06:08:27'),
+(21, 0, ',1,2,', 'Data', 'fa fa-database', '/visitor', 7, '2019-04-01 05:46:34', '2020-07-26 06:08:27'),
+(22, 21, ',1,2,', 'Visitor', 'fa fa-chart-bar', '/visitor', 72, '2019-04-01 05:46:56', '2020-07-26 06:08:27'),
+(23, 0, ',1,2,', 'Configuration', 'fa fa-cog', '/config', 8, '2019-04-01 06:03:37', '2020-07-26 06:08:27'),
+(24, 23, ',1,2,', 'Logo', 'fa fa-cog', '/config/logo', 81, '2019-04-01 06:04:28', '2020-07-26 06:08:27'),
+(25, 23, ',1,2,', 'Site', 'fa fa-cog', '/config/site', 82, '2019-04-01 06:04:41', '2020-07-26 06:08:27'),
+(26, 23, ',1,2,', 'Templates', 'fa fa-cog', '/config/templates', 83, '2019-04-01 06:04:57', '2020-07-26 06:08:27'),
+(27, 23, ',1,2,', 'Contact', 'fa fa-cog', '/config/contact', 84, '2019-04-01 06:05:14', '2020-07-26 06:08:27'),
+(28, 23, ',1,2,', 'Style', 'fa fa-cog', '/config/style', 86, '2019-04-01 06:06:52', '2020-07-26 06:08:27'),
+(29, 23, ',1,2,', 'Script', 'fa fa-cog', '/config/script', 87, '2019-04-01 06:07:29', '2020-07-26 06:08:27'),
+(30, 21, ',1,2,', 'Backup', 'fa fa-download', '/backup', 73, '2019-04-01 06:08:04', '2020-07-26 06:08:27'),
+(31, 21, ',1,2,', 'Restore', 'fa fa-upload', '/restore', 74, '2019-04-01 06:08:15', '2020-07-26 06:08:27'),
+(32, 21, ',1,2,', 'Delete Cache', 'fa fa-trash', '/config/delete_cache', 75, '2019-04-04 00:08:10', '2020-07-26 06:08:27'),
+(33, 21, ',1,2,', 'Invoice', 'fa fa-money', '/invoice', 71, '2019-04-05 23:07:23', '2020-07-26 06:08:27'),
+(34, 23, ',1,2,', 'Bank Account', 'fa fa-user', '/config/bank_account', 85, '2019-04-06 01:37:09', '2020-07-26 06:08:27'),
+(35, 23, ',1,', 'Dashboard', 'fa fa-chart-bar', '/config/dashboard', 88, '2019-04-19 18:37:39', '2020-07-26 06:08:27'),
+(37, 21, ',1,', 'Subscribers', 'fa fa-user', '/subscriber', 1, '2019-04-22 06:37:13', '2020-07-26 06:08:27'),
+(38, 0, ',1,2,4,', 'Instansi', 'fa fa-school', '#', 1, '2020-07-23 00:12:17', '2020-07-31 18:58:46'),
+(39, 0, ',1,2,3,', 'Pengguna', 'fa fa-user', '#', 1, '2020-07-23 00:12:45', '2020-07-26 06:08:27'),
+(40, 39, ',1,2,3,', 'Tambah Pengguna', 'fa fa-plus', '/pengguna/edit', 1, '2020-07-23 00:13:05', '2020-07-26 06:08:27'),
+(41, 39, ',1,2,3,', 'Data Pengguna', 'fa fa-list', '/pengguna/list', 1, '2020-07-23 00:13:17', '2020-07-26 06:58:25'),
+(42, 38, ',1,2,3,', 'Tambah Instansi', 'fa fa-plus', '/instansi/edit', 1, '2020-07-23 00:13:41', '2020-07-31 11:29:54'),
+(43, 38, ',1,2,3,4,', 'Data Instansi', 'fa fa-list', '/instansi/list', 1, '2020-07-23 00:13:55', '2020-07-31 18:59:00'),
+(44, 0, ',1,2,4,', 'Karyawan', 'fa fa-chalkboard-teacher', '#', 1, '2020-07-29 07:59:17', '2020-07-31 11:28:21'),
+(45, 44, ',1,2,4,', 'Tambah Karyawan', 'fa fa-plus', '/karyawan/edit', 1, '2020-07-29 08:00:44', '2020-07-31 11:29:13'),
+(46, 44, ',1,2,4,', 'Data Karyawan', 'fa fa-list', '/karyawan/list', 1, '2020-07-29 08:00:58', '2020-07-31 11:29:31'),
+(47, 0, ',1,2,3,4,5,6,', 'Absensi', 'fa fa-clock', '#', 1, '2021-07-25 02:27:53', '2021-07-25 02:27:53'),
+(48, 47, ',4,6,', 'Absen', 'fa-sign-in-alt', '/absensi/masuk', 1, '2021-07-25 02:28:40', '2021-07-25 02:32:41');
+
+DROP TABLE IF EXISTS `bank_account`;
+CREATE TABLE `bank_account` (
+  `id` int UNSIGNED NOT NULL,
+  `bank_name` varchar(255) NOT NULL,
+  `person_name` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `bank_number` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `bank_account` (`id`, `bank_name`, `person_name`, `icon`, `bank_number`, `created`, `updated`) VALUES
+(1, 'BCA', 'Iwan Safrudin', 'icon_BCA.png', '0312609779', '2019-04-14 16:18:57', '2020-07-26 06:08:27'),
+(2, 'BNI', 'Iwan Safrudin', 'icon_BNI.png', '0813920638', '2019-04-14 16:19:55', '2020-07-26 06:08:27');
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `id` int NOT NULL,
+  `par_id` int NOT NULL,
+  `module` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=content,2=product',
+  `module_id` int NOT NULL,
+  `user_id` int NOT NULL DEFAULT '0',
+  `username` varchar(255) NOT NULL,
+  `content` mediumtext NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=unread, 1=read',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE `config` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `value` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `config` (`id`, `name`, `value`) VALUES
+(1, 'templates', '{\"public_template\":\"AdminLTE\",\"admin_template\":\"AdminLTE\"}'),
+(2, 'site', '{\"title\":\"sistem absensi\",\"link\":\"https:\\/\\/www.esoftgreat.com\",\"image\":\"image_esoftgreat_1545189785.png\",\"keyword\":\"\",\"description\":\"\",\"year\":\"2015\",\"lang\":\"id\",\"use_cache\":\"0\"}'),
+(3, 'logo', '{\"title\":\"sistem absensi\",\"image\":\"image_sistem_absensi.png\",\"width\":\"250\",\"height\":\"150\",\"display\":\"title\"}'),
+(4, 'one-night_widget', '{\"template\":\"one-night\",\"menu_top\":{\"content\":\"1\"},\"content_slider\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_hot\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_top\":{\"content\":\"latest\",\"limit\":\"7\"},\"content\":{\"content\":\"latest\",\"limit\":\"7\"},\"content_bottom\":{\"content\":\"latest\",\"limit\":\"7\"},\"right\":{\"content\":\"1\",\"limit\":\"7\"},\"menu_right\":{\"content\":\"1\"},\"right_extra\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_bottom_1\":{\"content\":\"2\"},\"menu_bottom_2\":{\"content\":\"2\"},\"menu_bottom_3\":{\"content\":\"2\"},\"menu_footer\":{\"content\":\"2\"}}'),
+(5, 'contact', '{\"name\":\"esoftgreat\",\"description\":\"jasa pembuatan website dan software. sesuai kebutuhan dan keinginan anda\",\"address\":\"Jl Tulakan Km 1 \\r\\nDukuh Krajan \\r\\nDesa Tulakan Rt 06\\/02 \\r\\nKec Donorojo Kab Jepara \\r\\nJawa Tengah\\r\\nKode Pos 59454\",\"phone\":\"+6285290335332\",\"wa\":\"6285290335332\",\"email\":\"info@esoftgreat.com\",\"google\":\"https:\\/\\/plus.google.com\\/115611472723876300931\",\"facebook\":\"https:\\/\\/web.facebook.com\\/esoftgreat\\/\",\"twitter\":\"https:\\/\\/twitter.com\",\"instagram\":\"https:\\/\\/instagram.com\",\"linkedin\":\"https:\\/\\/linkedin.com\",\"wordpress\":\"https:\\/\\/esoftgreat.wordrpress.com\",\"yahoo\":\"\",\"youtube\":\"https:\\/\\/www.youtube.com\\/channel\\/UC7QNxh1R6eo3mO2hRJtj6xw?view_as=subscriber\"}'),
+(6, 'header', '{\"image\":\"image_Selamat_Datang_di_Esoftgreat_1547957588.jpeg\",\"title\":\"Selamat Datang di Esoftgreat\",\"description\":\"JASA PEMBUATAN WEBSITE, DESAIN, ARTIKEL SEO, SOSIAL MEDIA MARKETING\"}'),
+(7, 'Avilon_widget', '{\"template\":\"Avilon\",\"menu_top\":{\"content\":\"1\"},\"content_thumbnail\":{\"content\":\"4\",\"limit\":\"3\"},\"content_hot\":{\"content\":\"5\",\"limit\":\"1\"},\"content_top\":{\"content\":\"6\",\"limit\":\"4\"},\"content\":{\"content\":\"7\",\"limit\":\"3\"},\"content_banner\":{\"content\":\"8\",\"limit\":\"1\"},\"content_bottom\":{\"content\":\"9\",\"limit\":\"4\"},\"content_brand\":{\"content\":\"10\",\"limit\":\"10\"},\"content_pricing\":{\"content\":\"11\",\"limit\":\"3\"},\"content_question\":{\"content\":\"12\",\"limit\":\"7\"},\"content_team\":{\"content\":\"13\",\"limit\":\"7\"},\"content_gallery\":{\"content\":\"14\",\"limit\":\"6\"},\"content_photo\":{\"content\":\"4\",\"limit\":\"7\"},\"content_video\":{\"content\":\"24\",\"limit\":\"7\"},\"content_payment\":{\"content\":\"0\",\"limit\":\"7\"},\"menu_bottom\":{\"content\":\"0\"}}'),
+(8, 'Avilon_script', '{\"script\":\"<!-- Go to www.addthis.com\\/dashboard to customize your tools -->\\r\\n<!-- <script type=\\\"text\\/javascript\\\" src=\\\"\\/\\/s7.addthis.com\\/js\\/300\\/addthis_widget.js#pubid=ra-5c2b7a98a617a916\\\"><\\/script> -->\"}'),
+(9, 'Avilon_style', '{\"style\":\"<style>\\r\\n.credit{\\r\\npadding-bottom: 10px;\\r\\n}\\r\\n.product-screens img{\\r\\n border-radius: 25px;\\r\\n}\\r\\n#clients img{\\r\\n max-height: 150px;\\r\\n}\\r\\n#clients .col-md-4{\\r\\n text-align: center;\\r\\n}\\r\\n<\\/style>\\r\\n<!-- Global site tag (gtag.js) - Google Analytics -->\\r\\n<script async src=\\\"https:\\/\\/www.googletagmanager.com\\/gtag\\/js?id=UA-113848816-1\\\"><\\/script>\\r\\n<script>\\r\\n  window.dataLayer = window.dataLayer || [];\\r\\n  function gtag(){dataLayer.push(arguments);}\\r\\n  gtag(\'js\', new Date());\\r\\n\\r\\n  gtag(\'config\', \'UA-113848816-1\');\\r\\n<\\/script>\\r\\n<script async src=\\\"\\/\\/pagead2.googlesyndication.com\\/pagead\\/js\\/adsbygoogle.js\\\"><\\/script>\\r\\n<script>\\r\\n  (adsbygoogle = window.adsbygoogle || []).push({\\r\\n    google_ad_client: \\\"ca-pub-3145506515429478\\\",\\r\\n    enable_page_level_ads: true\\r\\n  });\\r\\n<\\/script>\"}'),
+(10, 'dashboard', '{\"icon\":{\"bank_account\":\"fa fa-chart-bar\",\"comment\":\"fa fa-chart-bar\",\"content\":\"fa fa-chart-bar\",\"content_cat\":\"fa fa-chart-bar\",\"content_tag\":\"fa fa-chart-bar\",\"invoice\":\"fa fa-chart-bar\",\"menu\":\"fa fa-chart-bar\",\"menu_position\":\"fa fa-chart-bar\",\"message\":\"fa fa-chart-bar\",\"product\":\"fa fa-chart-bar\",\"product_cat\":\"fa fa-chart-bar\",\"product_tag\":\"fa fa-chart-bar\",\"subscriber\":\"\",\"testimonial\":\"\",\"trash\":\"\",\"user\":\"fa fa-chart-bar\",\"user_login\":\"fa fa-chart-bar\",\"user_login_failed\":\"fa fa-chart-bar\",\"user_role\":\"fa fa-chart-bar\",\"visitor\":\"fa fa-chart-bar\"},\"link\":{\"bank_account\":\"\\/admin\\/bank_account\",\"comment\":\"\",\"content\":\"\\/admin\\/content\\/list\",\"content_cat\":\"\\/admin\\/content\\/category\",\"content_tag\":\"\\/admin\\/content\\/tag\",\"invoice\":\"\\/admin\\/invoice\",\"menu\":\"\\/admin\\/menu\\/list\",\"menu_position\":\"\\/admin\\/menu\\/position\",\"message\":\"\\/admin\\/message\",\"product\":\"\",\"product_cat\":\"\",\"product_tag\":\"\",\"subscriber\":\"\",\"testimonial\":\"\",\"trash\":\"\",\"user\":\"\\/admin\\/user\\/list\",\"user_login\":\"\\/admin\\/user\\/login_list\",\"user_login_failed\":\"\\/admin\\/user\\/login_failed\",\"user_role\":\"\\/admin\\/user\\/role\",\"visitor\":\"\\/admin\\/visitor\"},\"color_row\":{\"bank_account\":\"#00cccc\",\"comment\":\"#ff0000\",\"content\":\"#0000ff\",\"content_cat\":\"#00d100\",\"content_tag\":\"#ff00ff\",\"invoice\":\"#000000\",\"menu\":\"#00dede\",\"menu_position\":\"#ff0000\",\"message\":\"#0000ff\",\"product\":\"#00e300\",\"product_cat\":\"#c5c560\",\"product_tag\":\"#737c29\",\"subscriber\":\"#000000\",\"testimonial\":\"#000000\",\"trash\":\"#000000\",\"user\":\"#00e300\",\"user_login\":\"#ff00ff\",\"user_login_failed\":\"#000000\",\"user_role\":\"#e8e800\",\"visitor\":\"#000000\"}}'),
+(11, 'subscriber', '{\"broadcast\":0}'),
+(12, 'village_widget', '{\"template\":\"village\",\"menu_top\":{\"content\":\"1\"},\"content_slider\":{\"content\":\"3\",\"limit\":\"7\"},\"content_top\":{\"content\":\"5\",\"limit\":\"7\"},\"content\":{\"content\":\"6\",\"limit\":\"7\"},\"content_bottom\":{\"content\":\"7\",\"limit\":\"7\"},\"twitter_widget\":{\"content\":\"\",\"limit\":\"7\"},\"content_latest\":{\"content\":\"8\",\"limit\":\"7\"},\"content_popular\":{\"content\":\"10\",\"limit\":\"7\"},\"category\":{\"content\":\"1\",\"limit\":\"7\"},\"tag\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_bottom_1\":{\"content\":\"2\"},\"menu_bottom_2\":{\"content\":\"2\"},\"menu_bottom_3\":{\"content\":\"2\"},\"menu_footer\":{\"content\":\"2\"}}'),
+(13, 'magazine_widget', '{\"template\":\"magazine\",\"menu_top\":{\"content\":\"2\"},\"content_top_banner\":{\"content\":\"2\",\"limit\":\"7\"},\"menu_main\":{\"content\":\"1\"},\"content_news\":{\"content\":\"4\",\"limit\":\"7\"},\"content_slider\":{\"content\":\"4\",\"limit\":\"7\"},\"content_block_1\":{\"content\":\"0\",\"limit\":\"7\"},\"content_banner\":{\"content\":\"0\",\"limit\":\"7\"},\"content_block_2\":{\"content\":\"0\",\"limit\":\"7\"},\"content_gallery\":{\"content\":\"0\",\"limit\":\"7\"},\"content_grid\":{\"content\":\"12\",\"limit\":\"7\"},\"content_advertisement\":{\"content\":\"0\",\"limit\":\"7\"},\"category\":{\"content\":\"0\",\"limit\":\"7\"},\"twitter_widget\":{\"content\":\"\",\"limit\":\"7\"},\"content_popular\":{\"content\":\"0\",\"limit\":\"7\"},\"content_latest\":{\"content\":\"0\",\"limit\":\"7\"},\"content_banner_right\":{\"content\":\"5\",\"limit\":\"7\"},\"menu_bottom\":{\"content\":\"0\"},\"content_bottom\":{\"content\":\"0\",\"limit\":\"7\"}}'),
+(16, 'http:__localhost_absensi__main', '{\"lembaga\":\"Kemenag\",\"image\":\"image_pati.jpg\",\"province_id\":\"33\",\"regency_id\":\"3318\"}'),
+(18, 'config_theme', '{\"main_color\":\"#eef0f1\",\"font_color\":\"#fffafa\"}'),
+(19, 'jarak_instansi_1', '{\"wfh\":\"0\",\"jarak\":\"1\",\"button\":\"0\",\"tampil_rekap\":\"1\"}'),
+(20, 'jarak_instansi_3', '{\"wfh\":\"0\",\"jarak\":\"100\",\"button\":\"0\"}');
+
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE `content` (
+  `id` int NOT NULL,
+  `cat_ids` mediumtext NOT NULL,
+  `par_id` int DEFAULT '0',
+  `tpl` varchar(255) DEFAULT '0',
+  `tag_ids` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `keyword` varchar(255) NOT NULL,
+  `intro` varchar(255) NOT NULL,
+  `content` mediumtext NOT NULL,
+  `source` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `icon` varchar(50) NOT NULL,
+  `image_link` varchar(255) NOT NULL,
+  `images` text NOT NULL,
+  `videos` text,
+  `document` text NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `hits` int NOT NULL,
+  `last_hits` datetime NOT NULL,
+  `rating` varchar(255) NOT NULL,
+  `params` text NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `publish` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `content` (`id`, `cat_ids`, `par_id`, `tpl`, `tag_ids`, `title`, `slug`, `description`, `keyword`, `intro`, `content`, `source`, `image`, `icon`, `image_link`, `images`, `videos`, `document`, `author`, `hits`, `last_hits`, `rating`, `params`, `created`, `updated`, `publish`) VALUES
+(1, ',1,', 0, '0', ',1,2,', 'Hello World', 'hello-world', 'Hello World\r\n', 'Hello World', 'Hello World\r\n', '<p>Hello World</p>\r\n', '', 'image_Hello_World_1541950550.png', '', '', '[\"images_Hello_World_0_1541950550.png\",\"images_Hello_World_1_1541950550.png\"]', NULL, '', 'admin', 153, '0000-00-00 00:00:00', '', '', '2018-11-11 22:35:50', '2020-07-26 06:08:27', 1);
+
+DROP TABLE IF EXISTS `content_cat`;
+CREATE TABLE `content_cat` (
+  `id` int NOT NULL,
+  `par_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `icon` varchar(50) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `publish` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `content_cat` (`id`, `par_id`, `title`, `slug`, `image`, `icon`, `description`, `publish`, `created`, `updated`) VALUES
+(1, 0, 'Uncategorized', 'uncategorized', '', '', '', 1, '2018-11-11 22:23:38', '2020-07-26 06:08:27');
+
+DROP TABLE IF EXISTS `content_tag`;
+CREATE TABLE `content_tag` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `total` int NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 DROP TABLE IF EXISTS `districts`;
 CREATE TABLE `districts` (
   `id` char(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -7236,6 +7435,160 @@ INSERT INTO `districts` (`id`, `regency_id`, `name`) VALUES
 ('9471030', '9471', 'JAYAPURA SELATAN'),
 ('9471040', '9471', 'JAYAPURA UTARA');
 
+DROP TABLE IF EXISTS `instansi`;
+CREATE TABLE `instansi` (
+  `id` int NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `province_id` int NOT NULL,
+  `regency_id` int NOT NULL,
+  `district_id` int NOT NULL,
+  `longitude` double NOT NULL,
+  `latitude` double NOT NULL,
+  `website` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `instansi` (`id`, `nama`, `alamat`, `phone`, `email`, `province_id`, `regency_id`, `district_id`, `longitude`, `latitude`, `website`, `logo`, `created`, `updated`) VALUES
+(4, 'esoftgreat', 'tulakan', '085290335332', 'esoftgreat@gmail.com', 33, 3320, 3320111, 110.89106729999999, -6.4799821, 'https://esoftgreat.com', 'logo_esoftgreat.png', '2021-07-25 10:50:13', '2021-07-25 10:50:14');
+
+DROP TABLE IF EXISTS `invoice`;
+CREATE TABLE `invoice` (
+  `id` int NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `receiver` varchar(255) NOT NULL,
+  `payment_method` tinyint(1) NOT NULL DEFAULT '1',
+  `notes` varchar(255) NOT NULL,
+  `items` mediumtext NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `ppn` int NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `jam_absen`;
+CREATE TABLE `jam_absen` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `value` json NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `jam_absen` (`id`, `name`, `value`) VALUES
+(3, 'config_jam', '{\"akhir_pulang_1\": \"\", \"akhir_pulang_2\": \"\", \"akhir_pulang_3\": \"\", \"akhir_pulang_4\": \"\", \"akhir_pulang_5\": \"\", \"akhir_pulang_6\": \"23:30\", \"akhir_pulang_7\": \"\", \"mulai_pulang_1\": \"\", \"mulai_pulang_2\": \"\", \"mulai_pulang_3\": \"\", \"mulai_pulang_4\": \"\", \"mulai_pulang_5\": \"\", \"mulai_pulang_6\": \"23:00\", \"mulai_pulang_7\": \"\", \"akhir_berangkat_1\": \"08:00\", \"akhir_berangkat_2\": \"\", \"akhir_berangkat_3\": \"\", \"akhir_berangkat_4\": \"\", \"akhir_berangkat_5\": \"\", \"akhir_berangkat_6\": \"22:00\", \"akhir_berangkat_7\": \"22:00\", \"mulai_berangkat_1\": \"05:00\", \"mulai_berangkat_2\": \"\", \"mulai_berangkat_3\": \"\", \"mulai_berangkat_4\": \"\", \"mulai_berangkat_5\": \"\", \"mulai_berangkat_6\": \"20:00\", \"mulai_berangkat_7\": \"20:00\"}'),
+(4, 'config_jam_instansi_1', '{\"akhir_pulang_1\": \"\", \"akhir_pulang_2\": \"04:00\", \"akhir_pulang_3\": \"18:00\", \"akhir_pulang_4\": \"\", \"akhir_pulang_5\": \"\", \"akhir_pulang_6\": \"23:59\", \"akhir_pulang_7\": \"16:00\", \"mulai_pulang_1\": \"\", \"mulai_pulang_2\": \"03:45\", \"mulai_pulang_3\": \"16:00\", \"mulai_pulang_4\": \"\", \"mulai_pulang_5\": \"\", \"mulai_pulang_6\": \"23:00\", \"mulai_pulang_7\": \"13:00\", \"akhir_berangkat_1\": \"08:00\", \"akhir_berangkat_2\": \"03:40\", \"akhir_berangkat_3\": \"08:00\", \"akhir_berangkat_4\": \"\", \"akhir_berangkat_5\": \"\", \"akhir_berangkat_6\": \"21:00\", \"akhir_berangkat_7\": \"10:00\", \"mulai_berangkat_1\": \"05:00\", \"mulai_berangkat_2\": \"03:00\", \"mulai_berangkat_3\": \"06:00\", \"mulai_berangkat_4\": \"\", \"mulai_berangkat_5\": \"\", \"mulai_berangkat_6\": \"20:00\", \"mulai_berangkat_7\": \"07:00\"}');
+
+DROP TABLE IF EXISTS `karyawan`;
+CREATE TABLE `karyawan` (
+  `id` int NOT NULL,
+  `instansi_id` int NOT NULL,
+  `kary_group_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `nip` bigint NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jk` tinyint(1) NOT NULL COMMENT '1=laki-laki,2=perempuan',
+  `foto` varchar(255) NOT NULL,
+  `jabatan` tinyint NOT NULL,
+  `golongan` tinyint NOT NULL,
+  `tmpt_lahir` varchar(255) NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `alamat` text NOT NULL,
+  `telp` varchar(20) NOT NULL,
+  `hp` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `riwayat_pendidikan` text NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `karyawan_group`;
+CREATE TABLE `karyawan_group` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `karyawan_group` (`id`, `title`) VALUES
+(1, 'guru'),
+(2, 'TU');
+
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `id` int NOT NULL,
+  `par_id` int NOT NULL DEFAULT '0',
+  `position_id` int NOT NULL DEFAULT '0',
+  `sort_order` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `link` mediumtext NOT NULL,
+  `tpl` varchar(255) NOT NULL,
+  `publish` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `menu_position`;
+CREATE TABLE `menu_position` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `menu_position` (`id`, `title`, `created`, `updated`) VALUES
+(1, 'Top Menu', '2018-11-12 02:16:02', '2020-07-26 06:08:27'),
+(2, 'Bottom Menu', '2018-11-15 12:39:27', '2020-07-26 06:08:27');
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` mediumtext NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=unread,2=read',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `id` int NOT NULL,
+  `cat_ids` mediumtext NOT NULL,
+  `tag_ids` mediumtext NOT NULL,
+  `image` varchar(11) NOT NULL,
+  `images` mediumtext NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `discount` double NOT NULL,
+  `qty` int NOT NULL,
+  `publish` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 = not publish, 1 = publish',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `product_cat`;
+CREATE TABLE `product_cat` (
+  `id` int NOT NULL,
+  `par_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `publish` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `product_tag`;
+CREATE TABLE `product_tag` (
+  `id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `total` int NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE `provinces` (
   `id` char(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -7801,10 +8154,187 @@ INSERT INTO `regencies` (`id`, `province_id`, `name`) VALUES
 ('9436', '94', 'KABUPATEN DEIYAI'),
 ('9471', '94', 'KOTA JAYAPURA');
 
+DROP TABLE IF EXISTS `subscriber`;
+CREATE TABLE `subscriber` (
+  `id` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `subscriber` (`id`, `email`, `created`, `updated`) VALUES
+(1, 'iwansafr@gmail.com', '2019-04-22 06:39:07', '2020-07-26 06:08:27');
+
+DROP TABLE IF EXISTS `testimonial`;
+CREATE TABLE `testimonial` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `profession` varchar(255) NOT NULL,
+  `testimonial` mediumtext NOT NULL,
+  `publish` tinyint(1) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `testimonial` (`id`, `name`, `email`, `profession`, `testimonial`, `publish`, `created`, `updated`) VALUES
+(2, 'iwan', 'iwansafr@gmail.com', 'guru', 'keren websitenya', 0, '2019-08-27 11:53:56', '2020-07-26 06:08:27');
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `user_role_id` int NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = active, 0 = not active',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `image`, `user_role_id`, `active`, `created`, `updated`) VALUES
+(15, 'root', '$2y$10$LVVMF0fiNS5jc44hNi8fw.kxyZG2fi67yQsj.3ix2rqQjPjD8Muga', 'esoftgreat@gmail.com', '', 1, 1, '2021-07-25 10:45:48', '2021-07-25 10:45:48'),
+(16, 'esoftgreat', '$2y$10$Oop9aio7BIYJeLsl6hb.zOaKx2iet12cHg36.bSs7H68LSiTpgy3C', 'admin@esoftgreat.com', '', 4, 1, '2021-07-25 10:51:18', '2021-07-25 10:51:18');
+
+DROP TABLE IF EXISTS `user_instansi`;
+CREATE TABLE `user_instansi` (
+  `id` int NOT NULL,
+  `instansi_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `user_role_id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `sandi` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `user_instansi` (`id`, `instansi_id`, `user_id`, `user_role_id`, `username`, `email`, `sandi`, `nama`, `phone`, `active`, `created`, `updated`) VALUES
+(8, 4, 16, 4, 'esoftgreat', 'admin@esoftgreat.com', '1', 'esoftgreat', '085290335332', 1, '2021-07-25 10:51:18', '2021-07-25 10:51:18');
+
+DROP TABLE IF EXISTS `user_login`;
+CREATE TABLE `user_login` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `ip` varchar(15) NOT NULL,
+  `browser` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL COMMENT '0=failed, 1=success',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `user_login_failed`;
+CREATE TABLE `user_login_failed` (
+  `id` int NOT NULL,
+  `user_login_id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `id` int NOT NULL,
+  `level` tinyint NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+INSERT INTO `user_role` (`id`, `level`, `title`, `description`, `created`, `updated`) VALUES
+(1, 1, 'root', 'super user', '2018-11-02 22:57:22', '2020-07-26 06:08:27'),
+(2, 2, 'admin', 'the administrator', '2018-11-02 22:57:22', '2020-07-26 06:08:27'),
+(3, 5, 'Member', 'User member yang hanya berlangganan saja', '2018-11-04 12:59:26', '2020-07-26 06:08:27'),
+(4, 5, 'Sekolah', 'Akun Sekolahan', '2020-07-26 07:12:41', '2020-07-26 07:12:41'),
+(5, 4, 'inspektorat', 'akun untuk management di atas instansi', '2020-09-24 15:29:01', '2020-09-24 15:29:01'),
+(6, 6, 'karyawan', 'akun karyawan', '2021-07-24 06:07:35', '2021-07-24 06:07:35');
+
+DROP TABLE IF EXISTS `visitor`;
+CREATE TABLE `visitor` (
+  `id` int NOT NULL,
+  `ip` varchar(50) NOT NULL,
+  `visited` varchar(255) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `region` varchar(50) NOT NULL,
+  `country` varchar(10) NOT NULL,
+  `browser` varchar(255) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+ALTER TABLE `absensi_libur`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `admin_menu`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `bank_account`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `config`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `content_cat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+ALTER TABLE `content_tag`
+  ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `districts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `districts_id_index` (`regency_id`);
+
+ALTER TABLE `instansi`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `jam_absen`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `karyawan`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nip` (`nip`),
+  ADD KEY `instansi_id` (`instansi_id`),
+  ADD KEY `kary_group_id` (`kary_group_id`),
+  ADD KEY `user_id` (`user_id`);
+
+ALTER TABLE `karyawan_group`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `menu_position`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `product_cat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+ALTER TABLE `product_tag`
+  ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`);
@@ -7813,9 +8343,122 @@ ALTER TABLE `regencies`
   ADD PRIMARY KEY (`id`),
   ADD KEY `regencies_province_id_index` (`province_id`);
 
+ALTER TABLE `subscriber`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `testimonial`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user_instansi`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user_login`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user_login_failed`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `visitor`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `absensi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `absensi_libur`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `admin_menu`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+ALTER TABLE `bank_account`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `comment`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `config`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+ALTER TABLE `content`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+ALTER TABLE `content_cat`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `content_tag`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `instansi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `invoice`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `jam_absen`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `karyawan`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+ALTER TABLE `karyawan_group`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `menu`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `menu_position`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `message`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `product`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `product_cat`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `product_tag`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `subscriber`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `testimonial`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+ALTER TABLE `user_instansi`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+ALTER TABLE `user_login`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `user_login_failed`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `user_role`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE `visitor`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
 
 ALTER TABLE `districts`
   ADD CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`);
+
+ALTER TABLE `karyawan`
+  ADD CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`instansi_id`) REFERENCES `instansi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `karyawan_ibfk_2` FOREIGN KEY (`kary_group_id`) REFERENCES `karyawan_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `regencies`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`);
