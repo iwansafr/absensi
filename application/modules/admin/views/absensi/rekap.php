@@ -71,41 +71,43 @@ if(!empty($data))
 							<!-- <td><?php echo $i++ ?></td> -->
 							<td><?php echo content_date($key); ?></td>
 							<td><?php echo $value['hari'] ?></td>
-							<?php if ($value['status'] == 'on'): ?>
-								<?php if (!empty($value[1])): ?>
-									<?php $total[1]++; ?>
-									<td class="bg-info"><?php echo $value[1]['jam_jadwal']; ?></td>
-									<td class="bg-info"><?php echo substr($value[1]['waktu'],11,19); ?></td>
-									<td class="bg-info"><?php echo $value[1]['selisih_waktu']; ?> Menit</td>
-								<?php endif ?>
-								<?php if (!empty($value[2])): ?>
-									<?php $total[2]++; ?>
-									<td class="bg-success text-center" colspan="6">Izin <?php echo substr($value[2]['waktu'],11,19); ?></td>
-								<?php endif ?>
-								<?php if (!empty($value[3])): ?>
-									<?php $total[3]++; ?>
-									<td class="bg-info"><?php echo $value[3]['jam_jadwal']; ?></td>
-									<td class="bg-info"><?php echo substr($value[3]['waktu'],11,19); ?></td>
-									<td class="bg-info"><?php echo $value[3]['selisih_waktu']; ?> Menit</td>
-								<?php endif ?>
-
-								<?php if (!empty($value[4])): ?>
-									<?php $total[4]++; ?>
-									<td class="bg-info"><?php echo $value[4]['jam_jadwal']; ?></td>
-									<td class="bg-info"><?php echo substr($value[4]['waktu'],11,19); ?></td>
-									<td class="bg-info"><?php echo $value[4]['selisih_waktu']; ?> Menit</td>
-								<?php else: ?>
-									<?php if (!empty($value[1]) || !empty($value[3])): ?>
-									<?php $total[6]++; ?>
-										<td class="bg-danger text-center" colspan="3">Tidak Absen Pulang</td>
+							<?php if (!empty($value['status'])): ?>
+								<?php if ($value['status'] == 'on'): ?>
+									<?php if (!empty($value[1])): ?>
+										<?php $total[1]++; ?>
+										<td class="bg-info"><?php echo $value[1]['jam_jadwal']; ?></td>
+										<td class="bg-info"><?php echo substr($value[1]['waktu'],11,19); ?></td>
+										<td class="bg-info"><?php echo $value[1]['selisih_waktu']; ?> Menit</td>
 									<?php endif ?>
+									<?php if (!empty($value[2])): ?>
+										<?php $total[2]++; ?>
+										<td class="bg-success text-center" colspan="6">Izin <?php echo substr($value[2]['waktu'],11,19); ?></td>
+									<?php endif ?>
+									<?php if (!empty($value[3])): ?>
+										<?php $total[3]++; ?>
+										<td class="bg-info"><?php echo $value[3]['jam_jadwal']; ?></td>
+										<td class="bg-info"><?php echo substr($value[3]['waktu'],11,19); ?></td>
+										<td class="bg-info"><?php echo $value[3]['selisih_waktu']; ?> Menit</td>
+									<?php endif ?>
+
+									<?php if (!empty($value[4])): ?>
+										<?php $total[4]++; ?>
+										<td class="bg-info"><?php echo $value[4]['jam_jadwal']; ?></td>
+										<td class="bg-info"><?php echo substr($value[4]['waktu'],11,19); ?></td>
+										<td class="bg-info"><?php echo $value[4]['selisih_waktu']; ?> Menit</td>
+									<?php else: ?>
+										<?php if (!empty($value[1]) || !empty($value[3])): ?>
+										<?php $total[6]++; ?>
+											<td class="bg-danger text-center" colspan="3">Tidak Absen Pulang</td>
+										<?php endif ?>
+									<?php endif ?>
+									<?php if (!empty($value[5])): ?>
+										<?php $total[5]++; ?>
+										<td class="bg-danger text-center" colspan="6">Absen <?php echo substr($value[5]['waktu'],11,19); ?></td>
+									<?php endif ?>
+								<?php else: ?>
+									<td class="bg-warning text-center" colspan="6">Libur</td>
 								<?php endif ?>
-								<?php if (!empty($value[5])): ?>
-									<?php $total[5]++; ?>
-									<td class="bg-danger text-center" colspan="6">Absen <?php echo substr($value[5]['waktu'],11,19); ?></td>
-								<?php endif ?>
-							<?php else: ?>
-								<td class="bg-warning text-center" colspan="6">Libur</td>
 							<?php endif ?>
 						</tr>
 						<?php

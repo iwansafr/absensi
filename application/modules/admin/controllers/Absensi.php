@@ -191,7 +191,7 @@ class Absensi extends CI_Controller
 		}
 		$this->home_model->home();
 		$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
-		$g_id = $this->db->query('SELECT id FROM karyawan WHERE user_id = ?',[$user_id])->row_array()['id'];
+		$g_id = @intval($this->db->query('SELECT id FROM karyawan WHERE user_id = ?',[$user_id])->row_array()['id']);
 		$data = $this->kary_model->get_profile($g_id);
 
 		if(!empty($data))
