@@ -1,3 +1,8 @@
+<style type="text/css">
+	.box-body{
+		min-height: 250px;
+	}
+</style>
 <?php
 
 $form = new zea();
