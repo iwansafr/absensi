@@ -29,6 +29,7 @@ $(document).ready(function () {
     }
   }
   $('#imageUpload').on('change', function () {
+    $('#loading_image').html('sedang proses pengenalan wajah...');
     var a = $(this).siblings('#image_place');
     readURL(this, a);
     $('#absen_btn').html('<button type="submit" name="button" class="btn btn-lg btn-info hidden" id="btn_upload"><i class="fa fa-paper-plane"></i> Upload</button><hr>');

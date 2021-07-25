@@ -213,6 +213,7 @@
           <?php endforeach ?>
         </div>
         <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formAbsen">
+          <div id="loading_image"></div>
           <label class="fileContainer">
             <div class="container-detected">
               <div class="container-image" id="container-image">

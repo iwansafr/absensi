@@ -67,6 +67,8 @@ async function start() {
         const btn_upload = document.getElementById("btn_upload");
         btn_upload.classList.remove('hidden');
       }
+      const loading_image = document.getElementById("loading_image");
+      loading_image.innerHTML = '';
       contentImage += `<div style="position:absolute;border:solid;border-color:red;width:${Math.round(
         box.width
       )}px;height:${Math.round(box.height)}px;top:${Math.round(
