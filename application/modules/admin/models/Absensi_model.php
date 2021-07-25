@@ -80,6 +80,9 @@ class Absensi_model extends CI_Model
 				if (empty($exist)) {
 					unset($data['button']);
 					unset($data['absen']);
+					$time = strtotime(date("Ymd H:i:s"));
+					$time = date('Y-m-d H:i:s',$time);
+					$data['waktu'] = $time;
 					$this->db->insert('absensi', $data);
 					$id = $this->db->insert_id();
 				} else {
