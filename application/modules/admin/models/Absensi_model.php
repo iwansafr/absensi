@@ -13,41 +13,58 @@ class Absensi_model extends CI_Model
 
 	public function get_absensi_today()
 	{
-		$data = $this->db->query('SELECT absensi.*,karyawan.nama FROM absensi INNER JOIN karyawan ON(karyawan.id = karyawan_id) WHERE CAST(waktu AS date) = ?', date('Y-m-d'))->result_array();
-		$status = [
-			'berangkat' => ['total' => 0, 'color' => 'success'],
-			'izin' => ['total' => 0, 'color' => 'info'],
-			'terlambat' => ['total' => 0, 'color' => 'warning'],
-			'pulang' => ['total' => 0, 'color' => 'info'],
-			'absen' => ['total' => 0, 'color' => 'danger'],
-		];
-		$karyawan_ids = [];
-		foreach ($data as $key => $value) {
-			$karyawan_ids[] = $value['karyawan_id'];
-			if ($value['status'] == 1) {
-				$status['berangkat']['total'] = @intval($status['berangkat']['total']) + 1;
-				$status['berangkat']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
-			} else if ($value['status'] == 2) {
-				$status['izin']['total'] = @intval($status['izin']['total']) + 1;
-				$status['izin']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
-			} else if ($value['status'] == 3) {
-				$status['terlambat']['total'] = @intval($status['terlambat']['total']) + 1;
-				$status['terlambat']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
-			} else if ($value['status'] == 4) {
-				$status['pulang']['total'] = @intval($status['pulang']['total']) + 1;
-				$status['pulang']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
+		$user = $this->session->userdata(base_url('_logged_in'));
+		$sql = '';
+		$status = [];
+		if(strtolower($user['role']) == 'karyawan'){
+			$logged_karyawan = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
+			if(!empty($logged_karyawan['instansi_id'])){
+				$sql = ' AND absensi.instansi_id = '.$logged_karyawan['instansi_id'].' ';
+			}
+		}else{
+			$my_user_instansi = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
+			if(!empty($my_user_instansi)){
+				$sql = ' AND absensi.instansi_id = '.$my_user_instansi['instansi_id'].' ';
 			}
 		}
-		if (!empty($karyawan_ids)) {
-			$this->db->select('id');
-			$this->db->where_not_in('id', $karyawan_ids);
-			$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
-			$this->db->select('nama');
-			$this->db->where_not_in('id', $karyawan_ids);
-			$karyawan_absen = $this->db->get('karyawan')->result_array();
-			if (!empty($karyawan_absen)) {
-				foreach ($karyawan_absen as $key => $value) {
-					$status['absen']['karyawan'][] = $value['nama'];
+		if(!empty($sql))
+		{
+			$data = $this->db->query('SELECT absensi.*,karyawan.nama,instansi.nama AS instansi FROM absensi INNER JOIN karyawan ON(karyawan.id = karyawan_id) INNER JOIN instansi ON(absensi.instansi_id=instansi.id) WHERE CAST(waktu AS date) = ? '.$sql, date('Y-m-d'))->result_array();
+			$status = [
+				'berangkat' => ['total' => 0, 'color' => 'success'],
+				'izin' => ['total' => 0, 'color' => 'info'],
+				'terlambat' => ['total' => 0, 'color' => 'warning'],
+				'pulang' => ['total' => 0, 'color' => 'info'],
+				'absen' => ['total' => 0, 'color' => 'danger'],
+			];
+			$karyawan_ids = [];
+			foreach ($data as $key => $value) {
+				$karyawan_ids[] = $value['karyawan_id'];
+				if ($value['status'] == 1) {
+					$status['berangkat']['total'] = @intval($status['berangkat']['total']) + 1;
+					$status['berangkat']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
+				} else if ($value['status'] == 2) {
+					$status['izin']['total'] = @intval($status['izin']['total']) + 1;
+					$status['izin']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
+				} else if ($value['status'] == 3) {
+					$status['terlambat']['total'] = @intval($status['terlambat']['total']) + 1;
+					$status['terlambat']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
+				} else if ($value['status'] == 4) {
+					$status['pulang']['total'] = @intval($status['pulang']['total']) + 1;
+					$status['pulang']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
+				}
+			}
+			if (!empty($karyawan_ids)) {
+				$this->db->select('id');
+				$this->db->where_not_in('id', $karyawan_ids);
+				$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+				$this->db->select('nama');
+				$this->db->where_not_in('id', $karyawan_ids);
+				$karyawan_absen = $this->db->get('karyawan')->result_array();
+				if (!empty($karyawan_absen)) {
+					foreach ($karyawan_absen as $key => $value) {
+						$status['absen']['karyawan'][] = $value['nama'];
+					}
 				}
 			}
 		}
