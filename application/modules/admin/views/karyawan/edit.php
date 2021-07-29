@@ -36,7 +36,9 @@ $form->setLabel('tgl_lahir', 'Tanggal Lahir');
 $form->addInput('alamat', 'textarea');
 $form->addInput('telp', 'text');
 $form->addInput('hp', 'text');
+$form->setType('hp','number');
 $form->addInput('email', 'text');
+$form->setType('email','email');
 $form->addInput('riwayat_pendidikan', 'textarea');
 $form->setLabel('riwayat_pendidikan', 'Riwayat Pendidikan');
 if (empty($id)) {
@@ -47,9 +49,9 @@ $form->addInput('foto', 'image');
 $form->setAccept('foto', '.jpg,.png,.jpeg');
 
 if (empty($id)) {
-	$form->setRequired(['nama','nip','tgl_lahir','email', 'foto']);
+	$form->setRequired(['nama','nip','tgl_lahir','email','hp', 'foto']);
 } else {
-	$form->setRequired(['nama','nip','tgl_lahir','email']);
+	$form->setRequired(['nama','nip','tgl_lahir','email','hp']);
 }
 $form->removeNone(['instansi_id','kary_group_id']);
 $form->setUnique(['nip','email']);
