@@ -93,7 +93,7 @@ class Absensi extends CI_Controller
 		$user_instansi = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
 		$karyawan = $this->absensi_model->get_karyawan(0,@intval($user_instansi['instansi_id']));
 		$instansi = $this->db->get_where('instansi',['id'=>@intval($user_instansi['instansi_id'])])->row_array();
-		$data = $this->absensi_model->rekap(0,$year,$month,$instansi['id']);
+		$data = $this->absensi_model->rekap(0,$year,$month,@intval($instansi['id']));
 		if(empty($_GET['excel'])){
 			$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
 		}else{
