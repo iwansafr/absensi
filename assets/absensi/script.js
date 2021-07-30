@@ -169,6 +169,7 @@ $(document).ready(function () {
           }
         }
       }
+      $('#formIzin').removeClass('hidden')
     });
   }
   var stand_by = setInterval(block, 60000 * 5);
@@ -181,5 +182,4 @@ $(document).ready(function () {
     clearInterval(stand_by);
   }
 
-  $('#formIzin').removeClass('hidden')
 });
