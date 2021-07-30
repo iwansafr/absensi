@@ -73,6 +73,8 @@ $(document).ready(function () {
       }
       if(result.tampil_rekap == 0){
         $('#rekap_form').addClass('hidden')
+      }else{
+        $('#formIzin').removeClass('hidden')
       }
       if (result.wfh == 0) {
         var jarak = 0;
