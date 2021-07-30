@@ -16,6 +16,7 @@ class Absensi_model extends CI_Model
 		$user = $this->session->userdata(base_url('_logged_in'));
 		$sql = '';
 		$status = [];
+		$status['last_query'] = [];
 		$status['last_query'][] = 'coba';
 		$instansi_id = 0;
 		if(strtolower($user['role']) == 'karyawan'){
