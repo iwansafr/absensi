@@ -84,4 +84,7 @@ $date = date('Y-m-d');
 		  <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 		</div>
 	</div>
+	<div class="hidden">
+		<?php pr($_SESSION) ?>
+	</div>
 <?php endif ?>
