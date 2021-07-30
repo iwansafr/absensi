@@ -31,6 +31,9 @@ $data = $this->absensi_model->get_absensi_today();
 $date = date('Y-m-d');
 ?>
 <?php if (!empty($data)): ?>
+	<div class="hidden">
+		<?php pr($data) ?>
+	</div>
 	<div class="col-md-3" style="height: 100%; margin-bottom: 2%;">
 		<div class="small-box" style="background:  #222d32; color:white; height: 100%;">
 		  <div class="inner">
