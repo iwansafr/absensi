@@ -181,5 +181,8 @@ $(document).ready(function () {
     $('#load').removeClass('hidden');
     clearInterval(stand_by);
   }
-
+  $('#btn_form_izin').on('click',function(){
+    $('#formIzin').removeClass('hidden');
+    $('#btn_form_izin').addClass('hidden');
+  })
 });

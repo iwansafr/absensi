@@ -125,8 +125,9 @@
           </div>
         </div>
         <div class="box-footer" style="display: none;">
+          <button class="btn btn-sm btn-default" id="btn_form_izin">Tampilkan Form izin</button>
           <center>
-            <form action="" method="post" enctype="multipart/form-data" id="formIzins" class="warning">
+            <form action="" method="post" enctype="multipart/form-data" id="formIzin" class="warning">
               <div class="form-group">
                 <label for="">Foto Surat Izin</label>
               </div>
