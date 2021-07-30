@@ -19,12 +19,14 @@ class Absensi_model extends CI_Model
 		$instansi_id = 0;
 		if(strtolower($user['role']) == 'karyawan'){
 			$logged_karyawan = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
+			$status['last_query'][] = $this->db->last_query();
 			if(!empty($logged_karyawan['instansi_id'])){
 				$sql = ' AND absensi.instansi_id = '.$logged_karyawan['instansi_id'].' ';
 				$instansi_id = $logged_karyawan['instansi_id'];
 			}
 		}else{
 			$my_user_instansi = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
+			$status['last_query'][] = $this->db->last_query();
 			if(!empty($my_user_instansi)){
 				$sql = ' AND absensi.instansi_id = '.$my_user_instansi['instansi_id'].' ';
 				$instansi_id = $my_user_instansi['instansi_id'];
