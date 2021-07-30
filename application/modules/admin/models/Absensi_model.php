@@ -16,15 +16,18 @@ class Absensi_model extends CI_Model
 		$user = $this->session->userdata(base_url('_logged_in'));
 		$sql = '';
 		$status = [];
+		$instansi_id = 0;
 		if(strtolower($user['role']) == 'karyawan'){
 			$logged_karyawan = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
 			if(!empty($logged_karyawan['instansi_id'])){
 				$sql = ' AND absensi.instansi_id = '.$logged_karyawan['instansi_id'].' ';
+				$instansi_id = $logged_karyawan['instansi_id'];
 			}
 		}else{
 			$my_user_instansi = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
 			if(!empty($my_user_instansi)){
 				$sql = ' AND absensi.instansi_id = '.$my_user_instansi['instansi_id'].' ';
+				$instansi_id = $my_user_instansi['instansi_id'];
 			}
 		}
 		if(!empty($sql))
@@ -57,9 +60,11 @@ class Absensi_model extends CI_Model
 			if (!empty($karyawan_ids)) {
 				$this->db->select('id');
 				$this->db->where_not_in('id', $karyawan_ids);
+				$this->db->where('instansi_id = '.$instansi_id);
 				$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
 				$this->db->select('nama');
 				$this->db->where_not_in('id', $karyawan_ids);
+				$this->db->where('instansi_id = '.$instansi_id);
 				$karyawan_absen = $this->db->get('karyawan')->result_array();
 				if (!empty($karyawan_absen)) {
 					foreach ($karyawan_absen as $key => $value) {
