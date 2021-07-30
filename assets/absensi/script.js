@@ -182,6 +182,7 @@ $(document).ready(function () {
     clearInterval(stand_by);
   }
   $('#btn_form_izin').on('click',function(){
+    console.log('clicked');
     $('#formIzin').removeClass('hidden');
     $('#btn_form_izin').addClass('hidden');
   })
