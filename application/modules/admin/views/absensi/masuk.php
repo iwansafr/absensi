@@ -126,7 +126,7 @@
         </div>
         <div class="box-footer" style="display: none;">
           <center>
-            <form action="" method="post" enctype="multipart/form-data" class="hidden" id="formIzin">
+            <form action="" method="post" enctype="multipart/form-data" id="formIzin">
               <div class="form-group">
                 <label for="">Foto Surat Izin</label>
               </div>
