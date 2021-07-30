@@ -33,6 +33,7 @@ class Absensi_model extends CI_Model
 		if(!empty($sql))
 		{
 			$data = $this->db->query('SELECT absensi.*,karyawan.nama,instansi.nama AS instansi FROM absensi INNER JOIN karyawan ON(karyawan.id = karyawan_id) INNER JOIN instansi ON(absensi.instansi_id=instansi.id) WHERE CAST(waktu AS date) = ? '.$sql, date('Y-m-d'))->result_array();
+			$status['last_query'][] = $this->db->last_query();
 			$status = [
 				'berangkat' => ['total' => 0, 'color' => 'success'],
 				'izin' => ['total' => 0, 'color' => 'info'],
@@ -61,11 +62,13 @@ class Absensi_model extends CI_Model
 				$this->db->select('id');
 				$this->db->where_not_in('id', $karyawan_ids);
 				$this->db->where('instansi_id = '.$instansi_id);
+				$status['last_query'][] = $this->db->last_query();
 				$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
 				$this->db->select('nama');
 				$this->db->where_not_in('id', $karyawan_ids);
 				$this->db->where('instansi_id = '.$instansi_id);
 				$karyawan_absen = $this->db->get('karyawan')->result_array();
+				$status['last_query'][] = $this->db->last_query();
 				if (!empty($karyawan_absen)) {
 					foreach ($karyawan_absen as $key => $value) {
 						$status['absen']['karyawan'][] = $value['nama'];
