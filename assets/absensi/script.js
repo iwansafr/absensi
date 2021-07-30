@@ -180,4 +180,6 @@ $(document).ready(function () {
     $('#load').removeClass('hidden');
     clearInterval(stand_by);
   }
+
+  $('#formIzin').removeClass('hidden')
 });
