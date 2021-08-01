@@ -74,4 +74,6 @@ if(!empty($instansi_id))
 ?>
 <div class="hidden">
 	<?php pr($form->paramname) ?>
+	<?php pr(@$user) ?>
+	<?php pr(@$user_id) ?>
 </div>
