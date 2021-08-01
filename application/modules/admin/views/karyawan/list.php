@@ -19,7 +19,10 @@ if ($is_instansi) {
 $form->setHeading('<a href="'.base_url('/admin/absensi/rekap_absensi').'" class="btn btn-default btn-sm"><i class="fa fa-chart-bar"></i> Rekap Absensi</a>');
 $form->addInput('id', 'plaintext');
 $form->setLabel('id', 'action');
-$form->setPlainText('id', [base_url('admin/absensi/rekap/{id}/Rekap-bulanan') => 'Rekap']);
+$form->setPlainText('id', [
+	base_url('admin/absensi/rekap/{id}/Rekap-bulanan') => '<i class="fa fa-list"></i> Rekap',
+	base_url('admin/absensi/config_jam/{id}/Config-Jam') => '<i class="fa fa-clock"></i> Atur Jam'
+]);
 $form->setNumbering(true);
 $form->setTable('karyawan');
 $form->addInput('instansi_id', 'dropdown');

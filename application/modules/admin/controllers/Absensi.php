@@ -32,12 +32,16 @@ class Absensi extends CI_Controller
 		$this->load->view('index',$data);
 	}
 
-	public function config_jam()
+	public function config_jam($user_id = 0)
 	{
 		$instansi_id = $this->pengguna_model->get_instansi_id();
 		$hari        = $this->absensi_model->hari();
-
-		$this->load->view('index',['instansi_id'=>$instansi_id,'hari'=>$hari]);
+		$is_user_exist = $this->db->query('SELECT id FROM user WHERE id = ?',$user_id)->row();
+		if(empty($is_user_exist->id))
+		{
+			$user_id = 0;
+		}
+		$this->load->view('index',['instansi_id'=>$instansi_id,'hari'=>$hari,'user_id'=>$user_id]);
 	}
 	public function config_libur()
 	{
@@ -206,9 +210,8 @@ class Absensi extends CI_Controller
 
 		if(!empty($data))
 		{
-			$jam_today = $this->absensi_model->get_jam_today($g_id);
-			// pr($jam_today);
-			$status_key = @intval($this->absensi_model->get_status($g_id)['status_key']);
+			$jam_today = $this->absensi_model->get_jam_today($g_id, $user_id);
+			$status_key = @intval($this->absensi_model->get_status($g_id, $user_id)['status_key']);
 			$instansi = $this->absensi_model->get_instansi($data['instansi_id']);
 			$data['instansi'] = $instansi;
 			if(!empty($status_key))

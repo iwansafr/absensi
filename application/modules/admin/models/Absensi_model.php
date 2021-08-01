@@ -153,19 +153,25 @@ class Absensi_model extends CI_Model
 		}
 	}
 
-	public function get_jam_today($karyawan_id = 0)
+	public function get_jam_today($karyawan_id = 0, $user_id = 0)
 	{
 		$output = [];
 		$hari_now = date('N');
 		if (!empty($karyawan_id)) {
 			$karyawan_id = intval($karyawan_id);
 			$instansi_id = $this->db->get_where('karyawan', ['id' => $karyawan_id])->row_array();
+			if(@intval($instansi_id['user_id']) == $user_id){
+				$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam_user_' . $karyawan_id])->row_array();
+			}
 			if (!empty($instansi_id)) {
 				$instansi_id = $instansi_id['instansi_id'];
 			}
-			$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam_instansi_' . $instansi_id])->row_array();
-			if (empty($data_jam)) {
-				$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam'])->row_array();
+			if(empty($data_jam))
+			{
+				$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam_instansi_' . $instansi_id])->row_array();
+				if (empty($data_jam)) {
+					$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam'])->row_array();
+				}
 			}
 		}
 		if (!empty($data_jam)) {
@@ -176,7 +182,7 @@ class Absensi_model extends CI_Model
 		return $output;
 	}
 
-	public function get_status($karyawan_id = 0)
+	public function get_status($karyawan_id = 0, $user_id = 0)
 	{
 		$jam      = [];
 		$jam_today = [];
@@ -191,12 +197,18 @@ class Absensi_model extends CI_Model
 		if (!empty($karyawan_id)) {
 			$karyawan_id = intval($karyawan_id);
 			$instansi_id = $this->db->get_where('karyawan', ['id' => $karyawan_id])->row_array();
+			if(@intval($instansi_id['user_id']) == $user_id){
+				$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam_user_' . $karyawan_id])->row_array();
+			}
 			if (!empty($instansi_id)) {
 				$instansi_id = $instansi_id['instansi_id'];
 			}
-			$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam_instansi_' . $instansi_id])->row_array();
-			if (empty($data_jam)) {
-				$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam'])->row_array();
+			if(empty($data_jam))
+			{
+				$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam_instansi_' . $instansi_id])->row_array();
+				if (empty($data_jam)) {
+					$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam'])->row_array();
+				}
 			}
 
 			if (!empty($data_jam['value'])) {

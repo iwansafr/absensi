@@ -5,7 +5,13 @@ $form->init('param');
 $form->setTable('jam_absen');
 if(!empty($instansi_id))
 {
-	$form->setParamName('config_jam_instansi_'.$instansi_id);
+	if(empty($user_id))
+	{
+		$form->setParamName('config_jam_instansi_'.$instansi_id);
+	}else{
+		$form->setParamName('config_jam_user_'.$user_id);
+	}
+
 	foreach ($hari as $key => $value) 
 	{
 		$form->addInput('mulai_berangkat_'.$key,'text');
@@ -31,7 +37,13 @@ if(!empty($instansi_id))
 	}
 	$form->form();
 }else if(is_admin() || is_root()){
-	$form->setParamName('config_jam');
+	if(empty($user_id))
+	{
+		$form->setParamName('config_jam');
+	}else{
+		$form->setParamName('config_jam_user_'.$user_id);
+	}
+
 	foreach ($hari as $key => $value) 
 	{
 		$form->addInput('mulai_berangkat_'.$key,'text');

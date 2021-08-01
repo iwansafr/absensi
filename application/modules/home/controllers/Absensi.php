@@ -105,7 +105,8 @@ class Absensi extends CI_Controller
 	}
 	public function get_status($karyawan_id = 0)
 	{
-		output_json($this->absensi_model->get_status($karyawan_id));
+		$user = $this->session->userdata(base_url('_logged_in'));
+		output_json($this->absensi_model->get_status($karyawan_id, @intval($user['id'])));
 	}
 	public function get_berangkat($karyawan_id = 0)
 	{
