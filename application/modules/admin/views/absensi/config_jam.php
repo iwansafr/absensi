@@ -5,11 +5,11 @@ $form->init('param');
 $form->setTable('jam_absen');
 if(!empty($instansi_id))
 {
-	if(empty($user_id))
+	if(empty($kary_id))
 	{
 		$form->setParamName('config_jam_instansi_'.$instansi_id);
 	}else{
-		$form->setParamName('config_jam_user_'.$user_id);
+		$form->setParamName('config_jam_user_'.$kary_id);
 	}
 
 	foreach ($hari as $key => $value) 
@@ -37,11 +37,11 @@ if(!empty($instansi_id))
 	}
 	$form->form();
 }else if(is_admin() || is_root()){
-	if(empty($user_id))
+	if(empty($kary_id))
 	{
 		$form->setParamName('config_jam');
 	}else{
-		$form->setParamName('config_jam_user_'.$user_id);
+		$form->setParamName('config_jam_user_'.$kary_id);
 	}
 
 	foreach ($hari as $key => $value) 
@@ -75,5 +75,5 @@ if(!empty($instansi_id))
 <div class="hidden">
 	<?php pr($form->paramname) ?>
 	<?php pr(@$user) ?>
-	<?php pr(@$user_id) ?>
+	<?php pr(@$kary_id) ?>
 </div>

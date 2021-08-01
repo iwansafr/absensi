@@ -32,16 +32,16 @@ class Absensi extends CI_Controller
 		$this->load->view('index',$data);
 	}
 
-	public function config_jam($user_id = 0)
+	public function config_jam($kary_id = 0)
 	{
 		$instansi_id = $this->pengguna_model->get_instansi_id();
 		$hari        = $this->absensi_model->hari();
-		$is_user_exist = $this->db->query('SELECT id FROM user WHERE id = ?',$user_id)->row();
+		$is_user_exist = $this->db->query('SELECT user.id FROM user INNER JOIN karyawan ON(user.id=karyawan.user_id) WHERE karyawan.id = ?',$kary_id)->row();
 		if(empty($is_user_exist->id))
 		{
-			$user_id = 0;
+			$kary_id = 0;
 		}
-		$this->load->view('index',['instansi_id'=>$instansi_id,'hari'=>$hari,'user_id'=>$user_id]);
+		$this->load->view('index',['instansi_id'=>$instansi_id,'hari'=>$hari,'kary_id'=>$kary_id]);
 	}
 	public function config_libur()
 	{
