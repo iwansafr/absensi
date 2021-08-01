@@ -71,3 +71,7 @@ if(!empty($instansi_id))
 }else{
 	msg('tidak punya hak ke halaman ini','danger');
 }
+?>
+<div class="hidden">
+	<?php pr($form->paramname) ?>
+</div>
