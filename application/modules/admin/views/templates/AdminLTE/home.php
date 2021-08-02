@@ -64,7 +64,7 @@ $date = date('Y-m-d');
 						              	<ol>
 							                <?php foreach ($value['karyawan'] as $kkey => $kvalue): ?>
 							                	<?php if (!empty($kvalue['nama'])): ?>
-							                		<?php $text = ($kvalue['selisih']>0) ? 'telat '.$kvalue['selisih'].' menit' : 'gasik '.$kvalue['selisih'].' menit'; ?>
+							                		<?php $text = ($kvalue['selisih']>0) ? 'lebih '.$kvalue['selisih'].' menit' : 'kurang '.$kvalue['selisih'].' menit'; ?>
 							                		<?php $text = $kvalue['nama'].' - '.substr($kvalue['jam'],11,18).' '.$text ?>
 							                	<?php else: ?>
 							                		<?php $text = $kvalue ?>
