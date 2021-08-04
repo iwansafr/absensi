@@ -45,7 +45,7 @@
   $data = $this->input->post();
   ?>
 
-<div class="login-box">
+<div class="login-box" style="margin-bottom: 5px;">
   <div class="login-logo">
     <?php 
     if(@$site['logo']['display'] == 'title')
@@ -120,6 +120,9 @@
 
 <!-- /.login-box -->
 <div id="animation">
+</div>
+<div class="login-logo">
+  <img src="<?php echo image_module('config','site/'.@$site['site']['image']) ?>" height="75">
 </div>
 
 <!-- jQuery 3 -->
