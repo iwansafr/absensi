@@ -129,14 +129,14 @@
           <center>
             <form action="" method="post" enctype="multipart/form-data" id="formIzin" class="warning">
               <div class="form-group">
-                <label for="">Foto Surat Izin</label>
+                <label for="">Upload Surat Izin</label>
               </div>
               <label class="fileContainer">
                 <img src="<?php echo base_url('images/envelope.png') ?>" class="img img-responsive" alt="" style="height: 300px; width: 300px; object-fit: contain;" id="image_place">
                 <br>
                 <br>
                 <i class="fa fa-camera" style="font-size: 36px;"></i>
-                <input type="file" id="izinUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Foto')" oninput="setCustomValidity('')" capture="user">
+                <input type="file" id="izinUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Upload Foto')" oninput="setCustomValidity('')">
               </label>
               <div id="profile">
                 <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">

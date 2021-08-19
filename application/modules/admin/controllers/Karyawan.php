@@ -1,5 +1,8 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Karyawan extends CI_Controller
 {
 	public function __construct()
@@ -39,5 +42,15 @@ class Karyawan extends CI_Controller
 	{
 		$data = $this->db->get_where('karyawan',['id'=>$id])->result_array();
 		output_json($data);
+	}
+	public function download_template_karyawan()
+	{
+		$this->load->library('table');
+		$data = [['nama', 'nip', 'jk','ttl','alamat','hp','email']];
+		$data[] = ['iwan safrudin','123456','L','Jepara, 01-01-1990','tulakan','6285290335332','esoftgreat@gmail.com'];
+		$data[] = ['Marulina Fivit','123457','P','Jepara, 01-01-1990','tulakan','6285290335331','esoftgreat@gmail.com'];
+		header("Content-type: application/vnd-ms-excel");
+		header("Content-Disposition: attachment; filename=template_karyawan.xls");
+		echo $this->table->generate($data);
 	}
 }

@@ -1,0 +1,20 @@
+{
+    "name": "iwan/absensi",
+    "authors": [
+        {
+            "name": "iwansafr",
+            "email": "iwansafr@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.7",
+        "phpoffice/phpspreadsheet": "^1.18"
+    },
+    "suggest": {
+        "paragonie/random_compat": "Provides better randomness in PHP 5.x"
+    },
+    "require-dev": {
+        "mikey179/vfsstream": "1.1.*",
+        "phpunit/phpunit": "4.* || 5.*"
+    }
+}
