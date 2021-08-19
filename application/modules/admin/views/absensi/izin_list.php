@@ -1,5 +1,5 @@
 <?php
-msg('Data yang sudah divalidasi akan berpindah ke data absensi tervalidasi','info');
+// msg('Data yang sudah divalidasi akan berpindah ke data absensi tervalidasi','info');
 $form = new zea();
 
 $form->init('roll');
