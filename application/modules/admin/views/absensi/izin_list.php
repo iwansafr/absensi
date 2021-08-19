@@ -13,7 +13,7 @@ $form->setNumbering();
 $where = ' status = 2';
 $is_instansi = is_instansi();
 if ($is_instansi) {
-	$where .= ' AND instansi_id = ' . $this->pengguna_model->get_instansi_id($this->session->userdata(base_url('_logged_in'))['id']);
+	$where .= ' AND absensi.instansi_id = ' . $this->pengguna_model->get_instansi_id($this->session->userdata(base_url('_logged_in'))['id']);
 }
 
 
@@ -34,7 +34,7 @@ $form->addInput('foto','thumbnail');
 $form->addInput('status','dropdown');
 $form->setOptions('status',$this->absensi_model->status());
 $form->setAttribute('status','disabled');
-$form->setUrl('admin/absensi/clear_list');
+$form->setUrl('admin/absensi/clear_izin_list');
 
 
 $form->setDelete(true);
