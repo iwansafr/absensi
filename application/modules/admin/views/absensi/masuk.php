@@ -136,7 +136,7 @@
                 <br>
                 <br>
                 <i class="fa fa-camera" style="font-size: 36px;"></i>
-                <input type="file" id="izinUpload" name="foto" class="form-control" accept="image/*" required oninvalid="this.setCustomValidity('Anda Belum Upload Foto')" oninput="setCustomValidity('')">
+                <input type="file" id="izinUpload" name="foto" class="form-control" accept=".jpg,.png,.jpeg" required oninvalid="this.setCustomValidity('Anda Belum Upload Foto')" oninput="setCustomValidity('')">
               </label>
               <div id="profile">
                 <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
