@@ -85,6 +85,7 @@ class Absensi_model extends CI_Model
 
 	public function save()
 	{
+		ini_set('upload_max_filesize', '10M');
 		if (!empty($_FILES['foto']['tmp_name']) || !empty($_POST['button']) || !empty($_POST['absen'])) {
 			$data = $_POST;
 			$output = ['status' => true, 'msg' => 'Absensi Berhasil, Terima Kasih', 'alert' => 'success'];
