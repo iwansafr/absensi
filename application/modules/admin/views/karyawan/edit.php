@@ -25,7 +25,7 @@ $form->addInput('nip', 'text');
 $form->addINput('kary_group_id', 'dropdown');
 $form->setLabel('kary_group_id', 'Kelompok');
 // $form->removeNone('kary_group_id');
-$form->tableOptions('kary_group_id', 'karyawan_group', 'id', 'title');
+$form->tableOptions('kary_group_id', 'karyawan_group', 'id', 'title','id = 1');
 // $form->addInput('jabatan', 'text');
 // $form->addInput('golongan', 'text');
 $form->addInput('tmpt_lahir', 'text');
