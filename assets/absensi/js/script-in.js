@@ -1,5 +1,5 @@
 const imageUpload = document.getElementById("imageUpload");
-
+let response;
 const MODEL_URL = _URL + "assets/models";
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
@@ -8,6 +8,7 @@ Promise.all([
 ]).then(start);
 async function start() {
   const labeledFaceDescriptors = await loadLableImages();
+  console.log('start');
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.5);
   imageUpload.addEventListener("change", async () => {
 
@@ -27,7 +28,7 @@ async function start() {
 
     const result = resize.map((d) => faceMatcher.findBestMatch(d.descriptor));
 
-    const response_dt = await usersApi();
+    const response_dt = response;
     const data_dt = response_dt.data;
 
     document.getElementById("loading").innerHTML = "";
@@ -98,7 +99,7 @@ function usersApi() {
 
 async function loadLableImages() {
 
-  const response = await usersApi();
+  response = await usersApi();
   const data = response.data;
   return Promise.all(
     data.map(async (items) => {
