@@ -3,7 +3,6 @@
 class Karyawan_model extends CI_Model{
 	public function update_user($karyawan_id = 0, $data = [])
 	{
-		pr($karyawan_id);
 		$kary_role_exist = $this->get_kary_role_id();
 		$kary_role_id = 0;
 		if(empty($kary_role_exist)){

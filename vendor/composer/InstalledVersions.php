@@ -29,11 +29,20 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '157c3d4ae0e953d5c8b168e45ddbe78119fe901f',
-    'name' => 'iwan/absensi',
+    'reference' => '2ee444c404941e450f7a406c0e07f95a01e22c85',
+    'name' => 'codeigniter/framework',
   ),
   'versions' => 
   array (
+    'codeigniter/framework' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2ee444c404941e450f7a406c0e07f95a01e22c85',
+    ),
     'doctrine/instantiator' => 
     array (
       'pretty_version' => '1.4.0',
@@ -51,15 +60,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '08e27c97e4c6ed02f37c5b2b20488046c8d90d75',
-    ),
-    'iwan/absensi' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '157c3d4ae0e953d5c8b168e45ddbe78119fe901f',
     ),
     'maennchen/zipstream-php' => 
     array (
