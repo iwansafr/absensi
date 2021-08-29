@@ -75,7 +75,13 @@
     }
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
   </style>
-  <div class="box box-widget widget-user">
+  <?php if (empty($data['foto'])): ?>
+    <script>
+      alert('anda belum memiliki foto, silahkan upload foto profil anda');
+      window.location = _URL+'admin/karyawan/update_photo';
+    </script>
+  <?php endif ?>
+  <div class="box box-widget widget-user hidden-lg">
     <div class="widget-user-header">
       <h5 class="widget-user-username" id="nama" style="font-size: 16px;font-weight: bold;">
         <?php echo $data['nama'] ?> 
@@ -286,6 +292,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="hidden-sm">
+    <?php echo msg('Halaman hanya bisa diakses menggunakan perangkat mobile','danger') ?>
   </div>
   <script>
     var _G_ID = "<?php echo intval($data['id']);?>";

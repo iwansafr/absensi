@@ -192,7 +192,7 @@ class Karyawan extends CI_Controller
 		return $data;
 	}
 
-	public function upload_photo()
+	public function update_photo()
 	{
 		$this->load->view('index');
 	}
