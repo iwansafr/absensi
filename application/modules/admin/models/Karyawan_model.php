@@ -53,7 +53,7 @@ class Karyawan_model extends CI_Model{
 			if(!empty($data['del_row']))
 			{
 				$this->db->select('user_id');
-				$this->db->where_in(['id'=>$data['del_row']]);
+				$this->db->where_in('id',$data['del_row']);
 				$user_ids_tmp = $this->db->get('karyawan')->result_array();
 				$user_ids = [];
 				if(!empty($user_ids_tmp))
