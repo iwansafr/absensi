@@ -86,7 +86,7 @@ class Karyawan extends CI_Controller
 						$title[$j] = $cell_value;
 					} else {
 						if ($title[$j] == 'nip') {
-							$nip_tmp[] = $cell_value;
+							$nip_tmp[] = intval(str_replace(' ','',str_replace("'",'',$cell_value)));
 						}
 						if (in_array($title[$j], $allowed_col)) {
 							$data_karyawan[$i][$title[$j]] = $cell_value;
@@ -99,6 +99,7 @@ class Karyawan extends CI_Controller
 
 			$nip_exists = [];
 			$nip_loop = $nip_tmp;
+			pr($nip_loop);die();
 			foreach ($nip_loop as $key => $value) {
 				unset($nip_loop[$key]);
 				if (in_array($value, $nip_loop)) {
