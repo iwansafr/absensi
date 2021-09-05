@@ -70,15 +70,16 @@ if(!empty($_POST) && !empty($form->success))
 	$this->karyawan_model->update_user($form_id, $_POST);
 }
 ?>
-<script>
-	// const instansi_option = document.querySelector('select[name="instansi_id"]');
-	const instansi_option = document.querySelector('.select2');
-	instansi_id = instansi_option.value;
-	const xhttp = new XMLHttpRequest();
-	xhttp.onload = function(){
-		console.log(this.responseText);
-		document.querySelector('input[name="nip"]').value = this.responseText.replace(/"/g,'');
-	}
-	xhttp.open('GET',_URL+'/admin/karyawan/get_last_karyawan/'+instansi_id);
-	xhttp.send();
-</script>
+<?php if(empty($id)):?>
+	<script>
+		// const instansi_option = document.querySelector('select[name="instansi_id"]');
+		const instansi_option = document.querySelector('.select2');
+		instansi_id = instansi_option.value;
+		const xhttp = new XMLHttpRequest();
+		xhttp.onload = function(){
+			document.querySelector('input[name="nip"]').value = this.responseText.replace(/"/g,'');
+		}
+		xhttp.open('GET',_URL+'/admin/karyawan/get_last_karyawan/'+instansi_id);
+		xhttp.send();
+	</script>
+<?php endif?>

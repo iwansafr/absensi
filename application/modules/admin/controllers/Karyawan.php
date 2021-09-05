@@ -21,7 +21,9 @@ class Karyawan extends CI_Controller
 
 	public function edit()
 	{
-		$this->esg->add_js([base_url('assets/karyawan/script.js')]);
+		if(empty($_GET['id'])){
+			$this->esg->add_js([base_url('assets/karyawan/script.js')]);
+		}
 		$this->load->view('index');
 	}
 	public function list()
@@ -48,9 +50,9 @@ class Karyawan extends CI_Controller
 	public function download_template_karyawan()
 	{
 		$this->load->library('table');
-		$data = [['nama', 'nip', 'jk','ttl','alamat','hp','email']];
-		$data[] = ['iwan safrudin','123456','L','Jepara, 01-01-1990','tulakan','6285290335332','esoftgreat@gmail.com'];
-		$data[] = ['Marulina Fivit','123457','P','Jepara, 01-01-1990','tulakan','6285290335331','esoftgreat@gmail.com'];
+		$data = [['nip', 'nama', 'jk','ttl','alamat','hp','email']];
+		$data[] = ['123456','iwan safrudin','L','Jepara, 01-01-1990','tulakan','6285290335332','esoftgreat@gmail.com','nb: kosongkan nip untuk mengisi nip secara otomatis, kosongkan email maka email akan generate otomatis sesuai nip'];
+		$data[] = ['123457','Marulina Fivit','P','Jepara, 01-01-1990','tulakan','6285290335331','esoftgreat@gmail.com'];
 		header("Content-type: application/vnd-ms-excel");
 		header("Content-Disposition: attachment; filename=template_karyawan.xls");
 		echo $this->table->generate($data);
@@ -66,10 +68,24 @@ class Karyawan extends CI_Controller
 		$data = [];
 		$status = true;
 		if (isset($_FILES['excel']['tmp_name'])) {
-			$post = $this->input->post();
-			$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xls');
+			$name = $_FILES['excel']['name'];
+			$extention = explode('.',$name);
+			$extention = end($extention);
+			if($extention == 'xls'){
+				$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xls');
+			}else if($extention == 'xlsx'){
+				$reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+			}
 			$reader->setReadDataOnly(TRUE);
-
+			
+			$instansi_id = $this->pengguna_model->get_instansi_id($this->session->userdata(base_url('_logged_in'))['id']);
+			$last_karyawan = $this->last_karyawan($instansi_id);
+			if(!empty($last_karyawan))
+			{
+				$last_karyawan = str_replace('"','',$last_karyawan);
+			}
+			$nip_template = $this->get_template($last_karyawan);
+			$last_numeric = $this->get_last_number($last_karyawan);
 			$spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
 			$worksheet = $spreadsheet->getActiveSheet();
 			$data_karyawan = array();
@@ -87,10 +103,33 @@ class Karyawan extends CI_Controller
 						$title[$j] = $cell_value;
 					} else {
 						if ($title[$j] == 'nip') {
-							$nip_tmp[] = intval(str_replace(' ','',str_replace("'",'',$cell_value)));
+							if(!empty($cell_value)){
+								$nip_output = intval(str_replace(' ','',str_replace("'",'',$cell_value)));
+								$nip_tmp[] = $nip_output;
+							}else{
+								$nip_output = $nip_template.$last_numeric;
+								$nip_tmp[] = $nip_output;
+							}
 						}
 						if (in_array($title[$j], $allowed_col)) {
-							$data_karyawan[$i][$title[$j]] = $cell_value;
+							if($title[$j] == 'nip'){
+								if(!empty($cell_value)){
+									$data_karyawan[$i][$title[$j]] = $cell_value;
+								}else{
+									$data_karyawan[$i][$title[$j]] = $nip_output;
+									$last_numeric++;
+								}
+							}else{
+								if($title[$j] == 'email'){
+									if(!empty($cell_value)){
+										$data_karyawan[$i][$title[$j]] = $cell_value;
+									}else{
+										$data_karyawan[$i][$title[$j]] = $nip_output.'@absenkita.com';
+									}
+								}else{
+									$data_karyawan[$i][$title[$j]] = $cell_value;
+								}
+							}
 						}
 					}
 					$j++;
@@ -128,7 +167,6 @@ class Karyawan extends CI_Controller
 						$msg = ['alert' => 'warning', 'msg' => 'Terdapat Data Karyawan yang sudah terdaftar dengan NIP sbb : <h4>' . implode(',', $nip_exists) . '</h4> Silahkan cek kembali file excel'];
 					} else {
 						$tmp_karyawan = [];
-						$instansi_id = $this->pengguna_model->get_instansi_id($this->session->userdata(base_url('_logged_in'))['id']);
 						$kary_group_id = $this->db->query('SELECT id FROM karyawan_group ORDER BY id ASC LIMIT 1')->row_array();
 						$kary_group_id = @intval($kary_group_id['id']);
 						$kelamin  = ['L'=>1,'P'=>2];
@@ -197,9 +235,10 @@ class Karyawan extends CI_Controller
 	{
 		$this->load->view('index');
 	}
-	public function get_last_karyawan($instansi_id = 0)
+
+	public function last_karyawan($instansi_id = 0)
 	{
-		$last_karyawan = $this->db->query('SELECT nip FROM karyawan WHERE instansi_id = ? ORDER BY id DESC', $instansi_id)->row_array();
+		$last_karyawan = $this->db->query('SELECT nip FROM karyawan WHERE instansi_id = ? AND nip LIKE ? ORDER BY id DESC', [$instansi_id, '%'.date('Ymd').'-'.$instansi_id.'-%'])->row_array();
 		if(!empty($last_karyawan))
 		{
 			if(preg_match('~-~', $last_karyawan['nip'])){
@@ -210,10 +249,33 @@ class Karyawan extends CI_Controller
 			}else{
 				$nip = date('Ymd').'-'.$instansi_id.'-1';
 			}
-			echo json_encode($nip);
+			return json_encode($nip);
 		}else{
 			$nip = date('Ymd').'-'.$instansi_id.'-1';
-			echo json_encode($nip);
+			return json_encode($nip);
 		}
+	}
+
+	private function get_last_number($number = '')
+	{
+		if(preg_match('~-~', $number)){
+			$last_numeric = explode('-',$number);
+			$last_numeric = @intval(end($last_numeric));
+			$last_numeric++;
+			return $last_numeric;
+		}
+	}
+	private function get_template($number = '')
+	{
+		if(preg_match('~-~', $number)){
+			$last_numeric = explode('-',$number);
+			array_pop($last_numeric);
+			return implode('-',$last_numeric).'-';
+		}
+	}
+
+	public function get_last_karyawan($instansi_id = 0)
+	{
+		echo $this->last_karyawan($instansi_id);
 	}
 }
