@@ -12,7 +12,8 @@ $form->setLabel('instansi_id', 'instansi');
 // $form->removeNone('instansi_id');
 if ($is_instansi) {
 	$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
-	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama', ['id' => $this->pengguna_model->get_instansi_id($user_id)]);
+	$instansi_id = $this->pengguna_model->get_instansi_id($user_id);
+	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama', ['id' => $instansi_id]);
 } else {
 	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama');
 }
@@ -68,3 +69,16 @@ if(!empty($_POST) && !empty($form->success))
 	}
 	$this->karyawan_model->update_user($form_id, $_POST);
 }
+?>
+<script>
+	// const instansi_option = document.querySelector('select[name="instansi_id"]');
+	const instansi_option = document.querySelector('.select2');
+	instansi_id = instansi_option.value;
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function(){
+		console.log(this.responseText);
+		document.querySelector('input[name="nip"]').value = this.responseText.replace(/"/g,'');
+	}
+	xhttp.open('GET',_URL+'/admin/karyawan/get_last_karyawan/'+instansi_id);
+	xhttp.send();
+</script>

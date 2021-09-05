@@ -21,6 +21,7 @@ class Karyawan extends CI_Controller
 
 	public function edit()
 	{
+		$this->esg->add_js([base_url('assets/karyawan/script.js')]);
 		$this->load->view('index');
 	}
 	public function list()
@@ -99,7 +100,6 @@ class Karyawan extends CI_Controller
 
 			$nip_exists = [];
 			$nip_loop = $nip_tmp;
-			pr($nip_loop);die();
 			foreach ($nip_loop as $key => $value) {
 				unset($nip_loop[$key]);
 				if (in_array($value, $nip_loop)) {
@@ -196,5 +196,24 @@ class Karyawan extends CI_Controller
 	public function update_photo()
 	{
 		$this->load->view('index');
+	}
+	public function get_last_karyawan($instansi_id = 0)
+	{
+		$last_karyawan = $this->db->query('SELECT nip FROM karyawan WHERE instansi_id = ? ORDER BY id DESC', $instansi_id)->row_array();
+		if(!empty($last_karyawan))
+		{
+			if(preg_match('~-~', $last_karyawan['nip'])){
+				$last_numeric = explode('-',$last_karyawan['nip']);
+				$last_numeric = @intval(end($last_numeric));
+				$last_numeric++;
+				$nip = date('Ymd').'-'.$instansi_id.'-'.$last_numeric;
+			}else{
+				$nip = date('Ymd').'-'.$instansi_id.'-1';
+			}
+			echo json_encode($nip);
+		}else{
+			$nip = date('Ymd').'-'.$instansi_id.'-1';
+			echo json_encode($nip);
+		}
 	}
 }

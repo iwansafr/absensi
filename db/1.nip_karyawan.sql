@@ -1,0 +1,1 @@
+ALTER TABLE `karyawan` CHANGE `nip` `nip` VARCHAR(255) NOT NULL;
