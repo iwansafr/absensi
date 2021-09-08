@@ -1,3 +1,4 @@
+<a href="<?php echo base_url('/admin/karyawan/upload_form');?>" class="btn btn-success btn-sm"><i class="fa fa-upload"></i> Upload Karyawan</a>
 <?php
 $id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
 $is_instansi = is_instansi();
