@@ -243,4 +243,9 @@ class Absensi extends CI_Controller
 		$output = $this->absensi_model->save();
 		$this->load->view('index',['data'=>$data,'output'=>$output]);
 	}
+
+	public function face()
+	{
+		$this->load->view('admin/absensi/face');
+	}
 }

@@ -5,11 +5,11 @@ class Absensi extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('home_model');
+		// $this->load->model('home_model');
 		$this->load->model('karyawan_model');
 		$this->load->model('admin/absensi_model');
-		$this->load->helper('content');
-		$this->load->library('esg');
+		// $this->load->helper('content');
+		// $this->load->library('esg');
 	}
 	public function agenda()
 	{
