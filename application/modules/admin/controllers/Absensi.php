@@ -248,4 +248,9 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('admin/absensi/face');
 	}
+	public function rekap_poin()
+	{
+		$data = $this->absensi_model->get_rekap_poin();
+		$this->load->view('index',['data'=>$data]);
+	}
 }

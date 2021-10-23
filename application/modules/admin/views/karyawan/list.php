@@ -16,7 +16,19 @@ if ($is_instansi) {
 		$form->setWhere('instansi_id = ' . $this->db->escape($_GET['s_id']));
 	}
 }
-$form->setHeading('<a href="'.base_url('/admin/absensi/rekap_absensi').'" class="btn btn-default btn-sm"><i class="fa fa-chart-bar"></i> Rekap Absensi</a><a href="'.base_url('/admin/karyawan/upload_form').'" class="btn btn-default btn-sm"><i class="fa fa-upload"></i> Upload Karyawan</a>');
+$form->setHeading('
+<div class="dropdown">
+	<button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownPoin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		Rekap
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownPoin">
+		<li><a href="'.base_url('admin/absensi/rekap_poin').'"><i class="fa fa-search"></i><i class="fa fa-list"></i> Poin</a></li>
+		<li><a href="'.base_url('/admin/absensi/rekap_absensi').'"><i class="fa fa-search"></i><i class="fa fa-chart-bar"></i> Absensi</a></li>
+	</ul>
+	<a href="'.base_url('/admin/karyawan/upload_form').'" class="btn btn-default btn-sm"><i class="fa fa-upload"></i> Upload Karyawan</a>
+</div>'
+);
 $form->addInput('id', 'plaintext');
 $form->setLabel('id', 'action');
 $form->setPlainText('id', [

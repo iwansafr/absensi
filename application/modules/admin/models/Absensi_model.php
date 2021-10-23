@@ -432,4 +432,36 @@ class Absensi_model extends CI_Model
 			}
 		}
 	}
+
+	public function get_rekap_poin()
+	{
+		if(is_instansi()){
+			$instansi_id = $this->pengguna_model->get_instansi_id(
+				$this->session->userdata(base_url('_logged_in'))['id']
+			);
+			$karyawan = $this->db->query('SELECT a.id,a.karyawan_id,k.nama,a.status,a.waktu,a.selisih_waktu,a.jam_jadwal FROM karyawan AS k LEFT JOIN absensi AS a ON(k.id=a.karyawan_id) WHERE a.instansi_id = ?',$instansi_id)->result_array();
+			// pr($karyawan);
+			$group = [];
+			foreach ($karyawan as $key => $value) {
+				$group[$value['karyawan_id']][] = $value;
+			}
+			$data_point = [];
+			foreach ($group as $key => $value) {
+				$point = [];
+				foreach ($value as $vkey => $vvalue) {
+					$point['karyawan_id'] = $vvalue['karyawan_id'];
+					$point['karyawan'] = $vvalue['nama'];
+					if($vvalue['status'] == 1){
+						$point['berangkat'] = @intval($vvalue['selisih_waktu']) + @intval($point['berangkat']);
+					}else if($vvalue['status'] == 3){
+						$point['telat'] = @intval($vvalue['selisih_waktu']) + @intval($point['telat']);
+					}else if($vvalue['status'] == 4){
+						$point['pulang'] = @intval($vvalue['selisih_waktu']) + @intval($point['pulang']);
+					}
+				}
+				$data_point[$key] = $point;
+			}
+			return $data_point;
+		}
+	}
 }
