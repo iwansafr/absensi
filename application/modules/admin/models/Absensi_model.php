@@ -433,9 +433,10 @@ class Absensi_model extends CI_Model
 		}
 	}
 
-	public function get_rekap_poin()
+	public function get_rekap_poin($month_year)
 	{
 		if(is_instansi()){
+			$month_year = empty($month_year) ? date('Y-m') : $month_year;
 			$instansi_id = $this->pengguna_model->get_instansi_id(
 				$this->session->userdata(base_url('_logged_in'))['id']
 			);

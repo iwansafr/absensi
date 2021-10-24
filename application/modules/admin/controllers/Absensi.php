@@ -250,7 +250,7 @@ class Absensi extends CI_Controller
 	}
 	public function rekap_poin()
 	{
-		$data = $this->absensi_model->get_rekap_poin();
+		$data = $this->absensi_model->get_rekap_poin($this->input->get('my'));
 		$this->load->view('index',['data'=>$data]);
 	}
 }
