@@ -437,16 +437,30 @@ class Absensi_model extends CI_Model
 	{
 		if(is_instansi()){
 			$month_year = empty($month_year) ? date('Y-m') : $month_year;
+			$month_year = explode('-',$month_year);
+			$year = $month_year[0];
+			$month = $month_year[1];
 			$instansi_id = $this->pengguna_model->get_instansi_id(
 				$this->session->userdata(base_url('_logged_in'))['id']
 			);
-			$karyawan = $this->db->query('SELECT a.id,a.karyawan_id,k.nama,a.status,a.waktu,a.selisih_waktu,a.jam_jadwal FROM karyawan AS k LEFT JOIN absensi AS a ON(k.id=a.karyawan_id) WHERE a.instansi_id = ?',$instansi_id)->result_array();
+			$karyawan = $this->db->query('SELECT
+			a.id,a.karyawan_id,k.nama,a.status,a.waktu,a.selisih_waktu,a.jam_jadwal 
+			FROM 
+			karyawan 
+			AS k LEFT JOIN absensi AS a 
+			ON(k.id=a.karyawan_id) 
+			WHERE a.instansi_id = ? 
+			AND YEAR(waktu) = ? AND MONTH(waktu) = ? ORDER BY nama ASC',[$instansi_id, $year, $month])->result_array();
 			// pr($karyawan);
 			$group = [];
 			foreach ($karyawan as $key => $value) {
 				$group[$value['karyawan_id']][] = $value;
 			}
 			$data_point = [];
+			$max = [
+				'berangkat' => 0,
+				'pulang' => 0,
+			];
 			foreach ($group as $key => $value) {
 				$point = [];
 				foreach ($value as $vkey => $vvalue) {
@@ -454,15 +468,21 @@ class Absensi_model extends CI_Model
 					$point['karyawan'] = $vvalue['nama'];
 					if($vvalue['status'] == 1){
 						$point['berangkat'] = @intval($vvalue['selisih_waktu']) + @intval($point['berangkat']);
+						if($point['berangkat'] <= $max['berangkat']){
+							$max['berangkat'] = $point['berangkat'];
+						}
 					}else if($vvalue['status'] == 3){
 						$point['telat'] = @intval($vvalue['selisih_waktu']) + @intval($point['telat']);
 					}else if($vvalue['status'] == 4){
 						$point['pulang'] = @intval($vvalue['selisih_waktu']) + @intval($point['pulang']);
+						if($point['pulang'] >= $max['pulang']){
+							$max['pulang'] = $point['pulang'];
+						}
 					}
 				}
 				$data_point[$key] = $point;
 			}
-			return $data_point;
+			return ['data'=>$data_point,'max'=>$max];
 		}
 	}
 }

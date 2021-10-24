@@ -250,7 +250,11 @@ class Absensi extends CI_Controller
 	}
 	public function rekap_poin()
 	{
-		$data = $this->absensi_model->get_rekap_poin($this->input->get('my'));
-		$this->load->view('index',['data'=>$data]);
+		$month_year = $this->input->get('my');
+		if(empty($month_year)){
+			$month_year = date('Y-m');
+		}
+		$data = $this->absensi_model->get_rekap_poin($month_year);
+		$this->load->view('index',['data'=>$data,'month_year'=>$month_year]);
 	}
 }
