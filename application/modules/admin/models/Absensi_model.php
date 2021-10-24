@@ -461,6 +461,10 @@ class Absensi_model extends CI_Model
 				'berangkat' => 0,
 				'pulang' => 0,
 			];
+			$min = [
+				'berangkat' => 0,
+				'pulang' => 0,
+			];
 			foreach ($group as $key => $value) {
 				$point = [];
 				foreach ($value as $vkey => $vvalue) {
@@ -468,21 +472,27 @@ class Absensi_model extends CI_Model
 					$point['karyawan'] = $vvalue['nama'];
 					if($vvalue['status'] == 1){
 						$point['berangkat'] = @intval($vvalue['selisih_waktu']) + @intval($point['berangkat']);
-						if($point['berangkat'] <= $max['berangkat']){
-							$max['berangkat'] = $point['berangkat'];
-						}
 					}else if($vvalue['status'] == 3){
 						$point['telat'] = @intval($vvalue['selisih_waktu']) + @intval($point['telat']);
 					}else if($vvalue['status'] == 4){
 						$point['pulang'] = @intval($vvalue['selisih_waktu']) + @intval($point['pulang']);
-						if($point['pulang'] >= $max['pulang']){
-							$max['pulang'] = $point['pulang'];
-						}
 					}
+				}
+				if(@intval($point['berangkat']) <= $max['berangkat']){
+					$max['berangkat'] = @intval($point['berangkat']);
+				}
+				if(@intval($point['berangkat']) >= $min['berangkat']){
+					$min['berangkat'] = @intval($point['berangkat']);
+				}
+				if(@intval($point['pulang']) >= $max['pulang']){
+					$max['pulang'] = @intval($point['pulang']);
+				}
+				if(@intval($point['pulang']) <= $min['pulang']){
+					$min['pulang'] = @intval($point['pulang']);
 				}
 				$data_point[$key] = $point;
 			}
-			return ['data'=>$data_point,'max'=>$max];
+			return ['data'=>$data_point,'max'=>$max,'min'=>$min];
 		}
 	}
 }

@@ -33,9 +33,9 @@
           <tr>
             <td><?php echo $i++; ?></td>
             <td><?php echo $value['karyawan'] ?></td>
-            <td <?php echo ' '.$berangkat == $data['max']['berangkat'] ? 'class="bg-success"':'';?> ><?php echo $berangkat;?></td>
+            <td <?php echo ' '.$berangkat == $data['max']['berangkat'] ? 'class="bg-success"':'';?> <?php echo ' '.$berangkat == $data['min']['berangkat'] ? 'class="bg-danger"':'';?> ><?php echo $berangkat;?></td>
             <td><?php echo $telat ?></td>
-            <td <?php echo ' '.$pulang == $data['max']['pulang'] ? 'class="bg-success"':'';?>><?php echo $pulang ?></td>
+            <td <?php echo ' '.$pulang == $data['max']['pulang'] ? 'class="bg-success"':'';?> <?php echo ' '.$pulang == $data['min']['pulang'] ? 'class="bg-danger"':'';?>><?php echo $pulang ?></td>
           </tr>
         <?php endforeach ?>
       </tbody>
