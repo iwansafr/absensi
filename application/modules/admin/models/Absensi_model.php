@@ -100,6 +100,21 @@ class Absensi_model extends CI_Model
 			if (!empty($data['karyawan_id']) && !empty($data['instansi_id']) && @$foto['error'] == 0) {
 				$exist = $this->db->get_where('absensi', ['instansi_id' => $data['instansi_id'], 'karyawan_id' => $data['karyawan_id'], 'CAST(waktu AS date)=' => date('Y-m-d'), 'status' => $data['status']])->row_array();
 				$id    = 0;
+				$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
+				$jam_today = $this->absensi_model->get_jam_today($data['karyawan_id'], $user_id);
+				$status_key = @intval($this->absensi_model->get_status($data['karyawan_id'], $user_id)['status_key']);
+
+				if(!empty($status_key))
+				{
+					if($status_key == 1 || $status_key == 3)
+					{
+						$data['jam_jadwal'] = $jam_today['berangkat'];
+					}else{
+						$data['jam_jadwal'] = $jam_today['pulang'];
+					}
+					$data['status'] = $status_key;
+				}
+
 				$waktu      = strtotime(date('H:i'));
 				$jam_jadwal = strtotime($data['jam_jadwal']);
 

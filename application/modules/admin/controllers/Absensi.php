@@ -174,43 +174,43 @@ class Absensi extends CI_Controller
 		$this->load->model('Home/home_model');
 		$this->load->model('Home/karyawan_model','kary_model');
 
-		if(!$this->db->field_exists('jam_jadwal','absensi'))
-		{
-			$this->load->dbforge();
-			$fields = array(
-				'jam_jadwal' => array(
-					'type' => 'VARCHAR',
-					'constraint' => '6',
-					'default' => '00:00',
-					'after' => 'waktu'
-				),
-			);
-			$this->dbforge->add_column('absensi',$fields);
-		}
-		if(!$this->db->field_exists('selisih_waktu','absensi'))
-		{
-			$this->load->dbforge();
-			$fields = array(
-				'selisih_waktu' => array(
-					'type' => 'VARCHAR',
-					'constraint' => '6',
-					'default' => '00:00',
-					'after' => 'waktu'
-				),
-			);
-			$this->dbforge->add_column('absensi',$fields);
-		}
-		if(!$this->db->field_exists('device','absensi'))
-		{
-			$this->load->dbforge();
-			$fields = array(
-				'device' => array(
-					'type' => 'TEXT',
-					'after' => 'waktu'
-				),
-			);
-			$this->dbforge->add_column('absensi',$fields);
-		}
+		// if(!$this->db->field_exists('jam_jadwal','absensi'))
+		// {
+		// 	$this->load->dbforge();
+		// 	$fields = array(
+		// 		'jam_jadwal' => array(
+		// 			'type' => 'VARCHAR',
+		// 			'constraint' => '6',
+		// 			'default' => '00:00',
+		// 			'after' => 'waktu'
+		// 		),
+		// 	);
+		// 	$this->dbforge->add_column('absensi',$fields);
+		// }
+		// if(!$this->db->field_exists('selisih_waktu','absensi'))
+		// {
+		// 	$this->load->dbforge();
+		// 	$fields = array(
+		// 		'selisih_waktu' => array(
+		// 			'type' => 'VARCHAR',
+		// 			'constraint' => '6',
+		// 			'default' => '00:00',
+		// 			'after' => 'waktu'
+		// 		),
+		// 	);
+		// 	$this->dbforge->add_column('absensi',$fields);
+		// }
+		// if(!$this->db->field_exists('device','absensi'))
+		// {
+		// 	$this->load->dbforge();
+		// 	$fields = array(
+		// 		'device' => array(
+		// 			'type' => 'TEXT',
+		// 			'after' => 'waktu'
+		// 		),
+		// 	);
+		// 	$this->dbforge->add_column('absensi',$fields);
+		// }
 		$this->home_model->home();
 		$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
 		$g_id = @intval($this->db->query('SELECT id FROM karyawan WHERE user_id = ?',[$user_id])->row_array()['id']);
