@@ -194,6 +194,10 @@ class Absensi_model extends CI_Model
 			$data_jam = json_decode($data_jam['value'], 1);
 			$output['berangkat'] = $data_jam['akhir_berangkat_' . $hari_now];
 			$output['pulang'] = $data_jam['mulai_pulang_' . $hari_now];
+			$output['jadwal']['mulai_berangkat'] = $data_jam['mulai_berangkat_'.$hari_now];
+			$output['jadwal']['akhir_berangkat'] = $data_jam['akhir_berangkat_'.$hari_now];
+			$output['jadwal']['mulai_pulang'] = $data_jam['mulai_pulang_'.$hari_now];
+			$output['jadwal']['akhir_pulang'] = $data_jam['akhir_pulang_'.$hari_now];
 		}
 		return $output;
 	}

@@ -193,15 +193,15 @@
               <table class="table">
                 <tr>
                   <td><button style="width: 100%;" class="btn-success">Berangkat</button></td>
-                  <td>: jam 06:00 - 08:00</td>
+                  <td>: jam <?php echo $data['jadwal']['mulai_berangkat'].' - '.$data['jadwal']['akhir_berangkat'];?></td>
                 </tr>
                 <tr>
                   <td><button style="width: 100%;" class="btn-danger">Terlambat</button></td>
-                  <td>: jam 08:01 - 11:00</td>
+                  <td>: jam <?php echo $data['jadwal']['akhir_berangkat'].' - '.$data['jadwal']['mulai_pulang'];?></td>
                 </tr>
                 <tr>
                   <td><button style="width: 100%;" class="btn-success">Pulang</button></td>
-                  <td>: jam 11:01 - 16:00</td>
+                  <td>: jam <?php echo $data['jadwal']['mulai_pulang'].' - '.$data['jadwal']['akhir_pulang'];?></td>
                 </tr>
               </table>
             </div>

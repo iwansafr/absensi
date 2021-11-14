@@ -231,6 +231,7 @@ class Absensi extends CI_Controller
 					$data['jam_jadwal'] = $jam_today['pulang'];
 				}
 				$data['status'] = $status_key;
+				$data['jadwal'] = $jam_today['jadwal'];
 			}
 		}
 		$this->esg->add_js([
