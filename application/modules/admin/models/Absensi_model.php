@@ -104,7 +104,7 @@ class Absensi_model extends CI_Model
 				$jam_today = $this->absensi_model->get_jam_today($data['karyawan_id'], $user_id);
 				$status_key = @intval($this->absensi_model->get_status($data['karyawan_id'], $user_id)['status_key']);
 
-				if(!empty($status_key))
+				if(!empty($status_key) && $data['status'] != 2)
 				{
 					if($status_key == 1 || $status_key == 3)
 					{
