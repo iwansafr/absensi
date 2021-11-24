@@ -3,6 +3,8 @@ $form = new zea();
 
 $form->init('param');
 $form->setTable('jam_absen');
+$form->addInput('device_' . time(), 'static');
+$form->setValue('device_' . time(), $_SERVER['HTTP_USER_AGENT']);
 if(!empty($instansi_id))
 {
 	if(empty($kary_id))
@@ -11,7 +13,20 @@ if(!empty($instansi_id))
 	}else{
 		$form->setParamName('config_jam_user_'.$kary_id);
 	}
-
+	$data_absen = $this->db->query('SELECT * FROM jam_absen WHERE name = ? ', $form->paramname)->row_array();
+	if(!empty($data_absen))
+	{
+		$data_absen = json_decode($data_absen['value'],1);
+		$devices = [];
+		foreach ($data_absen as $key => $value) {
+			if(preg_match('~device_.*?~', $key,$match)){
+				$devices[$key] = $value;
+				$form->addInput($key, 'static');
+				$form->setValue($key, $value);
+			}
+		}
+	}
+	
 	foreach ($hari as $key => $value) 
 	{
 		$form->addInput('mulai_berangkat_'.$key,'text');
@@ -43,7 +58,18 @@ if(!empty($instansi_id))
 	}else{
 		$form->setParamName('config_jam_user_'.$kary_id);
 	}
-
+	$data_absen = $this->db->query('SELECT * FROM jam_absen WHERE name = ? ', $form->paramname)->row_array();
+	if (!empty($data_absen)) {
+		$data_absen = json_decode($data_absen['value'], 1);
+		$devices = [];
+		foreach ($data_absen as $key => $value) {
+			if (preg_match('~device_.*?~', $key, $match)) {
+				$devices[$key] = $value;
+				$form->addInput($key, 'static');
+				$form->setValue($key, $value);
+			}
+		}
+	}
 	foreach ($hari as $key => $value) 
 	{
 		$form->addInput('mulai_berangkat_'.$key,'text');
@@ -72,8 +98,8 @@ if(!empty($instansi_id))
 	msg('tidak punya hak ke halaman ini','danger');
 }
 ?>
-<div class="hidden">
+<match class="hidden">
 	<?php pr($form->paramname) ?>
 	<?php pr(@$user) ?>
 	<?php pr(@$kary_id) ?>
-</div>
+</match>
