@@ -4,7 +4,7 @@ $form = new zea();
 $form->init('param');
 $form->setTable('jam_absen');
 $form->addInput('device_' . time(), 'static');
-$form->setValue('device_' . time(), $_SERVER['HTTP_USER_AGENT']);
+$form->setValue('device_' . time(), @$_SERVER['HTTP_USER_AGENT']);
 if(!empty($instansi_id))
 {
 	if(empty($kary_id))
