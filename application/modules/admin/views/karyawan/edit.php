@@ -24,6 +24,7 @@ $form->addInput('jk', 'dropdown');
 $form->setLabel('jk', 'jenis kelamin');
 $form->setOptions('jk', ['1' => 'Laki-laki', '2' => 'Perempuan']);
 $form->addInput('nip', 'text');
+
 $form->addINput('kary_group_id', 'dropdown');
 $form->setLabel('kary_group_id', 'Kelompok');
 // $form->removeNone('kary_group_id');
@@ -56,7 +57,17 @@ if (empty($id)) {
 	$form->setRequired(['nama','nip','tgl_lahir','email','hp']);
 }
 $form->removeNone(['instansi_id','kary_group_id']);
-$form->setUnique(['nip','email']);
+$card_code_exist = $this->db->field_exists('card_code','karyawan');
+if($card_code_exist){
+	$form->addINput('card_code','text');
+	$form->setType('card_code','number');
+	$form->setLabel('card_code','Card Code');
+	$form->setAttribute('card_code',['placeholder'=>'Tap Kartu pada Card reader']);
+	$form->setHelp('card_code','Tap Kartu pada Card reader');
+	$form->setUnique(['nip','email','card_code']);
+}else{
+	$form->setUnique(['nip','email']);
+}
 $form->form();
 if(!empty($_POST) && !empty($form->success))
 {

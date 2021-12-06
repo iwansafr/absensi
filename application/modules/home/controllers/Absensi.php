@@ -1,4 +1,8 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+use PhpOffice\PhpSpreadsheet\Shared\OLE;
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Absensi extends CI_Controller
 {
@@ -119,5 +123,8 @@ class Absensi extends CI_Controller
 	public function get_terlambat($karyawan_id = 0)
 	{
 		output_json($this->absensi_model->get_total_absensi($karyawan_id,3));
+	}
+	public function card(){
+		$this->load->view('home/absensi/card');;
 	}
 }
