@@ -121,6 +121,8 @@
               <th>NO</th>
               <th>Nama</th>
               <th>Jabatan</th>
+              <th>status</th>
+              <th>Waktu</th>
             </thead>
             <tbody>
               <?php if(!empty($data)):?>
@@ -130,6 +132,8 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $value['nama'] ?></td>
                     <td><?php echo $value['jabatan'] ?></td>
+                    <td><?php echo $status[$value['status']] ?></td>
+                    <td><?php echo $value['waktu'] ?></td>
                   </tr>
                 <?php endforeach?>
               <?php endif?>

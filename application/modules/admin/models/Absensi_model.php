@@ -169,6 +169,58 @@ class Absensi_model extends CI_Model
 		}
 	}
 
+	public function flash_absen($data = array())
+	{
+		$data['instansi_id'] = !empty($data['instansi_id']) ? $data['instansi_id'] : 0;
+		$data['karyawan_id'] = !empty($data['karyawan_id']) ? $data['karyawan_id'] : 0;
+		$data['status'] = !empty($data['status']) ? $data['status'] : 0;
+		$data['user_id'] = !empty($data['user_id']) ? $data['user_id'] : 0;
+
+		$karyawan = $this->db->get_where('karyawan', ['id'=>$data['karyawan_id']])->row_array();
+		$exist = $this->db->get_where('absensi', ['instansi_id' => $data['instansi_id'], 'karyawan_id' => $data['karyawan_id'], 'CAST(waktu AS date)=' => date('Y-m-d'), 'status' => $data['status']])->row_array();
+		$id    = 0;
+		$user_id = $data['user_id'];
+		$jam_today = $this->absensi_model->get_jam_today($data['karyawan_id'], $user_id);
+		$status_key = @intval($this->absensi_model->get_status($data['karyawan_id'], $user_id)['status_key']);
+		if(!empty($status_key) && $data['status'] != 2)
+		{
+			if($status_key == 1 || $status_key == 3)
+			{
+				$data['jam_jadwal'] = $jam_today['berangkat'];
+			}else{
+				$data['jam_jadwal'] = $jam_today['pulang'];
+			}
+			$data['status'] = $status_key;
+		}
+
+		$waktu      = strtotime(date('H:i'));
+		$jam_jadwal = strtotime($data['jam_jadwal']);
+
+		$selisih = $waktu - $jam_jadwal;
+		$selisih = $selisih / 60;
+		$data['selisih_waktu'] = $selisih;
+
+		if (empty($exist)) {
+			pr($exist);die();
+			unset($data['user_id']);
+			unset($data['button']);
+			unset($data['absen']);
+			$time = strtotime(date("Ymd H:i:s"));
+			$time = date('Y-m-d H:i:s',$time);
+			$data['waktu'] = $time;
+			if($data['status'] < 5){
+				// $this->db->insert('absensi', $data);
+				// $id = $this->db->insert_id();
+				$output = ['msg' => '<b>'.$karyawan['nama'].'</b> Berhasil Melakukan Absensi', 'status' => 'success'];
+			}else{
+				$output = ['msg' => 'Sistem Absensi berada di luar jam operasional', 'status' => 'warning'];
+			}
+		} else {
+			$output = ['msg' => 'Sudah Melakukan absensi', 'status' => 'warning'];
+		}
+		return $output;
+	}
+
 	public function get_jam_today($karyawan_id = 0, $user_id = 0)
 	{
 		$output = [];

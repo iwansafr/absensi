@@ -125,7 +125,9 @@ class Absensi extends CI_Controller
 		output_json($this->absensi_model->get_total_absensi($karyawan_id,3));
 	}
 	public function card(){
-		$this->load->view('home/absensi/card');;
+		$data = $this->db->query('SELECT a.*,k.nama,j.title AS jabatan FROM absensi AS a INNER JOIN karyawan AS k ON(k.id=a.karyawan_id) INNER JOIN karyawan_group AS j ON(j.id=k.kary_group_id) WHERE CAST(waktu AS date) = ?', date('Y-m-d'))->result_array();
+		$status = $this->absensi_model->status();
+		$this->load->view('home/absensi/card', ['data'=>$data, 'status'=>$status]);;
 	}
 	public function card_action()
 	{
@@ -134,7 +136,8 @@ class Absensi extends CI_Controller
 		if(empty($karyawan)){
 			$msg = ['status' => 'danger','msg'=>'Karyawan tidak ditemukan'];
 		}else{
-			$msg = ['status' => 'success','msg'=>'<b>'.$karyawan['nama'].'</b> berhasil melakukan absensi'];
+			$msg = $this->absensi_model->flash_absen(['karyawan_id'=>$karyawan['id'],'user_id'=>$karyawan['user_id'],'instansi_id'=>$karyawan['instansi_id'],'status'=>0]);
+			// $msg = ['status' => 'success','msg'=>'<b>'.$karyawan['nama'].'</b> berhasil melakukan absensi'];
 		}
 
 		$this->session->set_flashdata('msg', $msg);
