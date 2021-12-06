@@ -100,10 +100,19 @@
           Absensi
         </div>
         <div class="panel-body">
+          <?php 
+          $msg = $this->session->flashdata('msg');
+          ?>
+          <?php if(!empty($msg)):?>
+            <div class="alert alert-<?php echo $msg['status'];?>">
+              <?php echo $msg['msg'] ?>
+            </div>
+            <?php $this->session->set_flashdata('msg',[]) ?>
+          <?php endif?>
           <form action="<?php echo base_url('home/absensi/card_action') ?>" method="post">
             <div class="form-group">
-              <label for="">Tap Card</label>
-              <input type="number" class="form-control" autofocus>
+              <label for="">Tap Card <small><b><?php echo date('d-m-Y H:i');?></b></small></label>
+              <input type="number" name="code" class="form-control" autofocus>
             </div>
           </form>
           <h5>Data Perangkat Desa yang sudah absen</h5>
@@ -154,5 +163,10 @@
 <script src="<?php echo base_url('templates/AdminLTE');?>/assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('templates/AdminLTE');?>/assets/dist/js/demo.js"></script>
+<script>
+  setTimeout(function(){
+    document.location.href = _URL+'home/absensi/card';
+  }, 5000);
+</script>
 </body>
 </html>

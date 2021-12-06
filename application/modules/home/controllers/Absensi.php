@@ -127,4 +127,17 @@ class Absensi extends CI_Controller
 	public function card(){
 		$this->load->view('home/absensi/card');;
 	}
+	public function card_action()
+	{
+		$code = $this->input->post('code');
+		$karyawan = $this->db->get_where('karyawan', ['card_code'=>$code])->row_array();
+		if(empty($karyawan)){
+			$msg = ['status' => 'danger','msg'=>'Karyawan tidak ditemukan'];
+		}else{
+			$msg = ['status' => 'success','msg'=>'<b>'.$karyawan['nama'].'</b> berhasil melakukan absensi'];
+		}
+
+		$this->session->set_flashdata('msg', $msg);
+		header('location: '.base_url('home/absensi/card'));
+	}
 }
