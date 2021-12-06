@@ -44,7 +44,9 @@ async function start() {
     // console.log(image);
     let newDataQuery = '';
     // "<p style='width: 100%; margin-top: 20px; text-align: center;'>List users in photo</p>";
-
+    if(result[0] == undefined){
+      $('#loading_image').html('wajah tidak ditemukan');
+    }
     result.forEach((results, index) => {
       const box = resize[index].detection.box;
       const addData = data_dt.find((itm) => {
@@ -111,7 +113,6 @@ async function loadLableImages() {
         .withFaceDescriptor();
 
       description.push(detection.descriptor);
-
       return new faceapi.LabeledFaceDescriptors(items.nama, description);
     })
   );
