@@ -112,7 +112,7 @@
           <form action="<?php echo base_url('home/absensi/card_action') ?>" method="post">
             <div class="form-group">
               <label for="">Tap Card <small><b><?php echo date('d-m-Y H:i');?></b></small></label>
-              <input type="number" name="code" class="form-control" autofocus>
+              <input type="number" name="code" class="form-control" style="border: none;color:white;" autofocus>
             </div>
           </form>
           <h5>Data Perangkat Desa yang sudah absen</h5>
