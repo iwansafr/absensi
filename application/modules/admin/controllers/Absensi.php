@@ -258,4 +258,31 @@ class Absensi extends CI_Controller
 		$data = $this->absensi_model->get_rekap_poin($month_year);
 		$this->load->view('index',['data'=>$data,'month_year'=>$month_year]);
 	}
+	public function get_code()
+	{
+		$user = $this->session->userdata(base_url('_logged_in'));
+		$output = ['status'=>false];
+		if(!empty($user))
+		{
+			if(strtolower($user['role']) == 'instansi'){
+				$this->db->limit(1);
+				$pengguna = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
+				// if(!empty($pengguna['instansi_id'])){
+				// 	$instansi = $this->db->get_where('instansi',['id'=>$pengguna['instansi_id']])->row_array();
+				// }
+				// pr($this->db->last_query());
+				// pr($user);
+				// pr($pengguna);
+				// pr($instansi);
+				$code = $pengguna['instansi_id'].date('YmdH');
+				$output = ['status'=>true, 'code'=>md5($code)];
+			}else if(strtolower($user['role'] == 'karyawan')){
+				$this->db->limit(1);
+				$pengguna = $this->db->get_where('karyawan',['user_id'=>$user['id']])->row_array();
+				$code = $pengguna['instansi_id'].date('YmdH');
+				$output = ['status'=>true, 'code'=>md5($code)];
+			}
+		}
+		output_json($output);
+	}
 }
