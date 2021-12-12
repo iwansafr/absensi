@@ -258,7 +258,7 @@ class Absensi extends CI_Controller
 		$data = $this->absensi_model->get_rekap_poin($month_year);
 		$this->load->view('index',['data'=>$data,'month_year'=>$month_year]);
 	}
-	public function get_code()
+	public function get_code($json = true)
 	{
 		$user = $this->session->userdata(base_url('_logged_in'));
 		$output = ['status'=>false];
@@ -283,6 +283,31 @@ class Absensi extends CI_Controller
 				$output = ['status'=>true, 'code'=>md5($code)];
 			}
 		}
-		output_json($output);
+		if($json){
+			output_json($output);
+		}else{
+			return $output;
+		}
+	}
+	public function qr()
+	{
+		$this->load->view('index');
+	}
+	public function show_qr()
+	{
+		$code = $this->get_code(false);
+		if($code['status']){
+			$this->load->view('admin/absensi/show_qr');
+		}else{
+			echo 'instansi tidak diketahui, silahkan login terlebih dahulu';
+		}
+	}
+	public function get_qr()
+	{
+		include_once APPPATH.'/third_party/phpqrcode/qrlib.php';
+		$code = $this->get_code(false);
+		if($code['status']){
+			QRcode::png($code['code'],false,QR_ECLEVEL_H,10,5);
+		}
 	}
 }
