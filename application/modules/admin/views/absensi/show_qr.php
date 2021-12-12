@@ -1,6 +1,7 @@
 <center>
   <img src="<?php echo base_url('admin/absensi/get_qr');?>" alt="" style="width: 750px;height: 750px;">
   <hr>
+  <p>Jika Kode tidak valid silahkan refresh halaman</p>
   <a href="<?php echo base_url('admin/absensi/show_qr');?>"><button>Refresh</button></a>
   <div id="jam"></div>
 </center>
