@@ -64,7 +64,7 @@
               let get_code = JSON.parse(this.responseText);
               let code = qrCodeMessage;
               if(code == get_code.code){
-                alert('absensi berhasil');
+                // alert('absensi berhasil');
                 document.getElementById('qr_form').submit();
               }else{
                 alert('code tidak valid');
