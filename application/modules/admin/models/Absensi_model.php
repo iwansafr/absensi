@@ -125,6 +125,7 @@ class Absensi_model extends CI_Model
 				if (empty($exist)) {
 					unset($data['button']);
 					unset($data['absen']);
+					unset($data['qr']);
 					$time = strtotime(date("Ymd H:i:s"));
 					$time = date('Y-m-d H:i:s',$time);
 					$data['waktu'] = $time;
