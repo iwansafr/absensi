@@ -41,12 +41,20 @@
     </head>
 
     <body>
-      <div id="reader" class="<?php echo ($data['status'] > 4 || !empty($output['alert'])) ? 'hidden' : ''; ?>"></div>
-      <?php if ($data['status'] > 4) : ?>
-        <div class="alert alert-warning">
-          Maaf Absensi Sedang Off
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          QRCODE
         </div>
-      <?php endif ?>
+        <div class="panel-body">
+          <div id="reader" class="<?php echo ($data['status'] > 4 || !empty($output['alert'])) ? 'hidden' : ''; ?>"></div>
+          <?php if ($data['status'] > 4) : ?>
+            <div class="alert alert-warning">
+              Maaf Absensi Sedang Off
+            </div>
+          <?php endif ?>
+        </div>
+        <div class="panel-heading"></div>
+      </div>
       <!-- <div class="col-md-12">
           <h4>SCAN RESULT</h4>
           <div id="result">Result Here</div>
