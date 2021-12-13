@@ -4,7 +4,6 @@
         color: #fff;
         padding: 20px;
       }
-
       .row {
         display: flex;
       }
@@ -41,7 +40,12 @@
     </head>
 
     <body>
-      <div id="reader"></div>
+      <div id="reader" class="<?php echo $data['status']>4 ? 'hidden' : '';?>"></div>
+      <?php if($data['status']>4):?>
+      <div class="alert alert-warning">
+        Maaf Absensi Sedang Off
+      </div>
+      <?php endif?>
       <!-- <div class="col-md-12">
           <h4>SCAN RESULT</h4>
           <div id="result">Result Here</div>
