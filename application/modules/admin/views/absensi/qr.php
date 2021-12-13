@@ -56,58 +56,60 @@
         var _karyawan_id = "<?php echo intval($data['id']); ?>";
       </script>
       <script type="text/javascript">
-        function onScanSuccess(qrCodeMessage) {
-          // document.getElementById("result").innerHTML =
-          // '<span class="result">' + qrCodeMessage + "</span>";
-          // alert('berhasil di scan ' + qrCodeMessage)
-          var xhr = new XMLHttpRequest();
-          var url = _URL + "admin/absensi/get_code";
-          xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              // document.getElementById("hasil").innerHTML = this.responseText;
-              let get_code = JSON.parse(this.responseText);
-              let code = qrCodeMessage;
-              if (code == get_code.code) {
-                // alert('absensi berhasil');
-                document.getElementById('qr_form').submit();
-              } else {
-                alert('code tidak valid');
-              }
+        // function onScanSuccess(qrCodeMessage) {
+        //   // document.getElementById("result").innerHTML =
+        //   // '<span class="result">' + qrCodeMessage + "</span>";
+        //   // alert('berhasil di scan ' + qrCodeMessage)
+        //   var xhr = new XMLHttpRequest();
+        //   var url = _URL + "admin/absensi/get_code";
+        //   xhr.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //       // document.getElementById("hasil").innerHTML = this.responseText;
+        //       let get_code = JSON.parse(this.responseText);
+        //       let code = qrCodeMessage;
+        //       if (code == get_code.code) {
+        //         // alert('absensi berhasil');
+        //         document.getElementById('qr_form').submit();
+        //       } else {
+        //         alert('code tidak valid');
+        //       }
 
+        //     }
+        //   };
+        //   xhr.open("GET", url, true);
+        //   xhr.send();
+        // }
+
+        // function onScanError(errorMessage) {
+        //   //handle scan error
+        // }
+        // var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+        //   fps: 10,
+        //   qrbox: 250,
+        //   facingMode: "environment"
+        // });
+        // html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+        window.onload = function() {
+          const html5QrCode = new Html5Qrcode("reader");
+          const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            /* handle success */
+            alert(decodedText);
+            alert(decodedResult);
+          };
+          const config = {
+            fps: 10,
+            qrbox: {
+              width: 250,
+              height: 250
             }
           };
-          xhr.open("GET", url, true);
-          xhr.send();
-        }
-
-        function onScanError(errorMessage) {
-          //handle scan error
-        }
-        var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-          fps: 10,
-          qrbox: 250,
-          facingMode: "environment"
-        });
-        html5QrcodeScanner.render(onScanSuccess, onScanError);
-        // html5QrcodeScanner.start({ facingMode: "environment" });
-        // const html5QrCode = new Html5Qrcode("reader");
-        // const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-        //   /* handle success */
-        //   console.log(decodedText);
-        //   console.log(decodedResult);
-        // };
-        // const config = {
-        //   fps: 10,
-        //   // qrbox: {
-        //   //   width: 250,
-        //   //   height: 250
-        //   // }
-        //   qrbox: 250
-        // };
-
-        // html5QrCode.start({
-        //   facingMode: "environment"
-        // }, config, qrCodeSuccessCallback);
+  
+          // If you want to prefer back camera
+          html5QrCode.start({
+            facingMode: {exact: "environment"}
+          }, config, qrCodeSuccessCallback);
+        };
       </script>
     </body>
 
