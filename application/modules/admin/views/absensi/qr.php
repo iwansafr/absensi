@@ -102,7 +102,12 @@
               let code = decodedText;
               if (code == get_code.code) {
                 // alert('absensi berhasil');
-                document.getElementById('qr_form').submit();
+                html5QrCode.stop().then((ignore) => {
+                  // QR Code scanning is stopped.
+                  document.getElementById('qr_form').submit();
+                }).catch((err) => {
+                  // Stop failed, handle it.
+                });
               } else {
                 alert('code tidak valid');
               }
