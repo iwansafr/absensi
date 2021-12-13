@@ -4,6 +4,7 @@
         color: #fff;
         padding: 20px;
       }
+
       .row {
         display: flex;
       }
@@ -40,12 +41,12 @@
     </head>
 
     <body>
-      <div id="reader" class="<?php echo $data['status']>4 ? 'hidden' : '';?>"></div>
-      <?php if($data['status']>4):?>
-      <div class="alert alert-warning">
-        Maaf Absensi Sedang Off
-      </div>
-      <?php endif?>
+      <div id="reader" class="<?php echo $data['status'] > 4 ? 'hidden' : ''; ?>"></div>
+      <?php if ($data['status'] > 4) : ?>
+        <div class="alert alert-warning">
+          Maaf Absensi Sedang Off
+        </div>
+      <?php endif ?>
       <!-- <div class="col-md-12">
           <h4>SCAN RESULT</h4>
           <div id="result">Result Here</div>
@@ -85,8 +86,28 @@
         var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
           fps: 10,
           qrbox: 250,
+          facingMode: "environment"
         });
         html5QrcodeScanner.render(onScanSuccess, onScanError);
+        // html5QrcodeScanner.start({ facingMode: "environment" });
+        // const html5QrCode = new Html5Qrcode("reader");
+        // const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+        //   /* handle success */
+        //   console.log(decodedText);
+        //   console.log(decodedResult);
+        // };
+        // const config = {
+        //   fps: 10,
+        //   // qrbox: {
+        //   //   width: 250,
+        //   //   height: 250
+        //   // }
+        //   qrbox: 250
+        // };
+
+        // html5QrCode.start({
+        //   facingMode: "environment"
+        // }, config, qrCodeSuccessCallback);
       </script>
     </body>
 
