@@ -55,82 +55,84 @@
         var _G_ID = "<?php echo intval($data['id']); ?>";
         var _karyawan_id = "<?php echo intval($data['id']); ?>";
       </script>
-      <script type="text/javascript">
-        // function onScanSuccess(qrCodeMessage) {
-        //   // document.getElementById("result").innerHTML =
-        //   // '<span class="result">' + qrCodeMessage + "</span>";
-        //   // alert('berhasil di scan ' + qrCodeMessage)
-        //   var xhr = new XMLHttpRequest();
-        //   var url = _URL + "admin/absensi/get_code";
-        //   xhr.onreadystatechange = function() {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //       // document.getElementById("hasil").innerHTML = this.responseText;
-        //       let get_code = JSON.parse(this.responseText);
-        //       let code = qrCodeMessage;
-        //       if (code == get_code.code) {
-        //         // alert('absensi berhasil');
-        //         document.getElementById('qr_form').submit();
-        //       } else {
-        //         alert('code tidak valid');
-        //       }
+      <?php if(empty($output['alert'])):?>
+        <script type="text/javascript">
+          // function onScanSuccess(qrCodeMessage) {
+          //   // document.getElementById("result").innerHTML =
+          //   // '<span class="result">' + qrCodeMessage + "</span>";
+          //   // alert('berhasil di scan ' + qrCodeMessage)
+          //   var xhr = new XMLHttpRequest();
+          //   var url = _URL + "admin/absensi/get_code";
+          //   xhr.onreadystatechange = function() {
+          //     if (this.readyState == 4 && this.status == 200) {
+          //       // document.getElementById("hasil").innerHTML = this.responseText;
+          //       let get_code = JSON.parse(this.responseText);
+          //       let code = qrCodeMessage;
+          //       if (code == get_code.code) {
+          //         // alert('absensi berhasil');
+          //         document.getElementById('qr_form').submit();
+          //       } else {
+          //         alert('code tidak valid');
+          //       }
 
-        //     }
-        //   };
-        //   xhr.open("GET", url, true);
-        //   xhr.send();
-        // }
+          //     }
+          //   };
+          //   xhr.open("GET", url, true);
+          //   xhr.send();
+          // }
 
-        // function onScanError(errorMessage) {
-        //   //handle scan error
-        // }
-        // var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-        //   fps: 10,
-        //   qrbox: 250,
-        //   facingMode: "environment"
-        // });
-        // html5QrcodeScanner.render(onScanSuccess, onScanError);
+          // function onScanError(errorMessage) {
+          //   //handle scan error
+          // }
+          // var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+          //   fps: 10,
+          //   qrbox: 250,
+          //   facingMode: "environment"
+          // });
+          // html5QrcodeScanner.render(onScanSuccess, onScanError);
 
-        const html5QrCode = new Html5Qrcode("reader");
-        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-          /* handle success */
-          var xhr = new XMLHttpRequest();
-          var url = _URL + "admin/absensi/get_code";
-          xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              // document.getElementById("hasil").innerHTML = this.responseText;
-              let get_code = JSON.parse(this.responseText);
-              let code = decodedText;
-              if (code == get_code.code) {
-                // alert('absensi berhasil');
-                html5QrCode.stop().then((ignore) => {
-                  // QR Code scanning is stopped.
-                  document.getElementById('qr_form').submit();
-                }).catch((err) => {
-                  // Stop failed, handle it.
-                });
-              } else {
-                alert('code tidak valid');
+          const html5QrCode = new Html5Qrcode("reader");
+          const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            /* handle success */
+            var xhr = new XMLHttpRequest();
+            var url = _URL + "admin/absensi/get_code";
+            xhr.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                // document.getElementById("hasil").innerHTML = this.responseText;
+                let get_code = JSON.parse(this.responseText);
+                let code = decodedText;
+                if (code == get_code.code) {
+                  // alert('absensi berhasil');
+                  html5QrCode.stop().then((ignore) => {
+                    // QR Code scanning is stopped.
+                    document.getElementById('qr_form').submit();
+                  }).catch((err) => {
+                    // Stop failed, handle it.
+                  });
+                } else {
+                  alert('code tidak valid');
+                }
               }
+            };
+            xhr.open("GET", url, true);
+            xhr.send();
+          }
+          const config = {
+            fps: 10,
+            qrbox: {
+              width: 250,
+              height: 250
             }
           };
-          xhr.open("GET", url, true);
-          xhr.send();
-        }
-        const config = {
-          fps: 10,
-          qrbox: {
-            width: 250,
-            height: 250
-          }
-        };
 
-        // If you want to prefer back camera
-        html5QrCode.start({
-          facingMode: {
-            exact: "environment"
-          }
-        }, config, qrCodeSuccessCallback);
-      </script>
+          // If you want to prefer back camera
+          html5QrCode.start({
+            facingMode: {
+              exact: "environment"
+            }
+          }, config, qrCodeSuccessCallback);
+        </script>
+      <?php endif?>
     </body>
 
     </html>
