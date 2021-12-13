@@ -17,7 +17,7 @@
       <?php msg($output['msg'], $output['alert']) ?>
     <?php endif ?>
     <hr>
-    <form action="" method="post">
+    <form action="" method="post" id="qr_form">
       <div id="instansi" class="d-none">
         <?php foreach ($data['instansi'] as $key => $value) : ?>
           <div class="instansi" field="<?php echo $key ?>" data-<?php echo $key; ?>="<?php echo $value ?>"></div>
@@ -26,6 +26,7 @@
       <div id="location"></div>
       <div id="profile">
         <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
+        <input type="hidden" name="qr" value="1">
         <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
         <input type="hidden" name="status" value="<?php echo $data['status'] ?>">
         <?php if (!empty($data['jam_jadwal'])) : ?>
@@ -54,6 +55,7 @@
           // document.getElementById("result").innerHTML =
             // '<span class="result">' + qrCodeMessage + "</span>";
             alert('berhasil di scan ' + qrCodeMessage)
+            document.getElementById('qr_form').submit();
         }
 
         function onScanError(errorMessage) {
