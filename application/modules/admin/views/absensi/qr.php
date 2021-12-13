@@ -99,7 +99,7 @@
             if (this.readyState == 4 && this.status == 200) {
               // document.getElementById("hasil").innerHTML = this.responseText;
               let get_code = JSON.parse(this.responseText);
-              let code = qrCodeMessage;
+              let code = decodedText;
               if (code == get_code.code) {
                 // alert('absensi berhasil');
                 document.getElementById('qr_form').submit();
