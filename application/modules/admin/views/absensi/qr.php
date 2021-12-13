@@ -91,25 +91,38 @@
         // html5QrcodeScanner.render(onScanSuccess, onScanError);
 
         window.onload = function() {
-          const html5QrCode = new Html5Qrcode("reader");
-          const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-            /* handle success */
-            alert(decodedText);
-            alert(decodedResult);
-          };
-          const config = {
-            fps: 10,
-            qrbox: {
-              width: 250,
-              height: 250
-            }
-          };
-  
-          // If you want to prefer back camera
-          html5QrCode.start({
-            facingMode: {exact: "environment"}
-          }, config, qrCodeSuccessCallback);
-        };
+            const html5QrCode = new Html5Qrcode("reader");
+            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+                /* handle success */
+                var xhr = new XMLHttpRequest();
+                var url = _URL + "admin/absensi/get_code";
+                xhr.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    // document.getElementById("hasil").innerHTML = this.responseText;
+                    let get_code = JSON.parse(this.responseText);
+                    let code = qrCodeMessage;
+                    if (code == get_code.code) {
+                      // alert('absensi berhasil');
+                      document.getElementById('qr_form').submit();
+                    } else {
+                      alert('code tidak valid');
+                    }
+                  };
+                  const config = {
+                    fps: 10,
+                    qrbox: {
+                      width: 250,
+                      height: 250
+                    }
+                  };
+
+                  // If you want to prefer back camera
+                  html5QrCode.start({
+                    facingMode: {
+                      exact: "environment"
+                    }
+                  }, config, qrCodeSuccessCallback);
+                };
       </script>
     </body>
 
