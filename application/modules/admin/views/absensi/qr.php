@@ -13,10 +13,6 @@
     <h5 id="jam" class="pull-right" style="font-weight: bold;">
     </h5>
     <hr>
-    <?php if (!empty($output['alert'])) : ?>
-      <?php msg($output['msg'], $output['alert']) ?>
-    <?php endif ?>
-    <hr>
     <form action="" method="post" id="qr_form">
       <div id="instansi" class="d-none">
         <?php foreach ($data['instansi'] as $key => $value) : ?>
@@ -46,6 +42,9 @@
           QRCODE
         </div>
         <div class="panel-body">
+          <?php if (!empty($output['alert'])) : ?>
+            <?php msg($output['msg'], $output['alert']) ?>
+          <?php endif ?>
           <div id="reader" class="<?php echo ($data['status'] > 4 || !empty($output['alert'])) ? 'hidden' : ''; ?>"></div>
           <?php if ($data['status'] > 4) : ?>
             <div class="alert alert-warning">
@@ -63,7 +62,7 @@
         var _G_ID = "<?php echo intval($data['id']); ?>";
         var _karyawan_id = "<?php echo intval($data['id']); ?>";
       </script>
-      <?php if(empty($output['alert'])):?>
+      <?php if (empty($output['alert'])) : ?>
         <script type="text/javascript">
           // function onScanSuccess(qrCodeMessage) {
           //   // document.getElementById("result").innerHTML =
@@ -140,7 +139,7 @@
             }
           }, config, qrCodeSuccessCallback);
         </script>
-      <?php endif?>
+      <?php endif ?>
     </body>
 
     </html>
