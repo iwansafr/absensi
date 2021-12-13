@@ -4,32 +4,67 @@
         color: #fff;
         padding: 20px;
       }
+
       .row {
         display: flex;
       }
     </style>
-    <script src="<?php echo base_url('assets/absensi/qrcode.min.js');?>"></script>
-  </head>
-  <body>
-    <div id="reader"></div>
-        <!-- <div class="col-md-12">
+    <script src="<?php echo base_url('assets/absensi/qrcode.min.js'); ?>"></script>
+    <h5 id="jam" class="pull-right" style="font-weight: bold;">
+    </h5>
+    <hr>
+    <?php if (!empty($output['alert'])) : ?>
+      <?php msg($output['msg'], $output['alert']) ?>
+    <?php endif ?>
+    <hr>
+    <form action="" method="post">
+      <div id="instansi" class="d-none">
+        <?php foreach ($data['instansi'] as $key => $value) : ?>
+          <div class="instansi" field="<?php echo $key ?>" data-<?php echo $key; ?>="<?php echo $value ?>"></div>
+        <?php endforeach ?>
+      </div>
+      <div id="location"></div>
+      <div id="profile">
+        <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
+        <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
+        <input type="hidden" name="status" value="<?php echo $data['status'] ?>">
+        <?php if (!empty($data['jam_jadwal'])) : ?>
+          <input type="hidden" name="jam_jadwal" value="<?php echo $data['jam_jadwal'] ?>">
+        <?php endif ?>
+        <?php if (!empty($_SERVER['HTTP_USER_AGENT'])) : ?>
+          <input type="hidden" name="device" value="<?php echo $_SERVER['HTTP_USER_AGENT'] ?>">
+        <?php endif ?>
+      </div>
+    </form>
+
+    </head>
+
+    <body>
+      <div id="reader"></div>
+      <!-- <div class="col-md-12">
           <h4>SCAN RESULT</h4>
           <div id="result">Result Here</div>
         </div> -->
-    <script type="text/javascript">
-      function onScanSuccess(qrCodeMessage) {
-        document.getElementById("result").innerHTML =
-          // '<span class="result">' + qrCodeMessage + "</span>";
-          alert('berhasil di scan '+qrCodeMessage)
-      }
-      function onScanError(errorMessage) {
-        //handle scan error
-      }
-      var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-        fps: 10,
-        qrbox: 250,
-      });
-      html5QrcodeScanner.render(onScanSuccess, onScanError);
-    </script>
-  </body>
-</html>
+      <script>
+        var _G_ID = "<?php echo intval($data['id']); ?>";
+        var _karyawan_id = "<?php echo intval($data['id']); ?>";
+      </script>
+      <script type="text/javascript">
+        function onScanSuccess(qrCodeMessage) {
+          // document.getElementById("result").innerHTML =
+            // '<span class="result">' + qrCodeMessage + "</span>";
+            alert('berhasil di scan ' + qrCodeMessage)
+        }
+
+        function onScanError(errorMessage) {
+          //handle scan error
+        }
+        var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+          fps: 10,
+          qrbox: 250,
+        });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+      </script>
+    </body>
+
+    </html>

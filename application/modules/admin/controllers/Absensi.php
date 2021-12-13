@@ -264,7 +264,7 @@ class Absensi extends CI_Controller
 		$output = ['status'=>false];
 		if(!empty($user))
 		{
-			if(strtolower($user['role']) == 'instansi'){
+			if(strtolower($user['role']) == 'instansi' || strtolower($user['role']) == 'sekolah'){
 				$this->db->limit(1);
 				$pengguna = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
 				// if(!empty($pengguna['instansi_id'])){
@@ -291,7 +291,37 @@ class Absensi extends CI_Controller
 	}
 	public function qr()
 	{
-		$this->load->view('index');
+		$this->load->model('Home/home_model');
+		$this->load->model('Home/karyawan_model', 'kary_model');
+		// $this->home_model->home();
+		$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
+		$g_id = @intval($this->db->query('SELECT id FROM karyawan WHERE user_id = ?', [$user_id])->row_array()['id']);
+		$data = $this->kary_model->get_profile($g_id);
+
+		if (!empty($data)) {
+			$jam_today = $this->absensi_model->get_jam_today($g_id, $user_id);
+			$status_key = @intval($this->absensi_model->get_status($g_id, $user_id)['status_key']);
+			$instansi = $this->absensi_model->get_instansi($data['instansi_id']);
+			$data['instansi'] = $instansi;
+			if (!empty($status_key)) {
+				if ($status_key == 1 || $status_key == 3) {
+					$data['jam_jadwal'] = $jam_today['berangkat'];
+				} else {
+					$data['jam_jadwal'] = $jam_today['pulang'];
+				}
+				$data['status'] = $status_key;
+			}
+			$data['jadwal'] = $jam_today['jadwal'];
+		}
+		$this->esg->add_js([
+			// 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
+			base_url('assets/absensi/script.js?v=' . time()),
+			// base_url('assets/absensi/js/face-api.min.js?v=' . time()),
+			// base_url('assets/absensi/js/script-in.js?v=' . time()),
+			// 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
+		]);
+		$output = $this->absensi_model->save();
+		$this->load->view('index', ['data' => $data, 'output' => $output]);
 	}
 	public function show_qr()
 	{
