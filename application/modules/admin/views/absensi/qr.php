@@ -54,7 +54,8 @@
         function onScanSuccess(qrCodeMessage) {
           // document.getElementById("result").innerHTML =
             // '<span class="result">' + qrCodeMessage + "</span>";
-            alert('berhasil di scan ' + qrCodeMessage)
+            // alert('berhasil di scan ' + qrCodeMessage)
+            alert('absensi berhasil');
             document.getElementById('qr_form').submit();
         }
 
