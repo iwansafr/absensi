@@ -264,7 +264,7 @@ class Absensi extends CI_Controller
 		$output = ['status'=>false];
 		if(!empty($user))
 		{
-			if(strtolower($user['role']) == 'instansi' || strtolower($user['role']) == 'sekolah'){
+			if(strtolower($user['role']) == 'instansi' || strtolower($user['role']) == 'sekolah' || strtolower($user['role']) == 'tu' ){
 				$this->db->limit(1);
 				$pengguna = $this->db->get_where('user_instansi',['user_id'=>$user['id']])->row_array();
 			}else if(strtolower($user['role'] == 'karyawan')){

@@ -13,6 +13,7 @@ class Karyawan_model extends CI_Model{
 			$kary_role_id = $kary_role_exist;
 		}
 		if(!empty($data['user_id'])){
+			$password = $data['password'];
 			if($this->db->update('user',['username'=>$data['nip'],'email'=>$data['email'],'password'=>encrypt($password)],['id'=>$data['user_id']])){
 				return true;
 			}else{
