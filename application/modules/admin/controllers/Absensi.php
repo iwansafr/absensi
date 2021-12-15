@@ -332,4 +332,11 @@ class Absensi extends CI_Controller
 			QRcode::png($code['code'],false,QR_ECLEVEL_H,10,5);
 		}
 	}
+	public function generate_qr($code ='')
+	{
+		include_once APPPATH . '/third_party/phpqrcode/qrlib.php';
+		if ($code) {
+			QRcode::png($code, false, QR_ECLEVEL_H, 10, 5);
+		}
+	}
 }
