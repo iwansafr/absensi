@@ -117,7 +117,7 @@ $font = !empty($config_theme['font_color']) ? $config_theme['font_color'] : 'bla
                   <a href="<?php echo base_url('admin/profile'); ?>" class="btn btn-default btn-flat">Profile</a>
                 <?php endif ?>
               </div>
-              <div class="pull-right">
+              <div class="pull-right hidden-xs hidden-sm">
                 <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
               </div>
             </li>
