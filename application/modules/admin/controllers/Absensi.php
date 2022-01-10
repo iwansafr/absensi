@@ -324,7 +324,7 @@ class Absensi extends CI_Controller
 				$data['status'] = $status_key;
 			}
 			$data['jadwal'] = $jam_today['jadwal'];
-			$exist = $this->db->get_where('absensi',['user_id'=>$user_id,'status'=>$data['status']])->row_array();
+			$exist = $this->db->get_where('absensi',['karyawan_id'=>$g_id,'status'=>$data['status']])->row_array();
 			$allowed = true;
 			if(!empty($exist['id'])){
 				if($exist['status'] == 1 || $exist['status'] == 3){
