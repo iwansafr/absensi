@@ -137,30 +137,29 @@ class Absensi extends CI_Controller
 			$karyawan = $this->db->query('SELECT * FROM karyawan WHERE id = ?', $k_id)->row_array();
 			$instansi = $this->absensi_model->get_instansi(@$karyawan['instansi_id']);
 			$data = $this->absensi_model->rekap($k_id,$year,$month,@$instansi['id']);
+			$hari = $this->absensi_model->hari();
 			$jadwal = [];
+			$masuk = [];
 			if(!empty($karyawan['user_id'])){
 				$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_user_'.$karyawan['user_id']])->row_array();
 				if(empty($jadwal)){
 					$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_instansi_'.$karyawan['instansi_id']])->row_array();
 				}
-				// pr($this->db->last_query());
 				if(!empty($jadwal)){
 					$jadwal = json_decode($jadwal['value'],1);
-					$libur = [];
 					foreach($jadwal AS $key => $value){
 						if(preg_match('~mulai_berangkat_~', $key)){
-							// pr($key);
-						}else{
-							// pr($value);
+							if(!empty($value)){
+								$masuk[] = $hari[str_replace('mulai_berangkat_','',$key)];
+							}
 						}
 					}
 				}
-				// die();
 			}
 			if(empty($_GET['excel'])){
-				$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+				$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi,'masuk'=>$masuk]);
 			}else{
-				$this->load->view('admin/absensi/rekap',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi]);
+				$this->load->view('admin/absensi/rekap',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi,'masuk'=>$masuk]);
 			}
 		}
 	}
