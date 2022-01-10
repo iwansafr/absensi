@@ -112,15 +112,14 @@ if(!empty($data))
 										<td class="bg-danger text-center" colspan="6">Absen <?php echo substr($value[5]['waktu'],11,19); ?></td>
 									<?php endif ?>
 								<?php else: ?>
-									
 										<?php 
 										if(in_array($value['hari'], $masuk)){
+											$total[5]++;
 											echo '<td class="bg-danger text-center" colspan="6">Absen</td>';
 										}else{
 											echo '<td class="bg-warning text-center" colspan="6">Libur</td>';
 										}
 										?>
-									</td>
 								<?php endif ?>
 							<?php endif ?>
 						</tr>

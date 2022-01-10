@@ -32,6 +32,25 @@
 			if (!empty($karyawan)) {
 				foreach ($karyawan as $kkey => $kvalue) 
 				{
+					$hari = $this->absensi_model->hari();
+					$jadwal = [];
+					$masuk = [];
+					if(!empty($kvalue['user_id'])){
+						$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_user_'.$kvalue['user_id']])->row_array();
+						if(empty($jadwal)){
+							$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_instansi_'.$kvalue['instansi_id']])->row_array();
+						}
+						if(!empty($jadwal)){
+							$jadwal = json_decode($jadwal['value'],1);
+							foreach($jadwal AS $key => $value){
+								if(preg_match('~mulai_berangkat_~', $key)){
+									if(!empty($value)){
+										$masuk[] = $hari[str_replace('mulai_berangkat_','',$key)];
+									}
+								}
+							}
+						}
+					}
 					?>
 					<h3 class="text-center text-bold">LAPORAN RINCIAN HARIAN KEHADIRAN (FINGER PRINT)</h3>
 					<div class="row">
@@ -126,7 +145,13 @@
 												<td class="bg-danger text-center" colspan="6">Absen <?php echo substr($value[5][$kvalue['id']]['waktu'],11,19); ?></td>
 											<?php endif ?>
 										<?php else: ?>
-											<td class="bg-warning text-center" colspan="6">Libur</td>
+											<?php 
+											if(in_array($value['hari'], $masuk)){
+												echo '<td class="bg-danger text-center" colspan="6">Absen</td>';
+											}else{
+												echo '<td class="bg-warning text-center" colspan="6">Libur</td>';
+											}
+											?>
 										<?php endif ?>
 									</tr>
 									<?php
