@@ -324,6 +324,15 @@ class Absensi extends CI_Controller
 				$data['status'] = $status_key;
 			}
 			$data['jadwal'] = $jam_today['jadwal'];
+			$exist = $this->db->get_where('absensi',['user_id'=>$user_id,'status'=>$data['status']])->row_array();
+			$allowed = true;
+			if(!empty($exist['id'])){
+				if($exist['status'] == 1 || $exist['status'] == 3){
+					$allowed = false;
+				}else if($exist == 4){
+					$allowed = false;
+				}
+			}
 		}
 		$this->esg->add_js([
 			// 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
@@ -333,7 +342,7 @@ class Absensi extends CI_Controller
 			// 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
 		]);
 		$output = $this->absensi_model->save();
-		$this->load->view('index', ['data' => $data, 'output' => $output]);
+		$this->load->view('index', ['data' => $data, 'output' => $output,'allowed'=>$allowed]);
 	}
 	public function show_qr()
 	{
