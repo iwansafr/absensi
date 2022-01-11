@@ -4,7 +4,6 @@ $is_instansi = is_instansi();
 if(!empty($is_root) || !empty($is_instansi)){
 	msg('Data yang sudah divalidasi akan berpindah ke data absensi tervalidasi','info');
 	$form = new zea();
-	
 	$form->init('roll');
 	$form->setTable('absensi');
 	
@@ -14,7 +13,6 @@ if(!empty($is_root) || !empty($is_instansi)){
 	$form->setNumbering();
 	
 	$sql = $is_instansi ? ' AND absensi.instansi_id = '.$this->pengguna_model->get_instansi_id() : '';
-
 	$form->setWhere(' valid = 0 '.$sql);
 	$form->join('karyawan','ON(karyawan.id=karyawan_id)','karyawan.nama,absensi.id,absensi.karyawan_id,absensi.instansi_id,absensi.foto,absensi.status,absensi.latitude,absensi.longitude,absensi.waktu,absensi.valid');
 	$form->order_by('waktu','DESC');
