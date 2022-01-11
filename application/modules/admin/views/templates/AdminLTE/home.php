@@ -62,33 +62,14 @@ $date = date('Y-m-d');
 						              </div>
 						              <div class="modal-body">
 						              	<ol>
-															<?php $i = 1; ?>
 							                <?php foreach ($value['karyawan'] as $kkey => $kvalue): ?>
 							                	<?php if (!empty($kvalue['nama'])): ?>
-																	<!-- <li> -->
-																		<div class="row">
-																			<?php $text = ($kvalue['selisih']>0) ? 'lebih '.$kvalue['selisih'].' menit' : 'kurang '.$kvalue['selisih'].' menit'; ?>
-																			<?php
-																			//  $text = $kvalue['nama'].' - '.substr($kvalue['jam'],11,18).' '.$text 
-																			?>
-																			<div class="col-xs-1">
-																				<?php echo $i++; ?>
-																			</div>
-																			<div class="col-xs-4">
-																				<?php echo $kvalue['nama']; ?>
-																			</div>
-																			<div class="col-xs-3">
-																				<?php echo substr($kvalue['jam'],11,18) ?>
-																			</div>
-																			<div class="col-xs-4">
-																				<?php echo $text ?>
-																			</div>
-																		</div>
-																	<!-- </li> -->
+							                		<?php $text = ($kvalue['selisih']>0) ? 'lebih '.$kvalue['selisih'].' menit' : 'kurang '.$kvalue['selisih'].' menit'; ?>
+							                		<?php $text = $kvalue['nama'].' - '.substr($kvalue['jam'],11,18).' '.$text ?>
 							                	<?php else: ?>
 							                		<?php $text = $kvalue ?>
-																	<li><?php echo $text ?></li>
 							                	<?php endif ?>
+																<li><?php echo $text ?></li>
 							                <?php endforeach ?>
 						              	</ol>
 						              </div>
