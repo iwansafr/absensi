@@ -32,6 +32,11 @@ class Absensi extends CI_Controller
 		$this->load->view('index',$data);
 	}
 
+	public function edit()
+	{
+		$this->load->view('index');
+	}
+
 	public function config_jam($kary_id = 0)
 	{
 		$instansi_id = $this->pengguna_model->get_instansi_id();
