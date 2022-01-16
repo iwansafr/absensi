@@ -170,6 +170,7 @@ class Absensi extends CI_Controller
 					}
 				}
 			}
+			$this->esg->add_js(base_url('templates/AdminLTE/bower_components/chart.js/Chart.js'));
 			if(empty($_GET['excel'])){
 				$this->load->view('index',['data'=>$data,'karyawan'=>$karyawan,'month'=>$month,'year'=>$year,'instansi'=>$instansi,'masuk'=>$masuk]);
 			}else{

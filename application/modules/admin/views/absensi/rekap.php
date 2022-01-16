@@ -131,36 +131,112 @@ if(!empty($data))
 					<div class="col-md-3">
 						<table class="table table-bordered">
 							<tbody>
-								<tr>
+								<tr style="background: #00bcd4;color: white;">
 									<td>Tepat Waktu</td>
 									<td>: <?php echo $total[1] ?></td>
 								</tr>
-								<tr>
+								<tr style="background: #ffc107; color:white;">
 									<td>Izin</td>
 									<td>: <?php echo $total[2] ?></td>
 								</tr>
-								<tr>
+								<tr style="background: #ff5722;color:white;">
 									<td>Terlambat</td>
 									<td>: <?php echo $total[3] ?></td>
 								</tr>
-								<tr>
+								<tr style="background: #3f51b5;color:white;">
 									<td>Pulang tepat waktu</td>
 									<td>: <?php echo $total[4] ?></td>
 								</tr>
-								<tr>
+								<tr style="background: #f44336;color:white;">
 									<td>Absen</td>
 									<td>: <?php echo $total[5] ?></td>
 								</tr>
-								<tr>
+								<tr style="background: #795548;color:white;">
 									<td>Pulang Duluan</td>
 									<td>: <?php echo $total[6] ?></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
+					<div class="col-md-6">
+						<div class="box box-danger">
+							<div class="box-header with-border">
+								<h3 class="box-title">Rekap</h3>
+
+								<div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+							<div class="box-body">
+								<canvas id="rekap" style="height:250px"></canvas>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<?php
+	$legend_template = '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>';
+	$script = "
+	$(function(){
+	    var pieChartCanvas = $('#rekap').get(0).getContext('2d')
+	    var pieChart       = new Chart(pieChartCanvas)
+	    var PieData        = [
+	      {
+	        value    : {$total['1']},
+	        color    : '#00bcd4',
+	        highlight: '#00bcd41',
+	        label    : 'Tepat Waktu'
+	      },
+				{
+	        value    : {$total['2']},
+	        color    : '#ffc107',
+	        highlight: '#ffc1071',
+	        label    : 'Izin'
+	      },
+				{
+	        value    : {$total['3']},
+	        color    : '#ff5722',
+	        highlight: '#ff57221',
+	        label    : 'Terlambat'
+	      },
+				{
+	        value    : {$total['4']},
+	        color    : '#3f51b5',
+	        highlight: '#3f51b51',
+	        label    : 'Pulang Tepat Waktu'
+	      },
+				{
+	        value    : {$total['5']},
+	        color    : '#f44336',
+	        highlight: '#f443361',
+	        label    : 'Absen'
+	      },
+				{
+	        value    : {$total['6']},
+	        color    : '#795548',
+	        highlight: '#7955481',
+	        label    : 'Pulang Duluan'
+	      }
+	    ]
+	    var pieOptions     = {
+	      segmentShowStroke    : true,
+	      segmentStrokeColor   : '#fff',
+	      segmentStrokeWidth   : 2,
+	      percentageInnerCutout: 50,
+	      animationSteps       : 100,
+	      animationEasing      : 'easeOutBounce',
+	      animateRotate        : true,
+	      animateScale         : false,
+	      responsive           : true,
+	      maintainAspectRatio  : true,
+	      legendTemplate       : '{$legend_template}'
+	    }
+	    pieChart.Doughnut(PieData, pieOptions);
+	})";
+	$this->esg->add_script($script);
 }
