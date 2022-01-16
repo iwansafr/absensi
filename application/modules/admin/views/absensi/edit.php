@@ -1,8 +1,4 @@
 <?php
-if(!empty($_POST))
-{
-  
-}
 $id = $this->input->get('id');
 $instansi_id = $this->pengguna_model->get_instansi_id(
   $this->session->userdata(base_url('_logged_in'))['id']
@@ -44,13 +40,18 @@ $form->setValue('selisih_waktu',0);
 
 $form->setRequired('All');
 
+$data = $form->getData();
+if(!empty($data))
+{
+  echo sprintf('<label>Waktu Absensi sebelumnya : %s</label>',$data['waktu']);
+}
 $form->form();
 if(!empty($_POST))
 {
   $last_id    = !empty($id) ? $id : $form->get_insert_id();
-  $waktu      = date('H:i', strtotime($_POST['waktu']));
+  $waktu      = strtotime(date('H:i', strtotime($_POST['waktu'])));
   $jam_jadwal = strtotime($_POST['jam_jadwal']);
   $selisih    = $waktu - $jam_jadwal;
   $selisih    = $selisih / 60;
-  $form->set_data('absensi',$last_id, ['selisih_wakut'=>$selisih]);
+  $form->set_data('absensi',$last_id, ['selisih_waktu'=>$selisih]);
 }
