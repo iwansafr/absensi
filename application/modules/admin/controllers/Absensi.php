@@ -19,6 +19,10 @@ class Absensi extends CI_Controller
 	{
 		$this->load->view('index');
 	}
+	public function clear_data_list()
+	{
+		$this->load->view('admin/absensi/data_list');
+	}
 
 	public function index()
 	{
