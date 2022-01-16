@@ -15,6 +15,11 @@ class Absensi extends CI_Controller
 		$this->esg_model->init();
 	}
 
+	public function data_list()
+	{
+		$this->load->view('index');
+	}
+
 	public function index()
 	{
 		$user = $this->session->userdata(base_url('_logged_in'));
