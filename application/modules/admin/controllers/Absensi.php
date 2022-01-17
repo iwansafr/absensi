@@ -382,4 +382,9 @@ class Absensi extends CI_Controller
 			QRcode::png($code, false, QR_ECLEVEL_H, 10, 5);
 		}
 	}
+
+	public function form_izin()
+	{
+		$this->load->view('index');
+	}
 }
