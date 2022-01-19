@@ -75,6 +75,11 @@
       }
       #map { position: absolute; top: 0; bottom: 0; width: 100%; }
     </style>
+    <div class="row">
+      <?php if (!empty($output['alert'])): ?>
+        <?php msg($output['msg'],$output['alert']) ?>
+      <?php endif ?>
+    </div>
   <form action="" method="post" enctype="multipart/form-data">
     <div class="panel panel-default">
       <div class="panel panel-heading">
