@@ -385,6 +385,10 @@ class Absensi extends CI_Controller
 
 	public function form_izin()
 	{
-		$this->load->view('index');
+		$this->load->model('Home/karyawan_model','kary_model');
+		$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
+		$g_id = @intval($this->db->query('SELECT id FROM karyawan WHERE user_id = ?',[$user_id])->row_array()['id']);
+		$data = $this->kary_model->get_profile($g_id);
+		$this->load->view('index',['data'=>$data,'g_id'=>$g_id]);
 	}
 }
