@@ -388,8 +388,9 @@ class Absensi extends CI_Controller
 		$this->load->model('Home/karyawan_model','kary_model');
 		$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
 		$g_id = @intval($this->db->query('SELECT id FROM karyawan WHERE user_id = ?',[$user_id])->row_array()['id']);
-		$data = $this->kary_model->get_profile($g_id);
 		$output = $this->absensi_model->save();
-		$this->load->view('index',['data'=>$data,'g_id'=>$g_id,'output'=>$output]);
+		$has_izin = $this->db->query('SELECT id,foto FROM absensi WHERE karyawan_id = ? AND status = 2 AND CAST(waktu AS date) = ?',[$g_id,date('Y-m-d')])->row_array();
+		$data = $this->kary_model->get_profile($g_id);
+		$this->load->view('index',['data'=>$data,'g_id'=>$g_id,'output'=>$output,'has_izin'=>$has_izin]);
 	}
 }
