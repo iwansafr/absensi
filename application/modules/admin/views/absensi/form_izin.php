@@ -126,6 +126,22 @@
         <div class="panel panel-footer">
           <button class="btn btn-sm btn-info">Kirim</button>
         </div>
+        <script>
+          function readURL(input, a) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                $(a).attr('src', e.target.result);
+              };
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+          const izinUpload = document.querySelector('#izinUpload')
+          const image_place = document.querySelector('#image_place')
+          izinUpload.addEventListener('change',function(){
+            readURL(izinUpload, image_place)
+          })
+        </script>
       <?php endif?>
     </div>
   </form>
