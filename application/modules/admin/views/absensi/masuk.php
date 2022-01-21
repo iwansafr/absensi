@@ -94,6 +94,9 @@
           <h4 class="modal-title">Jadwal Hari Ini <?php echo date('d-m-Y') ?></h4>
         </div>
         <div class="modal-body">
+          <div class="alert alert-info">
+            Jika Jadwal Kosong silahkan kontak admin untuk pengaturan jadwal, jika jadwal sudah benar tp status masih off silahkan pilih menu delete cache
+          </div>
           <table class="table table-hovered">
             <tr>
               <td>Mulai Berangkat</td>
