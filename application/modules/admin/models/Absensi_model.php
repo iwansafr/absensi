@@ -281,14 +281,12 @@ class Absensi_model extends CI_Model
 					$data_jam    = $this->db->get_where('jam_absen', ['name' => 'config_jam'])->row_array();
 				}
 			}
-
 			if (!empty($data_jam['value'])) {
 				$jam = json_decode($data_jam['value'], 1);
 				$b1 = $jam['mulai_berangkat_' . $hari_now];
 				$b2 = $jam['akhir_berangkat_' . $hari_now];
 				$p1 = $jam['mulai_pulang_' . $hari_now];
 				$p2 = $jam['akhir_pulang_' . $hari_now];
-
 				$output['jam'] = [$jam_now, $p1, $p2, $b1, $b2];
 				if (($jam_now >= $b1) && ($jam_now <= $b2)) {
 					$output['status'] = 'Berangkat';

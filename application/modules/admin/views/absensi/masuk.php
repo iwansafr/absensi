@@ -81,6 +81,46 @@
       window.location = _URL+'admin/karyawan/update_photo';
     </script>
   <?php endif ?>
+  <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-default">
+    <i class="fa fa-clock"></i> Cek Jadwal
+  </button>
+  <a href="<?php echo base_url('admin/config/delete_cache') ?>" class="btn btn-sm btn-warning"><i class="fa fa-trash"></i> Delete Cache</a>
+  <div class="modal fade" id="modal-default" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Jadwal Hari Ini</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hovered">
+            <tr>
+              <td>Mulai Berangkat</td>
+              <td><?php echo @$data['jadwal']['mulai_berangkat'] ?></td>
+            </tr>
+            <tr>
+              <td>Akhir Berangkat</td>
+              <td><?php echo @$data['jadwal']['akhir_berangkat'] ?></td>
+            </tr>
+            <tr>
+              <td>Mulai Pulang</td>
+              <td><?php echo @$data['jadwal']['mulai_pulang'] ?></td>
+            </tr>
+            <tr>
+              <td>Akhir Pulang</td>
+              <td><?php echo @$data['jadwal']['akhir_pulang'] ?></td>
+            </tr>              
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
   <div class="box box-widget widget-user hidden-lg">
     <div class="widget-user-header">
       <h5 class="widget-user-username" id="nama" style="font-size: 16px;font-weight: bold;">
@@ -147,7 +187,7 @@
               <div id="profile">
                 <input type="hidden" name="karyawan_id" value="<?php echo $data['id'] ?>">
                 <input type="hidden" name="instansi_id" value="<?php echo $data['instansi_id'] ?>">
-                <input type="hidden" name="status" value="2">
+                <input type="hidden" name="status" value="2"> 
                 <?php if (!empty($data['jam_jadwal'])): ?>
                   <input type="hidden" name="jam_jadwal" value="<?php echo $data['jam_jadwal'] ?>">
                 <?php endif ?>
