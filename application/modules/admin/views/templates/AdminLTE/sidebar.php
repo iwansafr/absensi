@@ -31,7 +31,7 @@
               foreach ($value['list'] as $vkey => $vvalue)
               {
                 ?>
-                <li><a href="<?php echo base_url('admin'.$vvalue['link']) ?>"><i class="fa <?php echo $vvalue['icon'] ?>"></i> <?php echo $vvalue['title'] ?></a></li>
+                <li><a href="<?php echo menu_link($vvalue['link'],1) ?>"><i class="fa <?php echo $vvalue['icon'] ?>"></i> <?php echo $vvalue['title'] ?></a></li>
                 <?php
               }?>
             </ul>
@@ -41,7 +41,7 @@
           ?>
           <!-- <li class="treeview"> -->
           <li>
-            <a href="<?php echo base_url('admin'.$value['link']) ?>">
+            <a href="<?php echo menu_link($value['link'],1) ?>">
               <i class="fa <?php echo $value['icon'] ?>"></i> <span><?php echo $value['title'] ?></span>
             </a>
           </li>
