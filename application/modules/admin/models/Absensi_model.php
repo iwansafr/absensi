@@ -129,6 +129,7 @@ class Absensi_model extends CI_Model
 					$time = strtotime(date("Ymd H:i:s"));
 					$time = date('Y-m-d H:i:s',$time);
 					$data['waktu'] = $time;
+					$data['kode'] = date('Ymd').$data['karyawan_id'].$data['status'];
 					$this->db->insert('absensi', $data);
 					$id = $this->db->insert_id();
 				} else {
