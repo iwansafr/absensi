@@ -34,7 +34,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <?php echo date('Y-m-d H:i') ?> <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; <?php echo @$site['site']['year'].'-'.date('Y'); ?> <a href="<?php echo @$site['site']['link'] ?>"><?php echo @$site['site']['title'] ?></a>.</strong> All rights
     reserved.
