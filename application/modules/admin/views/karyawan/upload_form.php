@@ -36,7 +36,10 @@
 		</table>
 	</div>
 <?php endif ?>
-<form action="" method="post" enctype="multipart/form-data">
+<div class="alert alert-info">
+Mohon Maaf Untuk Sementara Fitur Upload dalam perbaikan
+</div>
+<!-- <form action="" method="post" enctype="multipart/form-data">
 	<div class="panel panel-default">
 		<div class="panel panel-heading">
 			Form Upload Karyawan
@@ -44,11 +47,11 @@
 		<div class="panel-body">
 			<div class="form-group">
 				<label for="">upload file</label>
-				<input type="file" class="form-control" name="excel">
+				<input type="file" class="form-control" name="excel" accept=".xls,.xlsx">
 			</div>
 		</div>
 		<div class="panel-footer">
 			<button class="btn btn-sm btn-default"> <i class="fa fa-upload"></i> Upload</button> <a href="<?php echo base_url('admin/karyawan/download_template_karyawan') ?>" target="_blank" class="btn btn-sm btn-default"><i class="fa fa-download"></i> Download Template</a>
 		</div>
 	</div>
-</form>
+</form> -->
