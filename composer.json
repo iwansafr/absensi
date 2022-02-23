@@ -1,0 +1,17 @@
+{
+    "name": "esoftgreat/absensi",
+    "autoload": {
+        "psr-4": {
+            "Esoftgreat\\Absensi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "iwansafr",
+            "email": "iwansafr@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.22"
+    }
+}

@@ -36,10 +36,10 @@
 		</table>
 	</div>
 <?php endif ?>
-<div class="alert alert-info">
+<!-- <div class="alert alert-info">
 Mohon Maaf Untuk Sementara Fitur Upload dalam perbaikan
-</div>
-<!-- <form action="" method="post" enctype="multipart/form-data">
+</div> -->
+<form action="" method="post" enctype="multipart/form-data">
 	<div class="panel panel-default">
 		<div class="panel panel-heading">
 			Form Upload Karyawan
@@ -54,4 +54,4 @@ Mohon Maaf Untuk Sementara Fitur Upload dalam perbaikan
 			<button class="btn btn-sm btn-default"> <i class="fa fa-upload"></i> Upload</button> <a href="<?php echo base_url('admin/karyawan/download_template_karyawan') ?>" target="_blank" class="btn btn-sm btn-default"><i class="fa fa-download"></i> Download Template</a>
 		</div>
 	</div>
-</form> -->
+</form>

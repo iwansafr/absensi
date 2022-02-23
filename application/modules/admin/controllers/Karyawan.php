@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-// require('./vendor/autoload.php');
-// use PhpOffice\PhpSpreadsheet\Spreadsheet;
-// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+require('./vendor/autoload.php');
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Karyawan extends CI_Controller
 {
@@ -68,20 +68,26 @@ class Karyawan extends CI_Controller
 		$data = [];
 		$status = true;
 		if (isset($_FILES['excel']['tmp_name'])) {
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Spreadsheet.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/IOFactory.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Exception.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/IReader.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/IReadFilter.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/DefaultReadFilter.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/BaseReader.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Exception.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Shared/OLERead.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Shared/File.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/IWriter.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/BaseWriter.php';
-			include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Spreadsheet.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Calculation.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Category.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Settings.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/IOFactory.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Exception.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/ReferenceHelper.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Security/XmlScanner.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/IReader.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/IReadFilter.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/DefaultReadFilter.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/BaseReader.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Exception.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Shared/OLERead.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Shared/File.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/IWriter.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/BaseWriter.php';
+			// include_once APPPATH.'/third_party/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx.php';
 			$name = $_FILES['excel']['name'];
 			$extention = explode('.',$name);
 			$extention = end($extention);
