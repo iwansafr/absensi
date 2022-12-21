@@ -26,9 +26,9 @@ $form->setHeading('
 		<li><a href="'.base_url('admin/absensi/rekap_poin').'"><i class="fa fa-search"></i><i class="fa fa-list"></i> Poin</a></li>
 		<li><a href="'.base_url('/admin/absensi/rekap_absensi').'"><i class="fa fa-search"></i><i class="fa fa-chart-bar"></i> Absensi</a></li>
 	</ul>
-	<a href="'.base_url('/admin/karyawan/upload_form').'" class="btn btn-default btn-sm"><i class="fa fa-upload"></i> Upload Karyawan</a>
 </div>'
 );
+// <a href="'.base_url('/admin/karyawan/upload_form').'" class="btn btn-default btn-sm"><i class="fa fa-upload"></i> Upload Karyawan</a>
 $form->addInput('id', 'plaintext');
 $form->setLabel('id', 'action');
 $form->setPlainText('id', [
