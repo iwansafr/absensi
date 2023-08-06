@@ -118,7 +118,9 @@ $font = !empty($config_theme['font_color']) ? $config_theme['font_color'] : 'bla
                 <?php endif ?>
               </div>
               <div class="pull-right hidden-xs hidden-sm">
+                <?php if(is_instansi()): ?> 
                 <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                <?php endif ?>
               </div>
             </li>
           </ul>
