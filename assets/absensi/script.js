@@ -60,6 +60,23 @@ $(document).ready(function () {
     $("#location").append("<input type='hidden' name='longitude' value='" + cur_long + "'><input type='hidden' name='latitude' value='" + cur_lat + "'>");
     $("#long").html(cur_long);
     $("#lat").html(cur_lat);
+    fetch('http://www.geoplugin.net/json.gp')
+    .then((resp) => {
+      if(!resp.ok) {
+        console.warn('Cannot fetch location data')
+        return
+      }
+      return resp.json()
+    })
+    .then((data) => {
+      //Check if the location matches with a margin of one degree
+      console.log(data.geoplugin_latitude);
+      if(Math.abs(cur_lat - data.geoplugin_latitude) < 1 && Math.abs(cur_long - data.geoplugin_longitude) < 1) {
+        console.log("Location is valid")
+      } else {
+        console.warn("Location is probably fake")
+      }
+    })
     getStatus();
     getTotal();
     getConfig(ins_id, cur_long, cur_lat, long, lat);

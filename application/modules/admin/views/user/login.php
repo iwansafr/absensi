@@ -121,6 +121,7 @@
           <li>Ada rekap harian maupun bulanan</li>
           <li>Ada rekap datang, terlambat, ijin maupun pulang yg bisa langsung dilihat di dashboard</li>
         </ol>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeH_BhFex2UZjRkaTcx0E0SolAoJ9ZRsrUJZ_-KTeFJAxCfyw/viewform" target="_blank" class="btn btn-primary btn-block btn-flat">Daftar Di Sini</a>
       </div>
       <div class="box-footer">
         <div class="login-logo">
