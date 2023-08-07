@@ -46,8 +46,10 @@ class Absensi_model extends CI_Model
 				'absen' => ['total' => 0, 'color' => 'danger'],
 			];
 			$karyawan_ids = [];
+			$config_jam_user = [];
 			foreach ($data as $key => $value) {
 				$karyawan_ids[] = $value['karyawan_id'];
+				$config_jam_user[] = 'config_jam_user_'.$value['karyawan_id'];
 				if ($value['status'] == 1) {
 					$status['berangkat']['total'] = @intval($status['berangkat']['total']) + 1;
 					$status['berangkat']['karyawan'][$value['karyawan_id']] = ['nama' => $value['nama'], 'jam' => $value['waktu'], 'selisih' => $value['selisih_waktu']];
@@ -67,15 +69,31 @@ class Absensi_model extends CI_Model
 				$this->db->where_not_in('id', $karyawan_ids);
 				$this->db->where('instansi_id = '.$instansi_id);
 				$status['last_query'][] = $this->db->last_query();
-				$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
-				$this->db->select('nama');
+				// $status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+				$this->db->select('nama,user_id,id');
 				$this->db->where_not_in('id', $karyawan_ids);
 				$this->db->where('instansi_id = '.$instansi_id);
 				$karyawan_absen = $this->db->get('karyawan')->result_array();
 				$status['last_query'][] = $this->db->last_query();
-				if (!empty($karyawan_absen)) {
+				$this->db->select('name,value');
+				$this->db->where_in('name',$config_jam_user);
+				$jam_user = $this->db->get('jam_absen')->result_array();
+				$day = date('w');
+				$new_karyawan_absen = [];
+				foreach ($jam_user as $jkey => $jvalue) {
+					$config_jam = json_decode($jvalue['value'],1);
+					$todaySchedule = $config_jam['mulai_berangkat_'.$day];
 					foreach ($karyawan_absen as $key => $value) {
+						if('config_jam_user_'.$value['id'] == $jvalue['name']){
+							$new_karyawan_absen[] = $value;
+						}
+					}
+				}
+				$status['absen']['total'] = count($new_karyawan_absen);
+				if (!empty($new_karyawan_absen)) {
+					foreach ($new_karyawan_absen as $key => $value) {
 						$status['absen']['karyawan'][] = $value['nama'];
+						
 					}
 				}
 			}
