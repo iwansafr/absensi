@@ -85,7 +85,7 @@ class Absensi_model extends CI_Model
 					$todaySchedule = $config_jam['mulai_berangkat_'.$day];
 					foreach ($karyawan_absen as $key => $value) {
 						if('config_jam_user_'.$value['id'] == $jvalue['name']){
-							$new_karyawan_absen[] = $value;
+							$new_karyawan_absen[$value['id']] = $value;
 						}
 					}
 				}
