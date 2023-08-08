@@ -67,15 +67,35 @@ class Absensi_model extends CI_Model
 				$this->db->where_not_in('id', $karyawan_ids);
 				$this->db->where('instansi_id = '.$instansi_id);
 				$status['last_query'][] = $this->db->last_query();
-				$status['absen']['total'] = $this->db->get('karyawan')->num_rows();
-				$this->db->select('nama');
+				// $status['absen']['total'] = $this->db->get('karyawan')->num_rows();
+				$this->db->select('id,nama');
 				$this->db->where_not_in('id', $karyawan_ids);
 				$this->db->where('instansi_id = '.$instansi_id);
 				$karyawan_absen = $this->db->get('karyawan')->result_array();
 				$status['last_query'][] = $this->db->last_query();
 				if (!empty($karyawan_absen)) {
+					$config_jam_user = [];
 					foreach ($karyawan_absen as $key => $value) {
-						$status['absen']['karyawan'][] = $value['nama'];
+						$config_jam_user[] = 'config_jam_user_'.$value['id'];
+						// $status['absen']['karyawan'][] = $value['nama'];
+					}
+					$config_jam = $this->db->where_in('name',$config_jam_user)->get('jam_absen')->result_array();
+					$new_config_jam = [];
+					foreach($config_jam AS $key => $value){
+						$new_config_jam[str_replace('config_jam_user_','',$value['name'])] = $value;
+					}
+					$day = date('w');
+					$absen_total = 0;
+					foreach($karyawan_absen AS $key => $value){
+						$jam = $new_config_jam[$value['id']];
+						$param = json_decode($jam['value'],1);
+						if(!empty($param['mulai_berangkat_'.$day])){
+							// pr($param['mulai_berangkat_'.$day]);
+							$absen_total++;
+							$status['absen']['karyawan'][] = $value['nama'];
+							$status['absen']['total'] = $absen_total;
+						}
+
 					}
 				}
 			}
