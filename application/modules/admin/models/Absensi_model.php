@@ -87,13 +87,15 @@ class Absensi_model extends CI_Model
 					$day = date('w');
 					$absen_total = 0;
 					foreach($karyawan_absen AS $key => $value){
-						$jam = $new_config_jam[$value['id']];
-						$param = json_decode($jam['value'],1);
-						if(!empty($param['mulai_berangkat_'.$day])){
-							// pr($param['mulai_berangkat_'.$day]);
-							$absen_total++;
-							$status['absen']['karyawan'][] = $value['nama'];
-							$status['absen']['total'] = $absen_total;
+						if (!empty($new_config_jam[$value['id']])) {
+							$jam = $new_config_jam[$value['id']];
+							$param = json_decode($jam['value'],1);
+							if(!empty($param['mulai_berangkat_'.$day])){
+								// pr($param['mulai_berangkat_'.$day]);
+								$absen_total++;
+								$status['absen']['karyawan'][] = $value['nama'];
+								$status['absen']['total'] = $absen_total;
+							}
 						}
 
 					}
