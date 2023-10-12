@@ -155,7 +155,7 @@ class Absensi extends CI_Controller
 			$jadwal = [];
 			$masuk = [];
 			if(!empty($karyawan['user_id'])){
-				$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_user_'.$karyawan['user_id']])->row_array();
+				$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_user_'.$karyawan['id']])->row_array();
 				if(empty($jadwal)){
 					$jadwal = $this->db->get_where('jam_absen',['name'=>'config_jam_instansi_'.$karyawan['instansi_id']])->row_array();
 				}
