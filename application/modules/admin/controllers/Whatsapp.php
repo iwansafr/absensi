@@ -23,9 +23,11 @@ class Whatsapp extends CI_Controller
     {
         $config = $this->esg->get_config('whatsapp');
         $absensis = $this->db->query('SELECT absensi.*,karyawan.bc,karyawan.nama,karyawan.hp,karyawan.jk FROM absensi INNER JOIN karyawan ON(karyawan.id=absensi.karyawan_id) WHERE karyawan.bc = 1 AND absensi.sent = 0 AND DATE(waktu) = ? LIMIT 10', date('Y-m-d'))->result();
+        $absensi_ids = [];
         if(!empty($absensis)){
             $statuses = $this->absensi_model->status();
             foreach($absensis as $absensi){
+                $absensi_ids[] = $absensi->id;
                 $phone = $absensi->hp;
                 $nama = $absensi->nama;
                 $status = $statuses[$absensi->status];
@@ -50,22 +52,25 @@ class Whatsapp extends CI_Controller
                     'receiver' => '62'.$phone,
                     'message' => "Kepada Yth *{$say} {$nama}*\nKami ingin memberitahukan bahwa anda berhasil melakukan absensi pada\nWaktu: {$waktu}\nStatus : {$status}\nTerima Kasih",
                 ];
-                $headers = [
-                    'content-type: application/json'
-                ];
-                $curlHandle = curl_init($config['url'].'?id='.$config['UUID']);
-                // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
-                curl_setopt($curlHandle, CURLOPT_POSTFIELDS, json_encode($postParameter));
-                curl_setopt($curlHandle, CURLOPT_POST, true);
-                curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
+                pr($postParameter);
+                // $headers = [
+                //     'content-type: application/json'
+                // ];
+                // $curlHandle = curl_init($config['url'].'?id='.$config['UUID']);
+                // // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
+                // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, json_encode($postParameter));
+                // curl_setopt($curlHandle, CURLOPT_POST, true);
+                // curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+                // curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
                 
-                $curlResponse = curl_exec($curlHandle);
-                $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
-                echo json_encode([$curlResponse, $statusCode]);
-                curl_close($curlHandle);
+                // $curlResponse = curl_exec($curlHandle);
+                // $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+                // echo json_encode([$curlResponse, $statusCode]);
+                // curl_close($curlHandle);
             }
+            $this->db->set(['sent'=>1]);
+            $this->db->where_in('id', $absensi_ids);
+            $this->db->update('absensi');
         }
-
     }
 }
