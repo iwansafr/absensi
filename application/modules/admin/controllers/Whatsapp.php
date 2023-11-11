@@ -71,6 +71,8 @@ class Whatsapp extends CI_Controller
             $this->db->set(['sent'=>1]);
             $this->db->where_in('id', $absensi_ids);
             $this->db->update('absensi');
+        }else{
+            echo json_encode(['status'=>'success','message'=>'No Job']);
         }
     }
 }
