@@ -47,6 +47,8 @@ $form->setLabel('nama', 'nama lengkap');
 $form->addInput('hp', 'plaintext');
 $form->addInput('foto', 'thumbnail');
 
+$form->addInput('bc','checkbox');
+
 $form->setEdit(true);
 $form->setDelete(true);
 
