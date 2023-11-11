@@ -7,17 +7,12 @@ class Whatsapp extends CI_Controller
 		parent::__construct();
 		$this->db->cache_off();
 		$this->load->model('esg_model');
-		$this->load->model('admin_model');
 		$this->load->model('pengguna_model');
-		$this->load->model('absensi_model');
+		$this->load->model('admin/absensi_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
 	}
-    public function config()
-    {
-        $this->load->view('index');
-    }
 
     public function send()
     {
@@ -52,7 +47,7 @@ class Whatsapp extends CI_Controller
                     'receiver' => '62'.$phone,
                     'message' => "Kepada Yth *{$say} {$nama}*\nKami ingin memberitahukan bahwa anda berhasil melakukan absensi pada\nWaktu: {$waktu}\nStatus : {$status}\nTerima Kasih",
                 ];
-                pr($postParameter);
+                // pr($postParameter);
                 $headers = [
                     'content-type: application/json'
                 ];
