@@ -22,31 +22,51 @@ class Whatsapp extends CI_Controller
     public function send()
     {
         $config = $this->esg->get_config('whatsapp');
-        $url = $config['url'];
+        // $url = $config['url'];
 
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // $curl = curl_init($url);
+        // curl_setopt($curl, CURLOPT_URL, $url);
+        // curl_setopt($curl, CURLOPT_POST, true);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        $headers = array(
-            "Accept: application/json",
-            "Content-Type: application/json",
-            "Authorization: ".$config['UUID']
-        );
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        // $headers = array(
+        //     "Accept: application/json",
+        //     "Content-Type: application/json",
+        //     "Authorization: ".$config['UUID']
+        // );
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
-        $data = <<<DATA
-        {
-            "receiver": 6285758700025,
-            "message": "test pesan masuk"
-        }
-        DATA;
+        // $data = <<<DATA
+        // {
+        //     "receiver": 6285758700025,
+        //     "message": "test pesan masuk"
+        // }
+        // DATA;
 
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
-        $resp = curl_exec($curl);
-        curl_close($curl);
-        echo $resp;
+        // $resp = curl_exec($curl);
+        // curl_close($curl);
+        // echo $resp;
+
+
+        $postParameter = [
+            'receiver' => '6285758700025',
+            'message' => 'test pesan masuk'
+        ];
+        $headers = [
+            'content-type: application/json'
+        ];
+        $curlHandle = curl_init($config['url'].'?id='.$config['UUID']);
+        // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
+        curl_setopt($curlHandle, CURLOPT_POSTFIELDS, json_encode($postParameter));
+        curl_setopt($curlHandle, CURLOPT_POST, true);
+        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
+        
+        $curlResponse = curl_exec($curlHandle);
+        $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+        echo json_encode([$curlResponse, $statusCode]);
+        curl_close($curlHandle);
     }
 }
