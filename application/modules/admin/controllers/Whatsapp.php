@@ -22,51 +22,50 @@ class Whatsapp extends CI_Controller
     public function send()
     {
         $config = $this->esg->get_config('whatsapp');
-        // $url = $config['url'];
+        $absensis = $this->db->query('SELECT absensi.*,karyawan.bc,karyawan.nama,karyawan.hp,karyawan.jk FROM absensi INNER JOIN karyawan ON(karyawan.id=absensi.karyawan_id) WHERE karyawan.bc = 1 AND absensi.sent = 0 AND DATE(waktu) = ? LIMIT 10', date('Y-m-d'))->result();
+        if(!empty($absensis)){
+            $statuses = $this->absensi_model->status();
+            foreach($absensis as $absensi){
+                $phone = $absensi->hp;
+                $nama = $absensi->nama;
+                $status = $statuses[$absensi->status];
+                $waktu = $absensi->waktu;
+                $say = 'Bapak';
+                if($absensi->jk == 2){
+                    $say = 'Ibu';
+                }
 
-        // $curl = curl_init($url);
-        // curl_setopt($curl, CURLOPT_URL, $url);
-        // curl_setopt($curl, CURLOPT_POST, true);
-        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                $phone = str_replace(' ','',$phone);
+                //remove -(dash) on phone number
+                $phone = str_replace('-','',$phone);
+                //remove +(plus) on phone number
+                $phone = str_replace('+','',$phone);
+                $first = substr($phone, 0, 1);
+                if ($first == 0) {
+                    $phone = ltrim($phone, '0');
+                }else{
+                    $phone = ltrim($phone, '62');
+                }
+                $postParameter = [
+                    'receiver' => '62'.$phone,
+                    'message' => "Kepada Yth *{$say} {$nama}*\nKami ingin memberitahukan bahwa anda berhasil melakukan absensi pada\nWaktu: {$waktu}\nStatus : {$status}\nTerima Kasih",
+                ];
+                $headers = [
+                    'content-type: application/json'
+                ];
+                $curlHandle = curl_init($config['url'].'?id='.$config['UUID']);
+                // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
+                curl_setopt($curlHandle, CURLOPT_POSTFIELDS, json_encode($postParameter));
+                curl_setopt($curlHandle, CURLOPT_POST, true);
+                curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
+                
+                $curlResponse = curl_exec($curlHandle);
+                $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+                echo json_encode([$curlResponse, $statusCode]);
+                curl_close($curlHandle);
+            }
+        }
 
-        // $headers = array(
-        //     "Accept: application/json",
-        //     "Content-Type: application/json",
-        //     "Authorization: ".$config['UUID']
-        // );
-        // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-        // $data = <<<DATA
-        // {
-        //     "receiver": 6285758700025,
-        //     "message": "test pesan masuk"
-        // }
-        // DATA;
-
-        // curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-
-        // $resp = curl_exec($curl);
-        // curl_close($curl);
-        // echo $resp;
-
-
-        $postParameter = [
-            'receiver' => '6285758700025',
-            'message' => 'test pesan masuk'
-        ];
-        $headers = [
-            'content-type: application/json'
-        ];
-        $curlHandle = curl_init($config['url'].'?id='.$config['UUID']);
-        // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
-        curl_setopt($curlHandle, CURLOPT_POSTFIELDS, json_encode($postParameter));
-        curl_setopt($curlHandle, CURLOPT_POST, true);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
-        
-        $curlResponse = curl_exec($curlHandle);
-        $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
-        echo json_encode([$curlResponse, $statusCode]);
-        curl_close($curlHandle);
     }
 }

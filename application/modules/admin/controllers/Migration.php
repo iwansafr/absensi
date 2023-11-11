@@ -35,7 +35,19 @@ class Migration extends CI_Controller
           );
           return $this->dbforge->add_column('karyawan',$fields);
         }
+        if(!$this->db->field_exists('sent','absensi'))
+        {
+          $this->load->dbforge();
+          $fields = array(
+            'sent' =>[
+              'type' => 'TINYINT',
+              'constraint' => '1',
+              'default' => '0',
+              'after' => 'status'
+            ]
+          );
+          return $this->dbforge->add_column('absensi',$fields);
+        }
         return 'no migration execute';
     }
-
 }
