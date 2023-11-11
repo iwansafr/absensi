@@ -32,14 +32,14 @@ class Whatsapp extends CI_Controller
         $headers = array(
             "Accept: application/json",
             "Content-Type: application/json",
-            "Authorization: ".$config['UUID'],
+            "Authorization: ".$config['UUID']
         );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
         $data = <<<DATA
         {
             "receiver": 6285758700025,
-            "message": "test pesan masuk",
+            "message": "test pesan masuk"
         }
         DATA;
 
