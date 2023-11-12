@@ -75,4 +75,9 @@ class Whatsapp extends CI_Controller
             echo json_encode(['status'=>'success','message'=>'No Job']);
         }
     }
+
+    public function member()
+    {
+        $this->load->view('index');
+    }
 }
