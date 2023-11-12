@@ -29,12 +29,17 @@ $form->setHeading('
 </div>'
 );
 // <a href="'.base_url('/admin/karyawan/upload_form').'" class="btn btn-default btn-sm"><i class="fa fa-upload"></i> Upload Karyawan</a>
-$form->addInput('id', 'plaintext');
-$form->setLabel('id', 'action');
-$form->setPlainText('id', [
+
+$idActions = [
 	base_url('admin/absensi/rekap/{id}/Rekap-bulanan') => '<i class="fa fa-list"></i> Rekap',
 	base_url('admin/absensi/config_jam/{id}/Config-Jam') => '<i class="fa fa-clock"></i> Atur Jam'
-]);
+];
+if(is_root()){
+	$idActions[base_url('admin/absensi/login/{id}/login')] = '<i class="fa fa-sign-in-alt"></i> Login';
+}
+$form->addInput('id', 'plaintext');
+$form->setLabel('id', 'action');
+$form->setPlainText('id', $idActions);
 $form->setNumbering(true);
 $form->setTable('karyawan');
 $form->addInput('instansi_id', 'dropdown');

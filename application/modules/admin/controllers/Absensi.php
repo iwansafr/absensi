@@ -393,4 +393,22 @@ class Absensi extends CI_Controller
 		$data = $this->kary_model->get_profile($g_id);
 		$this->load->view('index',['data'=>$data,'g_id'=>$g_id,'output'=>$output,'has_izin'=>$has_izin]);
 	}
+	public function login($k_id = 0)
+	{
+		if(is_root()){
+			$user = $this->db->query('SELECT user.* FROM user INNER JOIN karyawan ON(karyawan.user_id=user.id) WHERE karyawan.id = ?',$k_id)->row_array();
+			if(!empty($user)){
+				$role = $this->db->query('SELECT level,title FROM user_role WHERE id = ? LIMIT 1', @$user['user_role_id'])->row_array();
+				if(!empty($role))
+				{
+					$user['role'] = @$role['title'];
+					$user['level'] = @$role['level'];
+				}else{
+					$user['role'] = 'user';
+				}
+				$this->session->set_userdata(base_url().'_logged_in', $user);
+				header('locateion: '.base_url('admin'));
+			}
+		}
+	}
 }
