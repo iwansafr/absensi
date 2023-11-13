@@ -10,7 +10,7 @@ $sent_count = $this->db->query('SELECT count(sent) AS sent_count FROM absensi WH
     <div class="panel panel-body">
         <table class="table">
             <tr>
-                <td>Bulang</td>
+                <td>Bulan</td>
                 <td>: <?php echo date('Y-M') ?></td>
             </tr>
             <tr>
