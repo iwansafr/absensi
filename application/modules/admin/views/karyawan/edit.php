@@ -15,6 +15,19 @@ if ($is_instansi) {
 	$user_id = $this->session->userdata(base_url('_logged_in'))['id'];
 	$instansi_id = $this->pengguna_model->get_instansi_id($user_id);
 	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama', ['id' => $instansi_id]);
+
+	$config_limit_karyawan = $this->db->query('SELECT * FROM config WHERE name = ?',['limit_karyawan_'.$instansi_id])->row_array();
+	$total_current_karyawan = $this->db->query('SELECT count(id) AS total FROM karyawan WHERE instansi_id = ?',$instansi_id)->row_array();
+	if(!empty($config_limit_karyawan)){
+		$limit_karyawan = json_decode($config_limit_karyawan['value'],1)['limit'];
+		if(!empty($limit_karyawan)){
+			$form->setLimit($limit_karyawan);
+		}
+		?>
+		<h4 class="text-bold">Limit Karywan: <?php echo($limit_karyawan);?></h4>
+		<h4 class="text-bold">Karyawan Sekarang: <?php echo $total_current_karyawan['total'] ;?></h4>
+		<?php
+	}
 } else {
 	$form->tableOptions('instansi_id', 'instansi', 'id', 'nama');
 }
@@ -68,7 +81,16 @@ if($card_code_exist){
 }else{
 	$form->setUnique(['nip','email']);
 }
-$form->form();
+
+if($is_instansi && ($total_current_karyawan >= $limit_karyawan)){
+	?>
+	<div class="alert alert-danger">
+		Anda telah mencapai total maksimal karyawan, silahkan hapus karyawan anda
+	</div>
+	<?php
+}else{
+	$form->form();
+}
 if(!empty($_POST) && !empty($form->success))
 {
 	$data = $form->getData();
