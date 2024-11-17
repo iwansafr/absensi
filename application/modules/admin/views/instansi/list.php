@@ -21,6 +21,7 @@ if ($is_instansi) {
 
 $form->setPlainText('id', [
 	base_url('admin/karyawan/list?s_id={id}') => 'Daftar Karyawan',
+	base_url('admin/karyawan/limit_karyawan?s_id={id}') => 'Limit Karyawan',
 	base_url('admin/instansi/edit?id={id}&p={province_id}&r={regency_id}&d={district_id}') => 'Update Data',
 	base_url('admin/instansi/batas_jarak/{id}/atur-jarak') => 'Batas Jarak',
 ]);

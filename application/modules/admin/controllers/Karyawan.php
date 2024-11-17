@@ -298,4 +298,9 @@ class Karyawan extends CI_Controller
 	{
 		echo $this->last_karyawan($instansi_id);
 	}
+
+	public function limit_karyawan($instansi_id = 0)
+	{
+		$this->load->view('index');
+	}
 }

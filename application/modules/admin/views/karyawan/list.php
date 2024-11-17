@@ -6,11 +6,23 @@ $form->init('roll');
 $form->search();
 $is_instansi = is_instansi();
 if ($is_instansi) {
-	$form->setWhere(
-		'instansi_id = ' . $this->pengguna_model->get_instansi_id(
-			$this->session->userdata(base_url('_logged_in'))['id']
-		)
+	$instansi_id = $this->pengguna_model->get_instansi_id(
+		$this->session->userdata(base_url('_logged_in'))['id']
 	);
+	$form->setWhere(
+		'instansi_id = ' . $instansi_id
+	);
+
+	$config_limit_karyawan = $this->db->query('SELECT * FROM config WHERE name = ?',['limit_karyawan_'.$instansi_id])->row_array();
+	if(!empty($config_limit_karyawan)){
+		$limit_karyawan = json_decode($config_limit_karyawan['value'],1)['limit'];
+		if(!empty($limit_karyawan)){
+			$form->setLimit($limit_karyawan);
+		}
+		?>
+		<h4 class="text-bold">Limit Karywan: <?php echo($limit_karyawan);?></h4>
+		<?php
+	}
 } else {
 	if (!empty($_GET['s_id'])) {
 		$form->setWhere('instansi_id = ' . $this->db->escape($_GET['s_id']));
@@ -62,3 +74,13 @@ $form->setUrl('admin/karyawan/clear_list');
 
 $this->karyawan_model->delete_user($this->input->post());
 $form->form();
+
+
+if (!empty($limit_karyawan)) {
+	?>
+	<script>
+		const pagination = document.querySelector('.pagination');
+		pagination.style = "display: none;";
+	</script>
+	<?php
+}
