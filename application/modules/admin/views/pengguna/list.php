@@ -14,6 +14,6 @@ if(is_root() || is_admin())
 
 	$form->setDelete(true);
 	$form->setEdit(true);
-	$form->setUrl('admin/pengguna/clear_list');
+	$form->setUrl(base_url('admin/pengguna/clear_list'));
 	$form->form();
 }
