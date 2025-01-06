@@ -25,4 +25,8 @@ class Pengguna extends CI_Controller
 		$this->pengguna_model->delete();
 		$this->load->view('index');
 	}
+	public function clear_list()
+	{
+		$this->load->view('pengguna/list');
+	}
 }

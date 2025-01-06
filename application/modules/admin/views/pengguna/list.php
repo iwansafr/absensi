@@ -14,5 +14,6 @@ if(is_root() || is_admin())
 
 	$form->setDelete(true);
 	$form->setEdit(true);
+	$this->zea->setUrl('admin/pengguna/clear_list');
 	$form->form();
 }
