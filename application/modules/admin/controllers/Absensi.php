@@ -208,6 +208,9 @@ class Absensi extends CI_Controller
 		$this->load->model('Home/home_model');
 		$this->load->model('Home/karyawan_model','kary_model');
 
+		$canFace = false;
+
+
 		// if(!$this->db->field_exists('jam_jadwal','absensi'))
 		// {
 		// 	$this->load->dbforge();
@@ -267,6 +270,19 @@ class Absensi extends CI_Controller
 				$data['status'] = $status_key;
 			}
 			$data['jadwal'] = $jam_today['jadwal'];
+
+			$config_absensi = $this->db->query('SELECT * FROM config WHERE name = ?', ['absensi_config_'.$data['instansi_id']])->row_array();
+			if(!empty($config_absensi)){
+				$config_absensi = json_decode($config_absensi['value'],1);
+				if(!empty($config_absensi['face_id']) && $config_absensi['face_id'] == 1){
+					$canFace = true;
+				}
+				if(!empty($config_absensi['qr']) && $config_absensi['qr'] == 1){
+					$canQr = true;
+				}
+			}else{
+				$config_absensi = [];
+			}
 		}
 		$this->esg->add_js([
 			// 'http://maps.google.com/maps/api/js?sensor=false&libraries=geometry',
@@ -276,7 +292,7 @@ class Absensi extends CI_Controller
 			'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
 		]);
 		$output = $this->absensi_model->save();
-		$this->load->view('index',['data'=>$data,'output'=>$output]);
+		$this->load->view('index',['data'=>$data,'output'=>$output,'canFace'=>$canFace]);
 	}
 
 	public function face()
@@ -410,5 +426,10 @@ class Absensi extends CI_Controller
 				header('locateion: '.base_url('admin'));
 			}
 		}
+	}
+
+	public function setting()
+	{
+		$this->load->view('index');
 	}
 }
